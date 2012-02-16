@@ -223,9 +223,70 @@ sub meryl {
         $obtD = 0;
     }
 
+#AZ If we run ovl overlapper, we can trivially integrate Jellyfish here:  count then dump.  For now the threshold will
+#be fixed at 300 which is OK for most genomes
+if(getGlobal("ovlOverlapper") eq "ovl" && getGlobal("obtOverlapper") eq "ovl" && not(getGlobal("doMerBasedTrimming")))
+{
+my $bin          = getBinDirectory();
+my $merylThreads = getGlobal("merylThreads");
+my $ovlMerSize   = getGlobal('ovlMerSize');
+my $obtMerSize   = getGlobal('obtMerSize');
+my $jf_size      = getGlobal('jellyfishHashSize');
+
+if(getGlobal("obtMerThreshold") eq "auto")
+{
+$obtT = 300;
+}
+else
+{
+$obtT = getGlobal("obtMerThreshold");
+}
+
+
+if(getGlobal("ovlMerThreshold") eq "auto")
+{
+$ovlT = 300;
+}
+else
+{
+$ovlT = getGlobal("ovlMerThreshold");
+}
+
+
+#dump the gkp store and run jellyfish
+runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore > $wrk/0-mercounts/seq.fa");
+caFailure("Failed to dump gatekeeper fasta", undef) if(not(-e "$wrk/0-mercounts/seq.fa"));
+#here we assume that jellyfish is available on the global PATH
+if(getGlobal("doOverlapBasedTrimming"))
+{
+runCommand("$wrk/0-mercounts", "jellyfish  count -C -m $obtMerSize -s $jf_size -o obtMerCounts.jf -t $merylThreads $wrk/0-mercounts/seq.fa");
+if(-e "wrk/0-mercounts/obtMerCounts.jf_1")
+{
+runCommand("$wrk/0-mercounts", "jellyfish merge -o obtMerCounts_merged.jf obtMerCounts.jf_*");
+}
+else
+{
+runCommand("$wrk/0-mercounts", "ln -s obtMerCounts.jf_0 obtMerCounts_merged.jf");
+}
+runCommand("$wrk/0-mercounts", "jellyfish dump -L $obtT -o $wrk/0-mercounts/$asm.nmers.obt.fasta obtMerCounts_merged.jf");
+}
+#here we count mers for the ovl overlapper
+runCommand("$wrk/0-mercounts", "jellyfish  count -C -m $ovlMerSize -s $jf_size -o ovlMerCounts.jf -t $merylThreads $wrk/0-mercounts/seq.fa");
+if(-e "wrk/0-mercounts/ovlMerCounts.jf_1")
+{
+runCommand("$wrk/0-mercounts", "jellyfish merge -o ovlMerCounts_merged.jf ovlMerCounts.jf_*");
+}
+else
+{
+runCommand("$wrk/0-mercounts", "ln -s ovlMerCounts.jf_0 ovlMerCounts_merged.jf");
+}
+runCommand("$wrk/0-mercounts", "jellyfish dump -L $ovlT -o $wrk/0-mercounts/$asm.nmers.ovl.fasta ovlMerCounts_merged.jf");
+}
+else #use Meryl or CA meryl
+{
     $ovlT = runMeryl(getGlobal('ovlMerSize'), $ovlc, $ovlC, getGlobal("ovlMerThreshold"), "ovl", $ovlD);
     $obtT = runMeryl(getGlobal('obtMerSize'), $obtc, $obtC, getGlobal("obtMerThreshold"), "obt", $obtD) if (getGlobal("doOverlapBasedTrimming") || getGlobal("doMerBasedTrimming"));
-
+}
     if ((getGlobal("obtMerThreshold") ne $obtT) && (getGlobal("doOverlapBasedTrimming"))) {
         print STDERR "Reset OBT mer threshold from ", getGlobal("obtMerThreshold"), " to $obtT.\n";
         setGlobal("obtMerThreshold", $obtT);

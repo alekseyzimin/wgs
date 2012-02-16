@@ -26,7 +26,7 @@ const char *mainid = "$Id: eCR.c,v 1.57 2010/02/17 01:32:58 brianwalenz Exp $";
 #include "MultiAlignment_CNS.h"
 #include "GapWalkerREZ.h"  //  FindGapLength
 
-#define MAX_EXTENDABLE_FRAGS   100
+#define MAX_EXTENDABLE_FRAGS   150
 #define NUM_STDDEV_CUTOFF        5.0
 
 typedef struct {

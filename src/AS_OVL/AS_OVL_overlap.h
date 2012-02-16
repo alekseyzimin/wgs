@@ -285,7 +285,7 @@ static const char *rcsid_AS_OVL_OVERLAP_H = "$Id: AS_OVL_overlap.h,v 1.34 2010/0
 
 #define  MAX_OLD_BATCH_SIZE      100000
     //  Most old fragments to read at a time from the fragment store
-#define  MAX_HASH_LOAD           0.60
+#define  MAX_HASH_LOAD           0.80 //AZ was 0.6
     //  Maximum portion of hash table allowed to be filled
 #define  MAX_LINE_LEN            1000
     //  Maximum input line when reading FASTA file

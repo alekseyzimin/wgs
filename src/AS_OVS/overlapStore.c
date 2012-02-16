@@ -44,7 +44,7 @@ main(int argc, char **argv) {
   uint32          nThreads    = 4;
   uint32          doFilterOBT = 0;
   uint32          fileListLen = 0;
-  uint32          fileListMax = 10 * 1024;  //  If you run more than 10,000 overlapper jobs, you'll die.
+  uint32          fileListMax = 100 * 1024;  //  If you run more than 10,000 overlapper jobs, you'll die.
   char          **fileList    = (char **)safe_malloc(sizeof(char *) * fileListMax);
   Ovl_Skip_Type_t ovlSkipOpt  = ALL;
 

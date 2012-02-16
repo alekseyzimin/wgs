@@ -229,6 +229,7 @@ void BestOverlapGraph::scoreContainment(const OVSoverlap& olap) {
   //  comment there) to keep a list of dovetail overlaps to contained
   //  fragments.
   //
+  //AZ 3 and -3 used to be 10 and -10
   if (((olap.dat.ovl.a_hang >= -10) && (olap.dat.ovl.b_hang <=  0)) ||
       ((olap.dat.ovl.a_hang >=   0) && (olap.dat.ovl.b_hang <= 10)))
     _best_contains[olap.b_iid].olapsLen++;
@@ -278,7 +279,7 @@ void BestOverlapGraph::scoreEdge(const OVSoverlap& olap) {
   //  there are cases when a change in the alignemtn (consensus) will
   //  change which one is contained and screw up the order, so having
   //  this 10 base fudge factor helps things work out."
-  //
+  //AZ first replace 10 by 3
   if (isContained(olap.b_iid)) {
     if (((olap.dat.ovl.a_hang >= -10) && (olap.dat.ovl.b_hang <=  0)) ||
         ((olap.dat.ovl.a_hang >=   0) && (olap.dat.ovl.b_hang <= 10))) {

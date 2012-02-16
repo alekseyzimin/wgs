@@ -382,7 +382,7 @@ CreateChunkOverlapFromEdge(GraphCGW_T *graph, EdgeCGW_T *edge){
   ChunkOverlapCheckT olap  = {0};
   double             delta = sqrt(edge->distance.variance) * 3.0;
 
-  assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+  //assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
 
   InitCanonicalOverlapSpec(edge->idA, edge->idB, edge->orient, &olap.spec);
 

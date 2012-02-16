@@ -35,8 +35,8 @@ static char *rcsid = "$Id: SplitChunks_CGW.c,v 1.54 2010/02/17 01:32:58 brianwal
 
 
 #define READ_TRIM_BASES          (AS_OVERLAP_MIN_LEN / 2 - 1)   //  was 30
-#define MAX_SEQUENCE_COVERAGE    1
-#define MIN_BAD_CLONE_COVERAGE   3
+#define MAX_SEQUENCE_COVERAGE    0
+#define MIN_BAD_CLONE_COVERAGE   4
 #define MAX_GOOD_CLONE_COVERAGE  0
 #define LN_2                     0.693147
 

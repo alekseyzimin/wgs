@@ -225,6 +225,7 @@ gkClearRange::gkClearRange_getClearRegion(gkFragment *fr, uint32& begin, uint32&
 
 void
 gkClearRange::gkClearRange_setClearRegion(gkFragment *fr, uint32  begin, uint32  end) {
+//changed AZ -- I do not like these crashes
 
   if (begin > end)
     fprintf(stderr, "ERROR: fragment '%s' clear begin (%d) > end (%d).\n",
@@ -237,6 +238,14 @@ gkClearRange::gkClearRange_setClearRegion(gkFragment *fr, uint32  begin, uint32 
   if (end   > fr->gkFragment_getSequenceLength())
     fprintf(stderr, "ERROR: fragment '%s' clear end (%d) > sequence length (%d).\n",
             AS_UID_toString(fr->gkFragment_getReadUID()), end, fr->gkFragment_getSequenceLength());
+
+if(begin>end){
+        begin=0;
+        end=0;
+}else if(begin > fr->gkFragment_getSequenceLength())
+        begin = fr->gkFragment_getSequenceLength();
+else if(end > fr->gkFragment_getSequenceLength())
+        end = fr->gkFragment_getSequenceLength();
 
   assert(begin <= end);
   assert(begin <= fr->gkFragment_getSequenceLength());

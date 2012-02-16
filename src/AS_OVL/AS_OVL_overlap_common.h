@@ -181,11 +181,11 @@ typedef  struct String_Ref
 
 typedef  uint32   String_Ref_t;
 
-uint32 STRING_NUM_BITS       = 19;  //  21
-uint32 OFFSET_BITS           = 30 - STRING_NUM_BITS;
+uint32 STRING_NUM_BITS       = (uint32)19;  //  21
+uint32 OFFSET_BITS           = (uint32)(30 - STRING_NUM_BITS);
 
-uint32 STRING_NUM_MASK       = (1 << STRING_NUM_BITS) - 1;
-uint32 OFFSET_MASK           = (1 << OFFSET_BITS) - 1;
+uint32 STRING_NUM_MASK       = ((uint32)1 << STRING_NUM_BITS) - 1;
+uint32 OFFSET_MASK           = ((uint32)1 << OFFSET_BITS) - 1;
 
 uint32 MAX_STRING_NUM        = STRING_NUM_MASK;
 
@@ -674,8 +674,8 @@ main(int argc, char **argv) {
           Max_Hash_Data_Len = 400000000;
         } else if (strcmp (argv[arg], "4GB") == 0) {
           Hash_Mask_Bits    = 23;
-          Max_Hash_Strings  = 250000;
-          Max_Hash_Data_Len = 180000000;
+          Max_Hash_Strings  = 250000; // Was 250000
+          Max_Hash_Data_Len = 220000000; //Was 180000000
         } else if (strcmp (argv[arg], "2GB") == 0) {
           Hash_Mask_Bits    = 22;
           Max_Hash_Strings  = 150000;     //  Was 100000
@@ -2795,13 +2795,17 @@ static void  Mark_Skip_Kmers
           {
            fprintf (stderr, "ERROR:  Bad line %d in kmer skip file\n", ct);
            fputs (line, stderr);
-           exit (1);
+           //AZ
+	   continue;
+	   //exit (1);
           }
 
       if  (fgets (line, MAX_LINE_LEN, Kmer_Skip_File) == NULL)
           {
            fprintf (stderr, "ERROR:  Bad line after %d in kmer skip file\n", ct);
-           exit (1);
+	   //AZ
+	continue;
+           //exit (1);
           }
       ct ++;
       len = strlen (line) - 1;
@@ -2809,7 +2813,9 @@ static void  Mark_Skip_Kmers
           {
            fprintf (stderr, "ERROR:  Bad line %d in kmer skip file\n", ct);
            fputs (line, stderr);
-           exit (1);
+           //AZ
+	   continue;
+	   //exit (1);
           }
       line [len] = '\0';
 

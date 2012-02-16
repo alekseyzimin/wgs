@@ -373,6 +373,9 @@ sub setDefaults () {
 
     #####  Mers
 
+    $global{"jellyfishHashSize"}           = 200000000;
+    $synops{"jellyfishHashSize"}           = "Jellyfish hash size, -s parameter (see Jellyfish documentation)";
+
     $global{"merylMemory"}                 = 800;
     $synops{"merylMemory"}                 = "Amount of memory, in MB, to use for mer counting";
 

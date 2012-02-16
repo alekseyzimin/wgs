@@ -44,12 +44,12 @@ static const char *rcsid_AS_CGW_DATATYPES_H = "$Id: AS_CGW_dataTypes.h,v 1.14 20
 #define ComputeFudgeVariance(L)    (fabs(L) * CGW_FUDGE_FACTOR)
 
 #define CGW_DP_THRESH 1e-6
-#define CGW_DP_MINLEN 20
+#define CGW_DP_MINLEN 12
 #define CGW_DP_DESPERATION_MINLEN 10
 
 // Due to the FBAC fragments, we get some pathologically short U-Unitigs
 // Set the following threshhold to eliminate the really short ones
-#define CGW_MIN_DISCRIMINATOR_UNIQUE_LENGTH 1000
+#define CGW_MIN_DISCRIMINATOR_UNIQUE_LENGTH 300 
 
 #define NO_END 0
 #define A_END 1

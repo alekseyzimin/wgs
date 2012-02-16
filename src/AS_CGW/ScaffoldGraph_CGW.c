@@ -662,6 +662,7 @@ int RepeatRez(int repeatRezLevel, char *name){
         normal_inserts = Fill_Gaps (name, repeatRezLevel, iter);
         if  (normal_inserts > 0)
           {
+	    fprintf (stderr, "AZ###Inserted %d rocks in a gap###\n",normal_inserts);
             didSomething = TRUE;
             CheckCIScaffoldTs(ScaffoldGraph);
 
@@ -680,6 +681,7 @@ int RepeatRez(int repeatRezLevel, char *name){
             contained_inserts = Hurl_Contained_Rocks (name, repeatRezLevel, iter);
             if  (contained_inserts > 0)
               {
+		fprintf (stderr, "AZ###Inserted %d contained rocks###\n",contained_inserts);
                 didSomething = TRUE;
                 TidyUpScaffolds (ScaffoldGraph);
                 CheckEdgesAgainstOverlapper(ScaffoldGraph->ContigGraph);
@@ -696,6 +698,7 @@ int RepeatRez(int repeatRezLevel, char *name){
             contained_stones = Toss_Contained_Stones (name, repeatRezLevel, iter);
             if  (contained_stones > 0)
               {
+		fprintf (stderr, "AZ###Inserted %d contained stones in a gap###\n",contained_stones);
                 didSomething = TRUE;
                 TidyUpScaffolds (ScaffoldGraph);
                 CheckEdgesAgainstOverlapper(ScaffoldGraph->ContigGraph);

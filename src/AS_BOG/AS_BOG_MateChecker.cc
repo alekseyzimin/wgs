@@ -1043,6 +1043,12 @@ UnitigBreakPoints* MateChecker::computeMateCoverage(Unitig* tig, BestOverlapGrap
       SeqInterval loc = frag.position;
 
       // Don't want to go past range and break in wrong place
+      //AZ do not break in this case
+       bool breakNow = false;
+      if(loc.bgn>bad.end+1 && loc.end > bad.end+1)
+	{
+	break;
+	}
       assert(loc.bgn <= bad.end+1 || loc.end <= bad.end+1);
 
       // keep track of current and previous uncontained contig end
@@ -1050,7 +1056,6 @@ UnitigBreakPoints* MateChecker::computeMateCoverage(Unitig* tig, BestOverlapGrap
       if (!bog_ptr->isContained(frag.ident))
         currBackboneEnd = MAX(loc.bgn, loc.end);
 
-      bool breakNow = false;
       MateLocationEntry mloc = positions.getById(frag.ident);
 
       if (mloc.mleFrgID1 != 0 && mloc.isGrumpy) { // only break on bad mates
@@ -1197,8 +1202,8 @@ MateLocation::buildHappinessGraphs(Unitig *utg, DistanceCompute *globalStats) {
     MateLocationEntry &loc = _table[mleidx];
 
     uint32 lib =  _fi->libraryIID(loc.mleFrgID1);
-
-    if (globalStats[lib].samples < 10)
+//AZ also do not use short Illumina mate pairs
+    if (globalStats[lib].samples < 10 || globalStats[lib].stddev < 200 || globalStats[lib].mean < 500)
       // Don't check libs that we didn't generate good stats for
       continue;
 
@@ -1273,10 +1278,11 @@ MateLocation::buildHappinessGraphs(Unitig *utg, DistanceCompute *globalStats) {
     //  (pos1.end) <------   (pos1.bgn)
     //  (pos2.bgn)  -------> (pos2.end)
     //
-    if ((isReverse(loc.mlePos1) == true)  && (loc.mlePos1.end < loc.mlePos2.bgn))
-      goto markBad;
-    if ((isReverse(loc.mlePos1) == false) && (loc.mlePos2.end < loc.mlePos1.bgn))
-      goto markBad;
+//changed AZ -- outties are OK
+    //if ((isReverse(loc.mlePos1) == true)  && (loc.mlePos1.end < loc.mlePos2.bgn))
+    //  goto markBad;
+    //if ((isReverse(loc.mlePos1) == false) && (loc.mlePos2.end < loc.mlePos1.bgn))
+    //  goto markBad;
 
     //  So, now not NORMAL or ANTI or OUTTIE.  We must be left with innies.
 
@@ -1286,6 +1292,10 @@ MateLocation::buildHappinessGraphs(Unitig *utg, DistanceCompute *globalStats) {
     else
       //  First fragment is on the right, second is on the left.
       dist = loc.mlePos1.bgn - loc.mlePos2.bgn;
+    if(dist<0)
+	{
+	dist=badMax-1;
+	}
 
     assert(dist >= 0);
 

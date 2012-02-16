@@ -389,7 +389,7 @@ main(int argc, char **argv) {
     //  checkpoints are written inside of here
 
     int iter     = 0;
-    int iterMax  = 10;  //  MAX_OUTPUT_REZ_ITERATIONS
+    int iterMax  = 6;  //  MAX_OUTPUT_REZ_ITERATIONS
     int ctme     = time(0);
     int changed  = TRUE;
 
@@ -449,7 +449,7 @@ main(int argc, char **argv) {
     CheckCIScaffoldTs(ScaffoldGraph);
 
     /* First we try to merge Scaffolds agressively */
-    MergeScaffoldsAggressive(ScaffoldGraph, CHECKPOINT_DURING_1ST_SCAFF_MERGE, FALSE);
+    MergeScaffoldsAggressive(ScaffoldGraph, CHECKPOINT_DURING_1ST_SCAFF_MERGE, FALSE);//AZ true for verbose
 
     ValidateAllContigEdges(ScaffoldGraph, FIX_CONTIG_EDGES);
     CleanupScaffolds(ScaffoldGraph, FALSE, NULLINDEX, FALSE);

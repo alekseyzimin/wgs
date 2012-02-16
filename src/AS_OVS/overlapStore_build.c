@@ -200,7 +200,8 @@ buildStore(
                 fovrlap.dat.obt.b_beg,
                 (fovrlap.dat.obt.b_end_hi << 9) | fovrlap.dat.obt.b_end_lo,
                 AS_OVS_decodeQuality(fovrlap.dat.obt.erate) * 100.0);
-        exit(1);
+        //AZ exit(1);
+	break;
       }
 
 

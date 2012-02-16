@@ -1926,6 +1926,9 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
   MateInstrumenter *sABefore = (GetNumVA_MateInstrumenterP(MIs) > scaffoldA->id) ? ((MateInstrumenter *)*GetVA_MateInstrumenterP(MIs, scaffoldA->id)) : NULL;
   MateInstrumenter *sBBefore = (GetNumVA_MateInstrumenterP(MIs) > scaffoldB->id) ? ((MateInstrumenter *)*GetVA_MateInstrumenterP(MIs, scaffoldB->id)) : NULL;
 
+
+  double gapSize = curEdge->distance.mean;
+  double gapStdev = sqrt(curEdge->distance.variance);
   double fractMatesHappyAfter  = 1.0;
   double fractMatesHappyBefore = 1.0;
 
@@ -2003,8 +2006,9 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
   double badGoodRatio      = 1.0;
 
   if (mAfterGood > mBeforeGood)
+{
     badGoodRatio = (double)(mAfterBad - mBeforeBad) / (double)(mAfterGood - mBeforeGood);
-
+}
   bool  failsMinimum       = (fractMatesHappyAfter < minSatisfied);
   bool  failsToGetHappier1 = (fractMatesHappyAfter < fractMatesHappyBefore);
   bool  failsToGetHappier2 = (mAfterGood < mBeforeGood) || (badGoodRatio > MAX_FRAC_BAD_TO_GOOD);
@@ -2747,18 +2751,22 @@ ExamineUsableSEdges(VA_TYPE(PtrT) *sEdges,
         if (sEdge[i]->distance.mean > 0) {
           if (isBadScaffoldMergeEdge(sEdge[i], iSpec->badSEdges))
             continue;
-
+//AZ find max
+          if(sEdge[i]->edgesContributing>maxWeightEdge)
+	{	
           maxWeightEdge = sEdge[i]->edgesContributing;
-          break;
+         }
         }
       }
     } else {
       for (int i=0; i<GetNumVA_PtrT(sEdges); i++) {
         if (isBadScaffoldMergeEdge(sEdge[i], iSpec->badSEdges))
           continue;
-
+//AZ find max
+          if(sEdge[i]->edgesContributing>maxWeightEdge)
+        {
         maxWeightEdge = sEdge[i]->edgesContributing;
-        break;
+        }
       }
     }
 
@@ -2810,8 +2818,12 @@ BuildSEdgesForMerging(ScaffoldGraphT * graph,
       if (GlobalData->doInterleavedScaffoldMerging) {
         for(int j=0; j<GetNumVA_PtrT(*sEdges); j++) {
           if (sEdge[j]->distance.mean > 0) {
+//AZ find max
+	    if(sEdge[j]->edgesContributing / EDGE_WEIGHT_FACTOR > *minWeightThreshold)
+	    {
             *minWeightThreshold = sEdge[j]->edgesContributing / EDGE_WEIGHT_FACTOR;
-            break;
+            //break;
+            }
           }
         }
       } else {
@@ -2819,7 +2831,7 @@ BuildSEdgesForMerging(ScaffoldGraphT * graph,
       }
       fprintf(stderr, "initially setting minWeightThreshold to %f\n", *minWeightThreshold);
     } else {
-      *minWeightThreshold -= 0.2;
+      *minWeightThreshold -= 0.01; //AZ, was 0.2
     }
 
     *minWeightThreshold = MAX( *minWeightThreshold, EDGE_WEIGHT_FACTOR);
@@ -2860,6 +2872,7 @@ static
 int
 MergeScaffolds(InterleavingSpec * iSpec, int32 verbose) {
   int mergedSomething = FALSE;
+  int numMergedTotal = 0;
   GraphNodeIterator scaffolds;
   CIScaffoldT *thisScaffold;
   CDS_CID_t thisScaffoldID; /* The index of the thisScaffold. We have to be careful about thisScaffold since
@@ -3178,9 +3191,11 @@ MergeScaffolds(InterleavingSpec * iSpec, int32 verbose) {
 
     ScaffoldGraph->numLiveScaffolds += (1 - numMerged);
     currentSetID++;
+    numMergedTotal+=numMerged-1;
   }
-
-  return mergedSomething;
+//AZ
+//return mergedSomething;
+  return numMergedTotal;
 }
 
 
@@ -3197,6 +3212,8 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
   int32  iterations         = 0;
   float  minWeightThreshold = 0.0;
   time_t lastCkpTime        = time(0) - 90 * 60;
+  int numMerged	            = 0;
+
 
   //  Create a scaffold edge for every inter-scaffold contig edge, then merge compatible ones
   BuildSEdges(graph, TRUE, GlobalData->doInterleavedScaffoldMerging);
@@ -3228,11 +3245,17 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
                           &minWeightThreshold, TRUE,
                           iSpec, verbose);
 
-    mergedSomething = MergeScaffolds(iSpec, verbose);
+    numMerged = MergeScaffolds(iSpec, verbose);
+    if(numMerged >0){mergedSomething=TRUE;}else{mergedSomething=FALSE;};
 
-    if (mergedSomething) {
-      fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- continue because we merged scaffolds.\n",
-              iterations);
+   //AZ 
+    if((iterations > 256 && minWeightThreshold == 2.0 && numMerged<=1)||(iterations >512)) {
+        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded 256 iterations on weak merge or exceeded 512 maximum iterations. minWeightThreshold = %.1lf\n",iterations,minWeightThreshold);
+              mergedSomething=FALSE;
+
+    } else if (numMerged>0) {
+      fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- continue because we merged %d scaffolds. minWeightThreshold = %.1lf\n",
+              iterations,numMerged,minWeightThreshold);
 
       //  Cleanup, build new edges, merge.
       CleanupScaffolds(ScaffoldGraph, FALSE, NULLINDEX, FALSE);
@@ -3245,7 +3268,7 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
 
       //  Do we need to clean up the edges/scaffolds here?
 
-      mergedSomething     = 1;
+      mergedSomething     = TRUE;
       minWeightThreshold -= MAX(1.0, minWeightThreshold / 100.0);
 
     } else {
@@ -3275,7 +3298,7 @@ MergeScaffoldsAggressive(ScaffoldGraphT *graph, char *logicalcheckpointnumber, i
   iSpec.contigNow              = TRUE;
   iSpec.checkForTinyScaffolds  = FALSE;
   iSpec.checkAbutting          = TRUE;
-  iSpec.minSatisfied           = 0.985;  //  0.985 default
+  iSpec.minSatisfied           = 0.975;  //  0.985 default
   iSpec.maxDelta               = -1;     //  0.005
   iSpec.MIs                    = CreateVA_MateInstrumenterP(GetNumGraphNodes(ScaffoldGraph->ScaffoldGraph));
   iSpec.badSEdges              = CreateChunkOverlapper();

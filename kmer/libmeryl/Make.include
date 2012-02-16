@@ -1,0 +1,15 @@
+# -*- makefile -*-
+
+LIBUTL/     :=$(call MakePath,$/../libutil/)
+LIBBIO/     :=$(call MakePath,$/../libbio/)
+LIBSEQ/     :=$(call MakePath,$/../libseq/)
+
+$/.CXX_SRCS   := $/libmeryl.C
+$/.CXX_INCS   := $/libmeryl.H
+$/.CXX_LIBS   := $/libmeryl.a
+$/.CLEAN      := $/*.o
+
+$/libmeryl.a    : $/libmeryl.o
+
+$(eval $/%.d $/%.o:  CXXFLAGS+=-I${LIBBIO/} -I${LIBSEQ/} -I${LIBUTL/})
+

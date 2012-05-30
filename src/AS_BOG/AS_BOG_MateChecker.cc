@@ -322,8 +322,8 @@ MateChecker::evaluateMates(UnitigGraph &tigGraph) {
       uint32  type = (thiscont != NULL) + (matecont != NULL);
 
       //  Trivial case, not a mated fragment.
-
-      if (mateFrgID == 0) {
+     //AZ check reciprocity -- if the mate is non-zero and the mate's mate is non-zero -- may be deficiency in the store
+      if (mateFrgID == 0 || _fi->mateIID(mateFrgID) == 0) {
         unmated[type]++;
         continue;
       }

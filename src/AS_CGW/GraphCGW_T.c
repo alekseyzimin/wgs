@@ -1922,25 +1922,38 @@ CreateGraphEdge(GraphCGW_T *graph,
 
   assert(dist);
 
+//AZ to recover from segfault
+//added check of return of GetGraphNode
+//4 times !
+ 
   switch(graph->type){
     case CI_GRAPH:
       if(frag->cid == mfrag->cid)
 	return FALSE;
       isCI = TRUE;
       node = GetGraphNode(graph, frag->cid);
+      if(node==NULL)
+        return FALSE;
       mnode = GetGraphNode(graph, mfrag->cid);
+      if(mnode==NULL)
+        return FALSE;
       break;
     case CONTIG_GRAPH:
       if(frag->contigID == mfrag->contigID)
 	return FALSE;
       isCI = FALSE;
       node = GetGraphNode(graph, frag->contigID);
+      if(node==NULL)
+        return FALSE;
       mnode = GetGraphNode(graph, mfrag->contigID);
+      if(node==NULL)
+        return FALSE;
       break;
     default:
       assert(0);
   }
 
+  
   // Don't add edges to chaff
   if(GlobalData->ignoreChaffUnitigs && (mnode->flags.bits.isChaff ||
                                         node->flags.bits.isChaff))
@@ -2760,7 +2773,8 @@ void ComputeMatePairDetailedStatus(void) {
         continue;
       }
       mate = GetCIFragT(ScaffoldGraph->CIFrags,frag->mate_iid);
-      if (mate == NULL) {
+//AZ
+      if (mate == NULL||mate->mate_iid == 0) {
         numNoMate++;
         frag->flags.bits.mateDetail = NO_MATE;
         continue;

@@ -3223,11 +3223,11 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
   while (mergedSomething) {
     time_t t = time(0);
 
-    //  Checkpoint periodically - every two hours seems nice!  The
+    //  AZ Checkpoint periodically - every eight hours seems nice!  The
     //  first checkpoint is done after 30 minutes of work here,
     //  though.
     //
-    if (t - lastCkpTime > 120 * 60) {
+    if (t - lastCkpTime > 480 * 60) {
       char  where[1024];
 
       sprintf(where, "after MergeScaffoldsAggressive iteration %d", iterations);
@@ -3249,8 +3249,8 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
     if(numMerged >0){mergedSomething=TRUE;}else{mergedSomething=FALSE;};
 
    //AZ 
-    if((iterations > 256 && minWeightThreshold == 2.0 && numMerged<=1)||(iterations >512)) {
-        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded 256 iterations on weak merge or exceeded 512 maximum iterations. minWeightThreshold = %.1lf\n",iterations,minWeightThreshold);
+    if(iterations > 256 && minWeightThreshold == 2.0 && numMerged<=1) {
+        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded 256 iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,minWeightThreshold);
               mergedSomething=FALSE;
 
     } else if (numMerged>0) {
@@ -3275,7 +3275,6 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
       fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- no additional scaffold merging is possible.\n",
               iterations);
     }
-
     iterations++;
   }
 }

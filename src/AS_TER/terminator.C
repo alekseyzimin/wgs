@@ -229,8 +229,11 @@ writeAMP(FILE *asmFile, bool doWrite) {
     if (cif1->read_iid > cif2->read_iid)
       continue;
 
-    assert(cif1->flags.bits.edgeStatus == cif2->flags.bits.edgeStatus);
-    assert(cif1->flags.bits.mateDetail == cif2->flags.bits.mateDetail);
+//AZ switched asserts to ifs
+    if(cif1->flags.bits.edgeStatus != cif2->flags.bits.edgeStatus)
+	continue;
+    if(cif1->flags.bits.mateDetail != cif2->flags.bits.mateDetail)
+	continue;
 
     amp.fragment1   = FRGmap.lookup(cif1->read_iid);
     amp.fragment2   = FRGmap.lookup(cif2->read_iid);

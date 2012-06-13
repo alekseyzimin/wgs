@@ -3249,8 +3249,8 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
     if(numMerged >0){mergedSomething=TRUE;}else{mergedSomething=FALSE;};
 
    //AZ 
-    if(iterations > 256 && minWeightThreshold == 2.0 && numMerged<=1) {
-        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded 256 iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,minWeightThreshold);
+    if(iterations > 512 && minWeightThreshold == 2.0 && numMerged<=1) {
+        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded 512 iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,minWeightThreshold);
               mergedSomething=FALSE;
 
     } else if (numMerged>0) {

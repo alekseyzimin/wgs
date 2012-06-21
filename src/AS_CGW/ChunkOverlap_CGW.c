@@ -382,7 +382,9 @@ CreateChunkOverlapFromEdge(GraphCGW_T *graph, EdgeCGW_T *edge){
   ChunkOverlapCheckT olap  = {0};
   double             delta = sqrt(edge->distance.variance) * 3.0;
 
-  //assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+  if(!((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE + 0.02))){
+        fprintf(stderr,"DEBUG problem with error rates, AS_CGW_ERROR_RATE = %lf, AS_MAX_ERROR_RATE = %lf\n",AS_CGW_ERROR_RATE,AS_MAX_ERROR_RATE);
+        }
 
   InitCanonicalOverlapSpec(edge->idA, edge->idB, edge->orient, &olap.spec);
 
@@ -425,7 +427,7 @@ CreateChunkOverlapFromEdge(GraphCGW_T *graph, EdgeCGW_T *edge){
 //external
 void FillChunkOverlapWithEdge(EdgeCGW_T *edge, ChunkOverlapCheckT *olap){
   double delta = sqrt(edge->distance.variance) * 3.0;
-  assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+  assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE + 0.02));
   InitCanonicalOverlapSpec(edge->idA, edge->idB, edge->orient, &olap->spec);
   olap->computed = FALSE;
   olap->overlap = -edge->distance.mean;
@@ -462,7 +464,7 @@ void FillChunkOverlapWithOVL(GraphCGW_T   *graph,
   int                 bega, enda, lena;
   int                 begb, endb, lenb;
 
-  assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+  assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE +0.02));
 
   //  Find the chunks with the two fragments
 
@@ -729,7 +731,7 @@ void CollectChunkOverlap(GraphCGW_T *graph,
   // Lookup to see if we've already stored such an overlap
   olap = LookupCanonicalOverlap(ScaffoldGraph->ChunkOverlaps, &canOlap.spec);
   if(!olap){
-    assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+    assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE +0.02));
     canOlap.computed = FALSE;
     canOlap.overlap = FALSE;
     canOlap.quality = 1.0;
@@ -1190,7 +1192,9 @@ static VA_TYPE(char) *consensus2 = NULL;
 static VA_TYPE(char) *quality1 = NULL;
 static VA_TYPE(char) *quality2 = NULL;
 
-  assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+  if(!((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE + 0.02))){
+	fprintf(stderr,"DEBUG problem with error rates, AS_CGW_ERROR_RATE = %lf, AS_MAX_ERROR_RATE = %lf\n",AS_CGW_ERROR_RATE,AS_MAX_ERROR_RATE);
+	} 
   erate = AS_CGW_ERROR_RATE;
   thresh = CGW_DP_THRESH;
   minlen = CGW_DP_MINLEN;
@@ -1286,7 +1290,7 @@ ComputeOverlaps(GraphCGW_T *graph, int addEdgeMates, int recomputeCGBOverlaps) {
       continue;
 
     // set errRate to old value
-    assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE));
+    assert((0.0 <= AS_CGW_ERROR_RATE) && (AS_CGW_ERROR_RATE <= AS_MAX_ERROR_RATE +0.02));
     olap.errorRate = AS_CGW_ERROR_RATE;
 
     // first we trust that overlap

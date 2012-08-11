@@ -1240,7 +1240,8 @@ findFirstExtendableFrags(ContigT *contig, extendableFrag *extFragsArray) {
         if (extendableFragCount >= MAX_EXTENDABLE_FRAGS)
           fprintf(stderr, "extendableFragCount (%d) is greater than MAX_EXTENDABLE_FRAGS, aborting...\n",
                   extendableFragCount);
-        assert(extendableFragCount < MAX_EXTENDABLE_FRAGS);
+        //assert(extendableFragCount < MAX_EXTENDABLE_FRAGS);
+        return 0;
       }
     }
 
@@ -1341,7 +1342,8 @@ findLastExtendableFrags(ContigT *contig, extendableFrag *extFragsArray) {
         if (extendableFragCount >= MAX_EXTENDABLE_FRAGS)
           fprintf(stderr, "extendableFragCount (%d) is greater than MAX_EXTENDABLE_FRAGS, aborting...\n",
                   extendableFragCount);
-        assert(extendableFragCount < MAX_EXTENDABLE_FRAGS);
+        //assert(extendableFragCount < MAX_EXTENDABLE_FRAGS);
+        return 0;
       }
     }
 

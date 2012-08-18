@@ -1660,7 +1660,7 @@ void UpdateNodeFragments(GraphCGW_T *graph, CDS_CID_t cid,
 	        ubgn--;
 	     }
      } else {
-	     assert(end<bgn);
+//AZ	     assert(end<bgn);
 	     if(uend<1){
 	        ubgn++;
 	     } else {

@@ -1920,6 +1920,28 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
            ((curEdge->orient.isAB_BA()) ? "AB_BA" :
             ((curEdge->orient.isBA_AB()) ? "BA_AB" : "BA_BA"))));
 
+//AZ fail if we try to merge two large scaffolds with large negative gap
+  if(curEdge->distance.mean+5*sqrt(curEdge->distance.variance)<0)
+        {
+        if(scaffoldA->bpLength.mean<scaffoldB->bpLength.mean){
+        if(abs(curEdge->distance.mean+5*sqrt(curEdge->distance.variance))<scaffoldA->bpLength.mean && curEdge->distance.mean+5*sqrt(curEdge->distance.variance)<-10000)
+                {
+                fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds "F_CID" (%.1fbp) and "F_CID" (%.1fbp): FAIL LARGE NEGATIVE GAP\n",
+          scaffoldA->id, scaffoldA->bpLength.mean,
+          scaffoldB->id, scaffoldB->bpLength.mean);
+                return(FALSE);
+                }
+        }else{ 
+                if(abs(curEdge->distance.mean+5*sqrt(curEdge->distance.variance))<scaffoldB->bpLength.mean && curEdge->distance.mean+5*sqrt(curEdge->distance.variance)<-10000)
+                {
+                fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds "F_CID" (%.1fbp) and "F_CID" (%.1fbp): FAIL LARGE NEGATIVE GAP\n",
+          scaffoldA->id, scaffoldA->bpLength.mean,
+          scaffoldB->id, scaffoldB->bpLength.mean);
+                return(FALSE);
+                }
+        }
+        }
+
   MateInstrumenter matesBefore;
   MateInstrumenter matesAfter;
 

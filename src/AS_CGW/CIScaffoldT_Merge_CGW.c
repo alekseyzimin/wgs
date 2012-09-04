@@ -1920,7 +1920,7 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
            ((curEdge->orient.isAB_BA()) ? "AB_BA" :
             ((curEdge->orient.isBA_AB()) ? "BA_AB" : "BA_BA"))));
 
-//AZ fail if we try to merge two large scaffolds with large negative gap
+//AZ fail if we try to merge two large scaffolds with large negative gap 
   if(curEdge->distance.mean+5*sqrt(curEdge->distance.variance)<0)
         {
         if(scaffoldA->bpLength.mean<scaffoldB->bpLength.mean){
@@ -1941,6 +1941,7 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
                 }
         }
         }
+
 
   MateInstrumenter matesBefore;
   MateInstrumenter matesAfter;
@@ -3232,7 +3233,7 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
 
   int32  mergedSomething    = TRUE;
   int32  iterations         = 0;
-  float  minWeightThreshold = 0.0;
+  float  minWeightThreshold = 10.0;
   time_t lastCkpTime        = time(0) - 90 * 60;
   int numMerged	            = 0;
 
@@ -3271,13 +3272,16 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
     if(numMerged >0){mergedSomething=TRUE;}else{mergedSomething=FALSE;};
 
    //AZ 
-    if((iterations > 1500 && minWeightThreshold == 2.0 && numMerged<10)||(iterations > 512 && minWeightThreshold == 2.0 && numMerged==2)) {
-        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded 512 iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,minWeightThreshold);
+    int maxAllowedIterations=512;
+    if(strcmp(logicalcheckpointnumber,"ckp07-2SM-partial")==0)
+	maxAllowedIterations=16;
+    if((iterations > 512+maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<10)||(iterations > maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<=2)) {
+        fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded maxAllowedIterations = %d iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,maxAllowedIterations,minWeightThreshold);
               mergedSomething=FALSE;
 
     } else if (numMerged>0) {
-      fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- continue because we merged %d scaffolds. minWeightThreshold = %.1lf\n",
-              iterations,numMerged,minWeightThreshold);
+      fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- continue because we merged %d scaffolds. minWeightThreshold = %.1lf maxAllowedIterations = %d\n",
+              iterations,numMerged,minWeightThreshold,maxAllowedIterations);
 
       //  Cleanup, build new edges, merge.
       CleanupScaffolds(ScaffoldGraph, FALSE, NULLINDEX, FALSE);

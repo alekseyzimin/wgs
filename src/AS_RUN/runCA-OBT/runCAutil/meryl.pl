@@ -253,7 +253,7 @@ runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStor
 caFailure("Failed to dump gatekeeper fasta", undef) if(not(-e "$wrk/0-mercounts/seq.fa"));
 #here we assume that jellyfish is available on the global PATH
 if(getGlobal("doOverlapBasedTrimming")){
-runCommand("$wrk/0-mercounts", "jellyfish  count -C -m $obtMerSize -s $jf_size -o obtMerCounts.jf -t $merylThreads $wrk/0-mercounts/seq.fa");
+runCommand("$wrk/0-mercounts", "jellyfish  count -L 10 -C -m $obtMerSize -s $jf_size -o obtMerCounts.jf -t $merylThreads $wrk/0-mercounts/seq.fa");
 if(-e "wrk/0-mercounts/obtMerCounts.jf_1")
 {
 runCommand("$wrk/0-mercounts", "jellyfish merge -o obtMerCounts_merged.jf obtMerCounts.jf_*");
@@ -264,7 +264,7 @@ runCommand("$wrk/0-mercounts", "ln -s obtMerCounts.jf_0 obtMerCounts_merged.jf")
 runCommand("$wrk/0-mercounts", "jellyfish dump -L $obtT -o $wrk/0-mercounts/$asm.nmers.obt.fasta obtMerCounts_merged.jf");
 }
 #here we count mers for the ovl overlapper
-runCommand("$wrk/0-mercounts", "jellyfish  count -C -m $ovlMerSize -s $jf_size -o ovlMerCounts.jf -t $merylThreads $wrk/0-mercounts/seq.fa");
+runCommand("$wrk/0-mercounts", "jellyfish  count -L 10 -C -m $ovlMerSize -s $jf_size -o ovlMerCounts.jf -t $merylThreads $wrk/0-mercounts/seq.fa");
 if(-e "wrk/0-mercounts/ovlMerCounts.jf_1"){
 runCommand("$wrk/0-mercounts", "jellyfish merge -o ovlMerCounts_merged.jf ovlMerCounts.jf_*");
 }

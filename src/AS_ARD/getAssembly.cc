@@ -31,6 +31,7 @@ extern "C" {
 }
 #endif
 
+#include <unistd.h>
 #include "AS_global.h"
 #include "SYS_UIDclient.h"
 #include "AS_MSG_pmesg.h"

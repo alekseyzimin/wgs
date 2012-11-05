@@ -447,10 +447,16 @@ int scaffoldOf(CDS_CID_t fiid){
     assert(ci!=NULL);
     return ci->scaffoldID;
   }
-  assert(frg->CIid!=NULLINDEX);
+  if(frg->CIid!=NULLINDEX)
+  	return(NULLINDEX);
+  //AZ assert(frg->CIid!=NULLINDEX);
   ci = GetGraphNode(ScaffoldGraph->CIGraph,frg->CIid);
-  assert(ci!=NULL);
-  assert(ci->flags.bits.isSurrogate != TRUE);
+  if(ci==NULL)
+	return(NULLINDEX);	
+ //AZ  assert(ci!=NULL);
+  if(ci->flags.bits.isSurrogate == TRUE)
+	return(NULLINDEX);
+  //AZ assert(ci->flags.bits.isSurrogate != TRUE);
   return ci->scaffoldID;
 }
 

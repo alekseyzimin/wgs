@@ -47,7 +47,7 @@ typedef struct {
   char     scfOri;
 } ctgInfo_t;
 
-int          ctgInfoMax = 32 * 1024 * 1024;
+long int          ctgInfoMax = 128 * 1024 * 1024;
 int          ctgInfoLen = 0;
 ctgInfo_t   *ctgInfo    = NULL;
 

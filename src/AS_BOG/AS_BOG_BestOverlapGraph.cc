@@ -342,4 +342,43 @@ void BestOverlapGraph::scoreEdge(const OVSoverlap& olap) {
     else
       _best_overlaps_5p_score[olap.a_iid] = newScr;
   }
+  else if(newScr == score){
+    fprintf(stderr,"conflicting same score overlap, deleting both %ld %ld new %ld %ld\n", olap.a_iid, best->frag_b_id, olap.a_iid, olap.b_iid);
+    best->frag_b_id    = 0;
+    best->bend         = 0;
+    best->ahang        = 0;
+    best->bhang        = 0;
+  /*
+   //AZ if the scores are identical, we choose to join the longest reads  BAD IDEA 
+   uint32 alreadyPicked=0;
+        for(uint32 i=0; i<olap.a_iid;i++){
+	BestEdgeOverlap *bestB3    = getBestEdgeOverlap(i,THREE_PRIME);
+        //fprintf(stderr,"checking 3p bests, %d best %d\n",i,bestB3->frag_b_id);
+	if(bestB3->bend==BEnd(olap) &&  bestB3->frag_b_id == best->frag_b_id){
+		alreadyPicked=1;
+		break;
+	}
+        BestEdgeOverlap *bestB5    = getBestEdgeOverlap(i,FIVE_PRIME);
+        //fprintf(stderr,"checking 5p bests, %d best %d\n",i,bestB5->frag_b_id);
+        if(bestB5->bend==BEnd(olap) &&  bestB5->frag_b_id == best->frag_b_id){
+                alreadyPicked=1;
+                break;
+        }
+	}
+        if(alreadyPicked==0){
+	fprintf(stderr,"keep %ld %ld new %ld %ld\n", olap.a_iid, best->frag_b_id, olap.a_iid, olap.b_iid);
+	}
+	else{
+	fprintf(stderr,"switch %ld %ld new %ld %ld\n", olap.a_iid, best->frag_b_id, olap.a_iid, olap.b_iid);
+	best->frag_b_id    = olap.b_iid;
+    	best->bend         = BEnd(olap);
+    	best->ahang        = olap.dat.ovl.a_hang;
+    	best->bhang        = olap.dat.ovl.b_hang;
+
+    	if (aend == THREE_PRIME)
+      		_best_overlaps_3p_score[olap.a_iid] = newScr;
+    	else
+      		_best_overlaps_5p_score[olap.a_iid] = newScr;
+	} */
+	}
 }

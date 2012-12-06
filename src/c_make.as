@@ -189,6 +189,12 @@ ifeq ($(BUILDPROFILE), 1)
   ARCH_LDFLAGS += -pg
 endif
 
+ifdef ALL_STATIC
+  ARCH_CFLAGS += -static
+  ARCH_CXXFLAGS += -static-libstdc++
+  ARCH_LDFLAGS = -static -static-libstdc++ -lpthread
+endif
+
 # One can argue that CXXFLAGS should be separate.  For now, we only
 # add to the flags.
 

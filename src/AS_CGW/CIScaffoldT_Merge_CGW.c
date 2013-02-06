@@ -2032,7 +2032,13 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
 {
     badGoodRatio = (double)(mAfterBad - mBeforeBad) / (double)(mAfterGood - mBeforeGood);
 }
-  bool  failsMinimum       = (fractMatesHappyAfter < minSatisfied);
+
+  double  minSatisfied_local=minSatisfied;
+//AZ relax the minSatisfied for merges with mean -100<m<2000 where it is plausible that there is a positive gap 
+  if(curEdge->distance.mean>-100 && curEdge->distance.mean<2000 && sqrt(curEdge->distance.variance)<100 && curEdge->distance.mean+3*sqrt(curEdge->distance.variance)>0)
+          minSatisfied_local=minSatisfied-0.05;
+
+  bool  failsMinimum  = (fractMatesHappyAfter < minSatisfied_local);
   bool  failsToGetHappier1 = (fractMatesHappyAfter < fractMatesHappyBefore);
   bool  failsToGetHappier2 = (mAfterGood < mBeforeGood) || (badGoodRatio > MAX_FRAC_BAD_TO_GOOD);
 
@@ -3246,11 +3252,11 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
   while (mergedSomething) {
     time_t t = time(0);
 
-    //  AZ Checkpoint periodically - every eight hours seems nice!  The
+    //  AZ Checkpoint periodically - every two days seems nice!  The
     //  first checkpoint is done after 30 minutes of work here,
     //  though.
     //
-    if (t - lastCkpTime > 480 * 60) {
+    if (t - lastCkpTime > 48 * 60 * 60) {
       char  where[1024];
 
       sprintf(where, "after MergeScaffoldsAggressive iteration %d", iterations);

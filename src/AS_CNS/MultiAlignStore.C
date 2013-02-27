@@ -276,11 +276,21 @@ MultiAlignStore::writeToPartitioned(uint32 *unitigPartMap_, uint32 *contigPartMa
   assert(unitigPart == 0);
   assert(contigPart == 0);
 
-  //  The dataFile for the unpartitioned data cannot have data in it.
-
-  if (dataFile[currentVersion][0].FP != NULL)
-    fprintf(stderr, "MultiAlignStore::writeToPartitioned()-- ERROR!  There is already data in the unpartitioned store, cannot convert to a partitioned store.\n");
-  assert(dataFile[currentVersion][0].FP == NULL);
+  //  The dataFile for the unpartitioned data cannot have data in it     
+  fprintf(stderr,"Store current version %d\n",currentVersion);
+  //AZ there used to be assert here (commented out below)
+  //I found that there is a bug where a spurious file is being created preventing valid store creation, therefore I changed this to simply wipe out and force write
+  if (dataFile[currentVersion][0].FP != NULL){
+    fprintf(stderr, "MultiAlignStore::writeToPartitioned()-- WARNING!  There is already data in the unpartitioned store, erasing to create a partitioned store.\n");
+    fclose(dataFile[currentVersion][0].FP);
+    if (errno)
+        fprintf(stderr, "MultiAlignStore::nextVersion()-- Failed to close '%s': %s\n", name, strerror(errno)), exit(1);
+    
+    dataFile[currentVersion][0].FP    = NULL;
+    dataFile[currentVersion][0].atEOF = false;
+    purgeCurrentVersion();
+  }
+  //assert(dataFile[currentVersion][0].FP == NULL);
 
   //  We cannot handle partitioning both unitigs and contigs.
 

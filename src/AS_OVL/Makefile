@@ -114,9 +114,15 @@ endif
 ifeq ($(OSTYPE), Darwin)
 endif
 
+# Use Jellyfish
+CXXFLAGS += $(shell pkg-config jellyfish-2.0 --cflags) -std=c++11
+LDFLAGS += $(shell pkg-config jellyfish-2.0 --libs)
 
-all:    $(OBJECTS) $(LIBRARIES) $(CXX_PROGS) $(SCRIPTS)
+all: show_CFLAGS   $(OBJECTS) $(LIBRARIES) $(CXX_PROGS) $(SCRIPTS)
 	@test -n nop
+
+show_CFLAGS:
+	@echo CFLAGS=$(CFLAGS)
 
 libAS_OVL.a: $(LIBOBJECTS) AS_OVL_delcher.o
 libCA.a:     $(LIBOBJECTS) AS_OVL_delcher.o

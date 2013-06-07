@@ -120,7 +120,7 @@ ReportMemorySize_VA(VarArrayType *va,
   size_t memorySize        = allocatedElements * sizeofElement;
   assert(NULL != name);
   assert(NULL != stream);
-  fprintf(stream, "VA %10"F_SIZE_TP" bytes; elements: %10"F_SIZE_TP" active; %10"F_SIZE_TP" allocated; %5" F_SIZE_TP" bytes; '%s'\n",
+  fprintf(stream, "VA %10" F_SIZE_TP " bytes; elements: %10" F_SIZE_TP " active; %10" F_SIZE_TP " allocated; %5"  F_SIZE_TP " bytes; '%s'\n",
           memorySize, numElements, allocatedElements, sizeofElement, name);
   return(memorySize);
 }

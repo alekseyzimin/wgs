@@ -93,7 +93,7 @@ main(int argc, char **argv) {
     while (AS_UTL_safeRead(inF, &msg, "correction", sizeof(Correction_Output_t), 1) == 1) {
       if  (msg.frag.is_ID) {
         if (msg.frag.iid <= prev_id) {
-          fprintf(stderr, "ERROR; frag IDs out of order.  Got "F_U64" after "F_U64" in file %s.\n",
+          fprintf(stderr, "ERROR; frag IDs out of order.  Got " F_U64 " after " F_U64 " in file %s.\n",
                   msg.frag.iid, prev_id, inFileName);
           exit(1);
         }

@@ -65,14 +65,14 @@ include $(LOCAL_WORK)/src/c_make.gen
 ifeq ($(OSTYPE), Linux)
   ARCH_CFLAGS = -DANSI_C -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -fPIC
 
-  ARCH_CFLAGS    += -pthread
+  ARCH_CFLAGS    += -pthread -Wall -Wno-write-strings -Wno-unused -Wno-char-subscripts
   ARCH_LDFLAGS   += -pthread -lm
 
   ifeq ($(BUILDDEBUG), 1)
-    ARCH_CFLAGS  += -g -Wall -Wimplicit -Wno-write-strings -Wno-unused -Wno-char-subscripts
-    ARCH_LDFLAGS +=
+    ARCH_CFLAGS  += -g 
+#    ARCH_LDFLAGS +=
   else
-    ARCH_CFLAGS  += -O2 -Wall -Wimplicit -Wno-write-strings -Wno-unused -Wno-char-subscripts
+    ARCH_CFLAGS  += -O2
     ARCH_LDFLAGS += -Wl,-O1
   endif
 

@@ -33,7 +33,7 @@
 
 //#include <sys/cdefs.h>
 
-static char *rcsid = "$Id: AS_UTL_qsort_mt.c,v 1.5 2009/06/10 18:05:14 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_UTL_qsort_mt.c,v 1.5 2009/06/10 18:05:14 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -144,7 +144,7 @@ static struct qsort *qsort_launch(struct qsort *qs);
 void
 qsort_mt(void *a, size_t n, size_t es, cmp_t *cmp, int maxthreads, int forkelem)
 {
-  int ncpu;
+  //  int ncpu;
   struct qsort *qs;
   struct common c;
   int i, islot;

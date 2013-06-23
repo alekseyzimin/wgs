@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: AS_UTL_Var.c,v 1.31 2009/10/09 01:07:46 brianwalenz Exp $";
+// static char *rcsid = "$Id: AS_UTL_Var.c,v 1.31 2009/10/09 01:07:46 brianwalenz Exp $";
 
 /********************************************************************/
 /* Variable Length C Array Package
@@ -73,7 +73,8 @@ int
 MakeRoom_VA(VarArrayType *va,
             size_t         maxElements) {
 
-  size_t newElements, newSize, tentativeNewSize, oldSize;
+  //  size_t tentativeNewSize;
+  size_t newElements, newSize,  oldSize;
   char *mem = NULL;
 
 #ifdef DEBUG
@@ -141,7 +142,8 @@ MakeRoom_VA(VarArrayType *va,
     memset(mem + oldSize, 0, newSize - oldSize);
 
     if (0) {
-      int i=0, j=0;
+      size_t i=0;
+      int j=0;
       for (i=0; i<newSize; i++)
         j += mem[i];
       fprintf(stderr, "realloc'd VA (i=%d) with sum %d\n", i, j);

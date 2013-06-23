@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_global.c,v 1.17.6.1 2010/04/28 14:32:10 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_global.c,v 1.17.6.1 2010/04/28 14:32:10 brianwalenz Exp $";
 
 #include "AS_global.h"
 

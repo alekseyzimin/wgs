@@ -22,7 +22,7 @@
 #ifndef INCLUDE_AS_BOG_UNITIG
 #define INCLUDE_AS_BOG_UNITIG
 
-static const char *rcsid_INCLUDE_AS_BOG_UNITIG = "$Id: AS_BOG_Unitig.hh,v 1.14 2010/03/16 13:06:31 brianwalenz Exp $";
+// static const char *rcsid_INCLUDE_AS_BOG_UNITIG = "$Id: AS_BOG_Unitig.hh,v 1.14 2010/03/16 13:06:31 brianwalenz Exp $";
 
 #include "AS_BOG_Datatypes.hh"
 

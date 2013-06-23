@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_OVS_overlapStore.c,v 1.24 2009/12/01 22:25:20 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_OVS_overlapStore.c,v 1.24 2009/12/01 22:25:20 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -24,7 +24,7 @@
 #ifndef AS_GKP_INCLUDE_H
 #define AS_GKP_INCLUDE_H
 
-static const char *rcsid_AS_GKP_INCLUDE_H = "$Id: AS_GKP_include.h,v 1.58 2010/04/16 21:25:23 brianwalenz Exp $";
+// static const char *rcsid_AS_GKP_INCLUDE_H = "$Id: AS_GKP_include.h,v 1.58 2010/04/16 21:25:23 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <errno.h>

@@ -25,7 +25,7 @@
 #ifndef AS_GLOBAL_H
 #define AS_GLOBAL_H
 
-static const char *rcsid_AS_GLOBAL_H = "$Id: AS_global.h,v 1.34 2009/10/28 00:27:06 brianwalenz Exp $";
+// static const char *rcsid_AS_GLOBAL_H = "$Id: AS_global.h,v 1.34 2009/10/28 00:27:06 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

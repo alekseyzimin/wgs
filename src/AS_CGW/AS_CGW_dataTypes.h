@@ -22,7 +22,7 @@
 #ifndef AS_CGW_DATATYPES_H
 #define AS_CGW_DATATYPES_H
 
-static const char *rcsid_AS_CGW_DATATYPES_H = "$Id: AS_CGW_dataTypes.h,v 1.14 2008/10/08 22:02:55 brianwalenz Exp $";
+// static const char *rcsid_AS_CGW_DATATYPES_H = "$Id: AS_CGW_dataTypes.h,v 1.14 2008/10/08 22:02:55 brianwalenz Exp $";
 
 #include <assert.h>
 #include "AS_global.h"

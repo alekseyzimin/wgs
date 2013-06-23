@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_UTL_UID.c,v 1.11 2009/11/24 21:43:59 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_UTL_UID.c,v 1.11 2009/11/24 21:43:59 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -137,7 +137,7 @@ AS_UID_lookup(char *uidstr, char **nxtstr) {
   }
 
   int  isInteger  = 0;
-  int  isInternal = 0;
+  //  int  isInternal = 0;
 
   //  If all digits, and waaay below 2^64 - 1, we're integer.
   if ((len == dig) &&

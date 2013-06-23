@@ -22,7 +22,7 @@
 #ifndef AS_UTL_GLP_H
 #define AS_UTL_GLP_H
 
-static const char *rcsid_AS_UTL_GLP_H = "$Id: AS_UTL_GPL.h,v 1.3 2008/10/08 22:03:00 brianwalenz Exp $";
+// static const char *rcsid_AS_UTL_GLP_H = "$Id: AS_UTL_GPL.h,v 1.3 2008/10/08 22:03:00 brianwalenz Exp $";
 
 #include <stdio.h>
 

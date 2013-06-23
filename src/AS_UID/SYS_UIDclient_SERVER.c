@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: SYS_UIDclient_SERVER.c,v 1.1 2009/11/23 00:31:38 brianwalenz Exp $";
+// static const char *rcsid = "$Id: SYS_UIDclient_SERVER.c,v 1.1 2009/11/23 00:31:38 brianwalenz Exp $";
 
 #include "uidserver_common.h"
 

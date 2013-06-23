@@ -22,7 +22,7 @@
 #ifndef INPUT_CGW_H
 #define INPUT_CGW_H
 
-static const char *rcsid_INPUT_CGW_H = "$Id: Input_CGW.h,v 1.12 2009/10/05 22:49:42 brianwalenz Exp $";
+// static const char *rcsid_INPUT_CGW_H = "$Id: Input_CGW.h,v 1.12 2009/10/05 22:49:42 brianwalenz Exp $";
 
 int  ProcessInput(int optind, int argc, char *argv[]);
 void LoadDistData(void);

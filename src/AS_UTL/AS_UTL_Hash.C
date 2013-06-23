@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: AS_UTL_Hash.c,v 1.22 2010/02/17 01:32:59 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_UTL_Hash.c,v 1.22 2010/02/17 01:32:59 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -436,7 +436,7 @@ DeleteFromHashTable_AS(HashTable_AS *table,
   HashNode_AS *prev      = NULL;
 
   assert(bucket >= 0);
-  assert(bucket <= table->numBuckets);
+  assert(bucket <= (int)table->numBuckets);
 
 #if 0
   if (keylen > 0)
@@ -502,7 +502,7 @@ ReplaceInHashTable_AS(HashTable_AS  *table,
   HashNode_AS *node      = NULL;
 
   assert(bucket >= 0);
-  assert(bucket <= table->numBuckets);
+  assert(bucket <= (int)table->numBuckets);
 
   node = table->buckets[bucket];
   while (node) {
@@ -556,7 +556,7 @@ LookupInHashTable_AS(HashTable_AS *table,
 #endif
 
   assert(bucket >= 0);
-  assert(bucket <= table->numBuckets);
+  assert(bucket <= (int)table->numBuckets);
 
   node = table->buckets[bucket];
   while (node) {

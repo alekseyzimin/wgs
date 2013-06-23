@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: UpdateREZ.c,v 1.18 2010/01/15 17:52:12 brianwalenz Exp $";
+// static const char *rcsid = "$Id: UpdateREZ.c,v 1.18 2010/01/15 17:52:12 brianwalenz Exp $";
 
 /**********************************************************************
 

@@ -23,7 +23,7 @@
 #ifndef SPLITCHUNKS_H
 #define SPLITCHUNKS_H
 
-static const char *rcsid_SPLITCHUNKS_H = "$Id: SplitChunks_CGW.h,v 1.9 2008/10/08 22:02:55 brianwalenz Exp $";
+// static const char *rcsid_SPLITCHUNKS_H = "$Id: SplitChunks_CGW.h,v 1.9 2008/10/08 22:02:55 brianwalenz Exp $";
 
 #include "ScaffoldGraph_CGW.h"
 

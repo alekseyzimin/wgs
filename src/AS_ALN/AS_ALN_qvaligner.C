@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_ALN_qvaligner.c,v 1.23 2010/02/17 01:32:57 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_ALN_qvaligner.c,v 1.23 2010/02/17 01:32:57 brianwalenz Exp $";
 
 /* Utility routines to complement, unpack and pack alignments, and print
    overlaps.  Also a routine for re-aligning an overlap using quality

@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: InterleavedMerging.c,v 1.26 2010/04/14 22:28:01 brianwalenz Exp $";
+// static const char *rcsid = "$Id: InterleavedMerging.c,v 1.26 2010/04/14 22:28:01 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_UTL_Var.h"

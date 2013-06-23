@@ -22,7 +22,7 @@
 #ifndef SCAFFOLD_GRAPH_H
 #define SCAFFOLD_GRAPH_H
 
-static const char *rcsid_SCAFFOLD_GRAPH_H = "$Id: ScaffoldGraph_CGW.h,v 1.43 2010/02/17 01:32:58 brianwalenz Exp $";
+// static const char *rcsid_SCAFFOLD_GRAPH_H = "$Id: ScaffoldGraph_CGW.h,v 1.43 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_UTL_Var.h"

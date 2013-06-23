@@ -19,7 +19,7 @@
  *************************************************************************/
 
 
-static const char *rcsid = "$Id: eCR-examineGap.c,v 1.25 2010/02/17 01:32:58 brianwalenz Exp $";
+// static const char *rcsid = "$Id: eCR-examineGap.c,v 1.25 2010/02/17 01:32:58 brianwalenz Exp $";
 #include "eCR.h"
 
 #include "GapWalkerREZ.h"  //  FindGapLength

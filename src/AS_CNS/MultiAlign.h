@@ -22,7 +22,7 @@
 #ifndef MULTIALIGN_H
 #define MULTIALIGN_H
 
-static const char *rcsid_MULTIALIGN_H = "$Id: MultiAlign.h,v 1.8 2009/12/10 04:01:10 brianwalenz Exp $";
+// static const char *rcsid_MULTIALIGN_H = "$Id: MultiAlign.h,v 1.8 2009/12/10 04:01:10 brianwalenz Exp $";
 
 #include "AS_MSG_pmesg.h"
 #include "AS_UTL_Var.h"

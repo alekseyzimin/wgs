@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_UTL_fasta.c,v 1.8 2010/03/22 20:08:19 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_UTL_fasta.c,v 1.8 2010/03/22 20:08:19 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +37,7 @@ AS_UTL_isValidSequence(char *s, int sl) {
   int p = 0;
    
   for (p = 0; s[p] && p < sl; p++) {
-    if ((AS_UTL_isspacearray[s[p]]) || (AS_UTL_isvalidACGTN[s[p]])) {
+    if ((AS_UTL_isspacearray[(int)s[p]]) || (AS_UTL_isvalidACGTN[(int)s[p]])) {
     } else {
       return FALSE;
     }
@@ -48,8 +48,8 @@ AS_UTL_isValidSequence(char *s, int sl) {
 
 void
 AS_UTL_writeFastA(FILE *f,
-                  char *s, int sl, int bl,
-                  char *h, ...) {
+                  const char *s, int sl, int bl,
+                  const char *h, ...) {
   va_list ap;
   char   *o  = (char *)safe_malloc(sizeof(char) * (sl + sl / 70 + 2));
   int     si = 0;

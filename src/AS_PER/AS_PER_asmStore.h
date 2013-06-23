@@ -22,7 +22,7 @@
 #ifndef AS_PER_ASMSTORE_H
 #define AS_PER_ASMSTORE_H
 
-static const char *rcsid_AS_PER_ASMSTORE_H = "$Id: AS_PER_asmStore.h,v 1.21 2009/07/30 10:42:56 brianwalenz Exp $";
+// static const char *rcsid_AS_PER_ASMSTORE_H = "$Id: AS_PER_asmStore.h,v 1.21 2009/07/30 10:42:56 brianwalenz Exp $";
 
 #include <time.h>
 

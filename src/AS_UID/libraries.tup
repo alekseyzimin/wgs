@@ -1,0 +1,18 @@
+include_rules
+
+
+ifeq ($(SITE_NAME),JCVI)
+  AS_UID_SITEOBJS += $(TUP_CWD)/SYS_UIDclient_JTC.o
+endif
+
+ifeq ($(SITE_NAME),LOCAL)
+  AS_UID_SITEOBJS += $(TUP_CWD)/SYS_UIDclient_LOCAL.o
+endif
+
+ifeq ($(SITE_NAME),BRI)
+  AS_UID_SITEOBJS += $(TUP_CWD)/SYS_UIDclient_SERVER.o
+endif
+
+LIBCA_OBJS += $(AS_UID_SITEOBJS)
+
+: $(AS_UID_SITEOBJS) |> !ar |> libAS_UID.a

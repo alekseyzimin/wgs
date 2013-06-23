@@ -1,0 +1,9 @@
+include_rules
+
+AS_OVS_LIB_OBJS = $(TUP_CWD)/AS_OVS_overlap.o		\
+                  $(TUP_CWD)/AS_OVS_overlapFile.o	\
+                  $(TUP_CWD)/AS_OVS_overlapStore.o	\
+                  $(TUP_CWD)/AS_OVS_overlapStats.o
+
+LIBCA_OBJS += $(AS_OVS_LIB_OBJS)
+: $(AS_OVS_LIB_OBJS) |> !ar |> libAS_OVS.a

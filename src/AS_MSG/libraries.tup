@@ -1,0 +1,9 @@
+include_rules
+
+AS_MSG_LIB_OBJS = $(TUP_CWD)/AS_MSG_pmesg.o	\
+                  $(TUP_CWD)/AS_MSG_pmesg1.o	\
+                  $(TUP_CWD)/AS_MSG_pmesg2.o
+
+LIBCA_OBJS += $(AS_MSG_LIB_OBJS)
+
+: $(AS_MSG_LIB_OBJS) |> !ar |> libAS_MSG.a

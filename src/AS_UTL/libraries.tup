@@ -1,0 +1,15 @@
+include_rules
+
+AS_UTL_LIB_OBJS = $(TUP_CWD)/AS_UTL_Hash.o $(TUP_CWD)/AS_UTL_heap.o	\
+                  $(TUP_CWD)/AS_UTL_Var.o $(TUP_CWD)/AS_UTL_rand.o	\
+                  $(TUP_CWD)/AS_UTL_interval.o $(TUP_CWD)/UnionFind_AS.o		\
+                  $(TUP_CWD)/AS_UTL_skiplist.o				\
+                  $(TUP_CWD)/AS_UTL_alloc.o				\
+                  $(TUP_CWD)/AS_UTL_fileIO.o				\
+                  $(TUP_CWD)/AS_UTL_qsort_mt.o				\
+                  $(TUP_CWD)/AS_UTL_fasta.o $(TUP_CWD)/AS_UTL_UID.o	\
+                  $(TUP_CWD)/AS_UTL_reverseComplement.o
+
+LIBCA_OBJS += $(AS_UTL_LIB_OBJS)
+
+: $(AS_UTL_LIB_OBJS) |> !ar |> libAS_UTL.a

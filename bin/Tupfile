@@ -1,0 +1,19 @@
+include_rules
+
+# T_LDFLAGS += -L../lib
+
+include ../src/AS_RUN/binaries.tup
+include ../src/AS_UID/binaries.tup
+include ../src/AS_MSG/binaries.tup
+include ../src/AS_OBT/binaries.tup
+include ../src/AS_MER/binaries.tup
+include ../src/AS_OVL/binaries.tup
+include ../src/AS_OVS/binaries.tup
+include ../src/AS_CGB/binaries.tup
+include ../src/AS_BOG/binaries.tup
+include ../src/AS_CNS/binaries.tup
+include ../src/AS_CGW/binaries.tup
+include ../src/AS_TER/binaries.tup
+include ../src/AS_ENV/binaries.tup
+include ../src/AS_REF/binaries.tup
+include ../src/AS_ARD/binaries.tup

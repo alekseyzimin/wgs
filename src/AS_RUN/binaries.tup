@@ -1,0 +1,44 @@
+include_rules
+
+RUNCAPREF = $(TUP_CWD)/runCA-OBT/runCA.pl.head $(TUP_CWD)/runCA-OBT/runCAutil/util.pl
+RUNCASUF = $(TUP_CWD)/runCA-OBT/runCA.pl $(TUP_CWD)/runCA-OBT/runCAutil/scheduler.pm
+
+RUNCAOBTUTIL = $(TUP_CWD)/runCA-OBT/runCAutil/checkOverlap.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/createConsensusJobs.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/merOverlapper.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/merTrim.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/createOverlapJobs.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/createOverlapStore.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/createPostUnitiggerConsensus.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/meryl.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/overlapCorrection.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/overlapTrim.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/preoverlap.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/shred.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/scaffolder.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/terminate.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/cleaner.pl \
+                $(TUP_CWD)/runCA-OBT/runCAutil/unitigger.pl \
+	        $(TUP_CWD)/runCA-OBT/runCAutil/umdOverlapper.pl \
+	        $(TUP_CWD)/runCA-OBT/runCAutil/vectorTrim.pl \
+	        $(TUP_CWD)/runCA-OBT/runCAutil/toggler.pl
+
+: $(RUNCAPREF) $(RUNCAOBTUTIL) $(RUNCASUF) |> ^ CAT %o^ cat %f > %o; chmod 0755 %o |> runCA
+: runCA |> ^ LN %o^ ln -s %f %o |> runCA-OBT.pl
+
+AS_RUN_SCRIPTS1 = $(TUP_CWD)/asmQC/caqc_help.ini	\
+	          $(TUP_CWD)/asmQC/caqc.pl		\
+	          $(TUP_CWD)/asmQC/caqc-diff.pl		\
+	          $(TUP_CWD)/asmQC/ca2ace.pl		\
+	          $(TUP_CWD)/asmQC/asmToAGP.pl
+AS_RUN_SCRIPTS2 = $(TUP_CWD)/testing/assemblyCompare.pl		\
+                  $(TUP_CWD)/testing/qcCompare.pl		\
+                  $(TUP_CWD)/testing/tampaCompare.pl		\
+                  $(TUP_CWD)/testing/mummerCompare.pl		\
+                  $(TUP_CWD)/dataQC/glen_est_truncadjusted.pl
+
+: foreach $(AS_RUN_SCRIPTS1) |> !instbin |> %b
+: foreach $(AS_RUN_SCRIPTS2) |> !instbin |> %B
+
+: $(TUP_CWD)/fragmentDepth.o ../lib/libCA.a |> !lxxd |> fragmentDepth
+: $(TUP_CWD)/markUniqueUnique.o ../lib/libCA.a |> !lxxd |> markUniqueUnique

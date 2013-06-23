@@ -1,0 +1,14 @@
+AS_LIN_LIB_OBJS = $(TUP_CWD)/dpbtrf.o $(TUP_CWD)/dpbtrs.o	\
+                  $(TUP_CWD)/daxpy.o $(TUP_CWD)/dgemm.o		\
+                  $(TUP_CWD)/dgemv.o $(TUP_CWD)/dlamch.o	\
+                  $(TUP_CWD)/dpbtf2.o $(TUP_CWD)/dpotf2.o	\
+                  $(TUP_CWD)/dptrfs.o $(TUP_CWD)/dpttrs.o	\
+                  $(TUP_CWD)/dsyr.o $(TUP_CWD)/dsyrk.o		\
+                  $(TUP_CWD)/dtbsv.o $(TUP_CWD)/dtrsm.o		\
+                  $(TUP_CWD)/idamax.o $(TUP_CWD)/ilaenv.o	\
+                  $(TUP_CWD)/lsame.o $(TUP_CWD)/xerbla.o	\
+                  $(TUP_CWD)/s_copy.o $(TUP_CWD)/s_cmp.o	\
+                  $(TUP_CWD)/ddot.o $(TUP_CWD)/dscal.o
+
+LIBCA_OBJS += $(AS_LIN_LIB_OBJS)
+: $(AS_LIN_LIB_OBJS) |> !ar |> libAS_LIN.a

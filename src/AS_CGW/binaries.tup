@@ -1,0 +1,8 @@
+: $(TUP_CWD)/AS_CGW_main.o ../lib/libCA.a |> !lxxd |> cgw
+: $(TUP_CWD)/eCR.o $(TUP_CWD)/eCR-examineGap.o $(TUP_CWD)/eCR-diagnostic.o ../lib/libCA.a |> !lxxd |> extendClearRanges
+: $(TUP_CWD)/eCR-partition.o ../lib/libCA.a |> !lxxd |> extendClearRangesPartition
+: $(TUP_CWD)/resolveSurrogates.o ../lib/libCA.a |> !lxxd |> resolveSurrogates
+: $(TUP_CWD)/dumpCloneMiddles.o ../lib/libCA.a |> !lxxd |> dumpCloneMiddles
+: $(TUP_CWD)/dumpSingletons.o ../lib/libCA.a |> !lxxd |> dumpSingletons
+: $(TUP_CWD)/exploreGapStructure.o ../lib/libCA.a |> !lxxd |> exploreGapStructure
+: $(TUP_CWD)/frgs2clones.o ../lib/libCA.a |> !lxxd |> frgs2clones

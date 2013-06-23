@@ -1,0 +1,3 @@
+AS_CGB_LIB_OBJS = $(TUP_CWD)/AS_CGB_histo.o
+LIBCA_OBJS += $(AS_CGB_LIB_OBJS)
+: $(AS_CGB_LIB_OBJS) |> !ar |> libAS_CGB.a

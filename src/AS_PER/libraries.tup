@@ -1,0 +1,19 @@
+include_rules
+
+AS_PER_LIB_OBJS = $(TUP_CWD)/AS_PER_genericStore.o		\
+                  $(TUP_CWD)/AS_PER_gkLibrary.o			\
+                  $(TUP_CWD)/AS_PER_gkStore.o			\
+                  $(TUP_CWD)/AS_PER_gkStore_IID.o		\
+                  $(TUP_CWD)/AS_PER_gkStore_PLC.o		\
+                  $(TUP_CWD)/AS_PER_gkStore_UID.o		\
+                  $(TUP_CWD)/AS_PER_gkStore_clearRange.o	\
+                  $(TUP_CWD)/AS_PER_gkStore_fragments.o		\
+                  $(TUP_CWD)/AS_PER_gkStore_load.o		\
+                  $(TUP_CWD)/AS_PER_gkStore_partition.o		\
+                  $(TUP_CWD)/AS_PER_gkStream.o			\
+                  $(TUP_CWD)/AS_PER_encodeSequenceQuality.o	\
+                  $(TUP_CWD)/AS_PER_asmStore.o
+
+LIBCA_OBJS += $(AS_PER_LIB_OBJS)
+
+: $(AS_PER_LIB_OBJS) |> !ar |> libAS_PER.a

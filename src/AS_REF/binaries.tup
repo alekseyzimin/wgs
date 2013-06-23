@@ -1,0 +1,1 @@
+: $(TUP_CWD)/buildRefContigs.o ../lib/libCA.a |> !lxxd |> buildRefContigs

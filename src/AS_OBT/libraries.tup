@@ -1,0 +1,7 @@
+include_rules
+
+AS_OBT_LIB_OBJS = $(TUP_CWD)/AS_OBT_acceptableOverlap.o
+
+LIBCA_OBJS += $(AS_OBT_LIB_OBJS)
+
+: $(AS_OBT_LIB_OBJS) |> !ar |> libAS_OBT.a

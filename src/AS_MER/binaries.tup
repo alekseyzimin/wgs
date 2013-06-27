@@ -1,3 +1,17 @@
 include_rules
 
+ifdef KMER
+AS_MER_LDFLAGS += -lpthread -L@(KMER)/lib -lmerylguts -lkmer -lmeryl -lseq -lbio -lutil
+LDFLAGS_meryl = $(AS_MER_LDFLAGS)
+LDFLAGS_mercy = $(AS_MER_LDFLAGS)
+LDFLAGS_overmerry = $(AS_MER_LDFLAGS)
+LDFLAGS_merTrim = $(AS_MER_LDFLAGS)
+LDFLAGS_estimate-mer-threshold = $(AS_MER_LDFLAGS)
+: $(TUP_CWD)/meryl.o $(TUP_CWD)/AS_MER_gkpStore_to_FastABase.o $(TUP_CWD)/AS_MER_gkpStoreChain.o ../lib/libCA.a |> !lxxd |> meryl
+: $(TUP_CWD)/mercy.o ../lib/libCA.a |> !lxxd |> mercy
+: $(TUP_CWD)/overmerry.o $(TUP_CWD)/AS_MER_gkpStore_to_FastABase.o ../lib/libCA.a |> !lxxd |> overmerry
+: $(TUP_CWD)/merTrim.o $(TUP_CWD)/AS_MER_gkpStore_to_FastABase.o ../lib/libCA.a |> !lxxd |> merTrim
+: $(TUP_CWD)/estimate-mer-threshold.o $(TUP_CWD)/AS_MER_gkpStore_to_FastABase.o ../lib/libCA.a |> !lxxd |> estimate-mer-threshold
+else
 : $(TUP_CWD)/AS_MER_meryl.o ../lib/libCA.a |> !lxxd |> meryl
+endif

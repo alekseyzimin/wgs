@@ -8,8 +8,8 @@ AS_GKP_OBJS = $(TUP_CWD)/AS_GKP_buildPartition.o			\
               $(TUP_CWD)/AS_GKP_edit.o $(TUP_CWD)/AS_GKP_errors.o	\
               $(TUP_CWD)/AS_GKP_illumina.o
 
-: AS_GKP_main.o $(AS_GKP_OBJS) ../lib/libCA.a |> !lxxd |> gatekeeper
-: AS_GKP_bench.o ../lib/libCA.a |> !lxxd |> gatekeeperbench
-: sffToCA.o ../lib/libCA.a |> !lxxd |> sffToCA
-: fastqToCA.o ../lib/libCA.a |> !lxxd |> fastqToCA
-: fastqSample.o ../lib/libCA.a |> !lxxd |> fastqSample
+: $(TUP_CWD)/AS_GKP_main.o $(AS_GKP_OBJS) ../lib/libCA.a |> !lxxd |> gatekeeper
+: $(TUP_CWD)/AS_GKP_bench.o ../lib/libCA.a |> !lxxd |> gatekeeperbench
+: $(TUP_CWD)/sffToCA.o ../lib/libCA.a |> !lxxd |> sffToCA
+: $(TUP_CWD)/fastqToCA.o ../lib/libCA.a |> !lxxd |> fastqToCA
+: $(TUP_CWD)/fastqSample.o ../lib/libCA.a |> !lxxd |> fastqSample

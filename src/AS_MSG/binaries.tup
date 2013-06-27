@@ -1,4 +1,6 @@
 include_rules
 
 : $(TUP_CWD)/remove_fragment.o ../lib/libCA.a |> !lxxd |> remove_fragment
-: $(TUP_CWD)/ExtractMessages.o ../lib/libCA.a |> !lxxd |> extractmessage
+: $(TUP_CWD)/ExtractMessages.o ../lib/libCA.a |> !lxxd |> extractmessages
+AS_MSG_SCRIPTS = $(TUP_CWD)/convert-fasta-to-v2.pl $(TUP_CWD)/convert-v1-to-v2.pl $(TUP_CWD)/tracedb-to-frg.pl
+: foreach $(AS_MSG_SCRIPTS) |> !instscript |> %b

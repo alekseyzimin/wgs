@@ -26,16 +26,16 @@ RUNCAOBTUTIL = $(TUP_CWD)/runCA-OBT/runCAutil/checkOverlap.pl \
 : $(RUNCAPREF) $(RUNCAOBTUTIL) $(RUNCASUF) |> ^ CAT %o^ cat %f > %o; chmod 0755 %o |> runCA
 : runCA |> ^ LN %o^ ln -s %f %o |> runCA-OBT.pl
 
-AS_RUN_SCRIPTS1 = $(TUP_CWD)/asmQC/caqc_help.ini	\
-	          $(TUP_CWD)/asmQC/caqc.pl		\
-	          $(TUP_CWD)/asmQC/caqc-diff.pl		\
-	          $(TUP_CWD)/asmQC/ca2ace.pl		\
-	          $(TUP_CWD)/asmQC/asmToAGP.pl
+AS_RUN_SCRIPTS1 = $(TUP_CWD)/asmQC/caqc_help.ini		\
+	          $(TUP_CWD)/asmQC/caqc.pl			\
+	          $(TUP_CWD)/asmQC/caqc-diff.pl			\
+	          $(TUP_CWD)/asmQC/ca2ace.pl			\
+	          $(TUP_CWD)/asmQC/asmToAGP.pl			\
+	          $(TUP_CWD)/dataQC/glen_est_truncadjusted.pl
 AS_RUN_SCRIPTS2 = $(TUP_CWD)/testing/assemblyCompare.pl		\
                   $(TUP_CWD)/testing/qcCompare.pl		\
                   $(TUP_CWD)/testing/tampaCompare.pl		\
                   $(TUP_CWD)/testing/mummerCompare.pl		\
-                  $(TUP_CWD)/dataQC/glen_est_truncadjusted.pl
 
 : foreach $(AS_RUN_SCRIPTS1) |> !instbin |> %b
 : foreach $(AS_RUN_SCRIPTS2) |> !instbin |> %B

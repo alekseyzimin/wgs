@@ -2,10 +2,9 @@
 &LIB = lib
 
 !cc    = |> ^ CC    %f^ $(CC) $(T_CPPFLAGS) @(CPPFLAGS) $(T_CFLAGS) $(CFLAGS_%B) @(CFLAGS) -c -o %o %f |> %B.o
-#!cxx   = |> ^ CXX   %f^ $(CXX) $(T_CPPFLAGS) @(CPPFLAGS) $(T_CXXFLAGS) -I&(SRC) -I&(SRC)/AS_UTL -I&(SRC)/AS_MSG -I&(SRC)/AS_CNS -I&(SRC)/AS_PER -I&(SRC)/AS_ALN -I&(SRC)/AS_OVL -I&(SRC)/AS_OVS -I&(SRC)/AS_OBT $(CXXFLAGS_%B) -I&(SRC)/AS_REZ @(CXXFLAGS) -c -o %o %f |> %B.o
 !cxx   = |> ^ CXX   %f^ $(CXX) $(T_CPPFLAGS) @(CPPFLAGS) $(T_CXXFLAGS) $(CXXFLAGS_%B) -I&(SRC)/AS_REZ @(CXXFLAGS) -c -o %o %f |> %B.o
 !ld    = |> ^ LD    %o^ $(CC) $(T_LDFLAGS) @(LDFLAGS) $(LDFLAGS_%o) @(LOADLIBES) @(LDLIBS) %f -o %o |>
-!lxxd  = |> ^ LXX   %o^ $(CXX) $(T_LDFLAGS) @(LDFLAGS) $(LDFLAGS_%o) @(LOADLIBES) @(LDLIBS) %f -o %o |>
+!lxxd  = |> ^ LXX   %o^ $(CXX) %f $(T_LDFLAGS) @(LDFLAGS) $(LDFLAGS_%o) @(LOADLIBES) @(LDLIBS) -o %o |>
 # !cld   = |> ^ CLD   %o^ $(CC) $(T_CPPFLAGS) $(CPPFLAGS) $(T_CFLAGS) $(CFLAGS_%B) $(CFLAGS) %f -o %o |>
 # !cxxld = |> ^ CXXLD %o^ $(CXX) $(T_CPPFLAGS) $(CPPFLAGS) $(T_CXXFLAGS) $(CXXFLAGS_%B) $(CXXFLAGS) $(T_LDFLAGS) $(LDFLAGS) $(LDFLAGS_%B) $(LOADLIBES) $(LDLIBS) %f -o %o |> %B
 !ar    = |> ^ AR    %o^ $(AR) $(ARFLAGS) %o %f |>

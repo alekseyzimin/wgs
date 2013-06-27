@@ -5,6 +5,7 @@ include_rules
 include ../src/AS_RUN/binaries.tup
 include ../src/AS_UID/binaries.tup
 include ../src/AS_MSG/binaries.tup
+include ../src/AS_GKP/binaries.tup
 include ../src/AS_OBT/binaries.tup
 include ../src/AS_MER/binaries.tup
 include ../src/AS_OVL/binaries.tup

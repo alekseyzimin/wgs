@@ -245,22 +245,22 @@ sub meryl {
     
     if(getGlobal("doOverlapBasedTrimming")) {
      if(not(-e "$wrk/0-mercounts/$asm.nmers.obt.bf")){
-      if(not(-e "$wrk/0-mercounts/obtMerCounts.jf")){
-        runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore | jellyfish-2.0  count -L 10 -C -m $obtMerSize -s $jf_size -o obtMerCounts.jf -t $merylThreads /dev/fd/0");
-        caFailure("Jellyfish failed", undef) if(not(-e "$wrk/0-mercounts/obtMerCounts.jf"));
+      if(not(-e "$wrk/0-mercounts/$asm.nmers.obt.jf")){
+        runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore | jellyfish-2.0  count -L $obtT -C -m $obtMerSize -s $jf_size -o $asm.nmers.ovl.jf -t $merylThreads /dev/fd/0");
+        caFailure("Jellyfish failed", undef) if(not(-e "$wrk/0-mercounts/$asm.nmers.obt.jf"));
 	}
-      runCommand("$wrk/0-mercounts", "jellyfish-2.0 histo -h 1 -t $merylThreads obtMerCounts.jf > obtMerCounts.nb");
-      runCommand("$wrk/0-mercounts", "jellyfish-2.0 dump -L $obtT obtMerCounts.jf | jellyfish-2.0 bf -m $obtMerSize -s `awk '{print \$2}'  obtMerCounts.nb` -t $merylThreads -o $asm.nmers.obt.bf /dev/fd/0");
+#      runCommand("$wrk/0-mercounts", "jellyfish-2.0 histo -h 1 -t $merylThreads obtMerCounts.jf > obtMerCounts.nb");
+#      runCommand("$wrk/0-mercounts", "jellyfish-2.0 dump -L $obtT obtMerCounts.jf | jellyfish-2.0 bf -m $obtMerSize -s `awk '{print \$2}'  obtMerCounts.nb` -t $merylThreads -o $asm.nmers.obt.bf /dev/fd/0");
     }
 }
 #here we count mers for the ovl overlapper
     if(not(-e "$wrk/0-mercounts/$asm.nmers.ovl.bf")){
-      if(not(-e "$wrk/0-mercounts/ovlMerCounts.jf")){
-        runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore | jellyfish-2.0  count -L 10 -C -m $ovlMerSize -s $jf_size -o ovlMerCounts.jf -t $merylThreads /dev/fd/0");
-        caFailure("Jellyfish failed", undef) if(not(-e "$wrk/0-mercounts/ovlMerCounts.jf"));
+      if(not(-e "$wrk/0-mercounts/$asm.nmers.ovl.jf")){
+        runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore | jellyfish-2.0  count -L $obtT -C -m $ovlMerSize -s $jf_size -o $asm.nmers.ovl.jf -t $merylThreads /dev/fd/0");
+        caFailure("Jellyfish failed", undef) if(not(-e "$wrk/0-mercounts/$asm.nmers.ovl.jf"));
 	}
-      runCommand("$wrk/0-mercounts", "jellyfish-2.0 histo -t $merylThreads -h 1 ovlMerCounts.jf > ovlMerCounts.nb");
-      runCommand("$wrk/0-mercounts", "jellyfish-2.0 dump -L $ovlT ovlMerCounts.jf | jellyfish-2.0 bf -m $ovlMerSize -s `awk '{print \$2}'  ovlMerCounts.nb` -t $merylThreads -o $asm.nmers.ovl.bf /dev/fd/0");
+#      runCommand("$wrk/0-mercounts", "jellyfish-2.0 histo -t $merylThreads -h 1 ovlMerCounts.jf > ovlMerCounts.nb");
+#      runCommand("$wrk/0-mercounts", "jellyfish-2.0 dump -L $ovlT ovlMerCounts.jf | jellyfish-2.0 bf -m $ovlMerSize -s `awk '{print \$2}'  ovlMerCounts.nb` -t $merylThreads -o $asm.nmers.ovl.bf /dev/fd/0");
     }
   }
   else{ #use Meryl or CA meryl

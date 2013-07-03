@@ -19,7 +19,7 @@
  *************************************************************************/
 
 
-static const char *rcsid = "$Id: eCR-diagnostic.c,v 1.9 2009/10/05 22:49:42 brianwalenz Exp $";
+// static const char *rcsid = "$Id: eCR-diagnostic.c,v 1.9 2009/10/05 22:49:42 brianwalenz Exp $";
 #include "eCR.h"
 #include "ScaffoldGraph_CGW.h"
 

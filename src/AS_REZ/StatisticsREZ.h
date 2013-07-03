@@ -22,7 +22,7 @@
 #ifndef STATISTICS_REZ_H
 #define STATISTICS_REZ_H
 
-static const char *rcsid_STATISTICS_REZ_H = "$Id: StatisticsREZ.h,v 1.8 2008/10/08 22:03:00 brianwalenz Exp $";
+// static const char *rcsid_STATISTICS_REZ_H = "$Id: StatisticsREZ.h,v 1.8 2008/10/08 22:03:00 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <assert.h>

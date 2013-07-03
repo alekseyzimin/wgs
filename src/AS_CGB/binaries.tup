@@ -1,0 +1,21 @@
+AS_FGB_OBJS = $(TUP_CWD)/AS_FGB_main.o $(TUP_CWD)/AS_FGB_io.o
+AS_OGB_OBJS = $(TUP_CWD)/AS_CGB_histo.o $(TUP_CWD)/AS_CGB_fga.o		\
+              $(TUP_CWD)/AS_CGB_fgb.o					\
+              $(TUP_CWD)/AS_FGB_hanging_fragment.o			\
+              $(TUP_CWD)/AS_FGB_contained.o				\
+              $(TUP_CWD)/AS_CGB_traversal.o $(TUP_CWD)/AS_CGB_walk.o	\
+              $(TUP_CWD)/AS_CGB_edgemate.o
+AS_CGB_OBJS = $(TUP_CWD)/AS_CGB_main.o $(TUP_CWD)/AS_CGB_cgb.o	\
+              $(TUP_CWD)/AS_CGB_classify.o			\
+              $(TUP_CWD)/AS_CGB_chimeras.o
+AS_CGA_OBJS = $(TUP_CWD)/AS_CGB_cga.o
+AS_BUB_OBJS = $(TUP_CWD)/AS_CGB_Bubble.o		\
+              $(TUP_CWD)/AS_CGB_Bubble_Graph.o		\
+              $(TUP_CWD)/AS_CGB_Bubble_VertexSet.o	\
+              $(TUP_CWD)/AS_CGB_Bubble_dfs.o		\
+              $(TUP_CWD)/AS_CGB_Bubble_Popper.o		\
+              $(TUP_CWD)/AS_CGB_Bubble_PopperMethods.o
+
+AS_UTG_OBJS = $(TUP_CWD)/AS_CGB_unitigger.o $(AS_FGB_OBJS) $(AS_OGB_OBJS) $(AS_CGB_OBJS) $(AS_CGA_OBJS) $(AS_BUB_OBJS)
+
+: $(AS_UTG_OBJS) ../lib/libCA.a |> !lxxd |> unitigger

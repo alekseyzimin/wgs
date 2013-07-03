@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: SQLOutput.cc,v 1.14 2010/02/12 20:33:02 brianwalenz Exp $";
+// static const char *rcsid = "$Id: SQLOutput.cc,v 1.14 2010/02/12 20:33:02 brianwalenz Exp $";
 
 #ifdef SYBASE
 

@@ -22,7 +22,7 @@
 #ifndef INCLUDE_AS_BOG_DATATYPES
 #define INCLUDE_AS_BOG_DATATYPES
 
-static const char *rcsid_INCLUDE_AS_BOG_DATATYPES = "$Id: AS_BOG_Datatypes.hh,v 1.39 2010/03/16 13:06:17 brianwalenz Exp $";
+// static const char *rcsid_INCLUDE_AS_BOG_DATATYPES = "$Id: AS_BOG_Datatypes.hh,v 1.39 2010/03/16 13:06:17 brianwalenz Exp $";
 
 #include <map>
 #include <set>

@@ -22,7 +22,7 @@
 #ifndef AS_UTL_VAR_H
 #define AS_UTL_VAR_H
 
-static const char *rcsid_AS_UTL_VAR_H = "$Id: AS_UTL_Var.h,v 1.20 2009/10/09 02:03:52 brianwalenz Exp $";
+// static const char *rcsid_AS_UTL_VAR_H = "$Id: AS_UTL_Var.h,v 1.20 2009/10/09 02:03:52 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <string.h>

@@ -22,7 +22,7 @@
 #ifndef AS_UTL_HASH_H
 #define AS_UTL_HASH_H
 
-static const char *rcsid_AS_UTL_HASH_H = "$Id: AS_UTL_Hash.h,v 1.13 2009/08/04 11:03:02 brianwalenz Exp $";
+// static const char *rcsid_AS_UTL_HASH_H = "$Id: AS_UTL_Hash.h,v 1.13 2009/08/04 11:03:02 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_UTL_heap.h"

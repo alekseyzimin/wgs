@@ -1,0 +1,7 @@
+AS_ARD_CMN_OBJS = $(TUP_CWD)/Sybase.o
+AS_ARD_DB_OBJS = $(TUP_CWD)/AS_ARD_database.o				\
+                 $(TUP_CWD)/DBTextOutput.o $(TUP_CWD)/BCPOutput.o	\
+                 $(TUP_CWD)/SQLOutput.o
+
+: $(TUP_CWD)/loadAssembly.o $(AS_ARD_CMN_OBJS) $(AS_ARD_DB_OBJS) ../lib/libCA.a |> !lxxd |> loadAssembly
+: $(TUP_CWD)/getAssembly.o $(AS_ARD_CMN_OBJS) ../lib/libCA.a |> !lxxd |> getAssembly

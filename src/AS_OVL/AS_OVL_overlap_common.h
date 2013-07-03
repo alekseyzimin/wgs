@@ -2222,6 +2222,28 @@ static void  Flip_Screen_Range
    return;
   }
 
+// Checkered mask. cmask<uint16_t, 1> is every other bit on
+// (0x55). cmask<uint16_t,2> is two bits one, two bits off (0x33). Etc.
+template<typename U, int len, int l = sizeof(U) * 8 / (2 * len)>
+struct cmask {
+  static const U v =
+    (cmask<U, len, l - 1>::v << (2 * len)) | (((U)1 << len) - 1);
+};
+template<typename U, int len>
+struct cmask<U, len, 0> {
+  static const U v = 0;
+};
+
+static uint64 word_reverse(uint64 w) {
+  typedef uint64 U;
+  w = ((w >> 2)  & cmask<U, 2 >::v) | ((w & cmask<U, 2 >::v) << 2);
+  w = ((w >> 4)  & cmask<U, 4 >::v) | ((w & cmask<U, 4 >::v) << 4);
+  w = ((w >> 8)  & cmask<U, 8 >::v) | ((w & cmask<U, 8 >::v) << 8);
+  w = ((w >> 16) & cmask<U, 16>::v) | ((w & cmask<U, 16>::v) << 16);
+  w = ( w >> 32                   ) | ( w                    << 32);
+  return w;
+}
+
 // Wrapper around Hash_Find__. First look up in the bloom filter for a
 // skip mer. If found, return an empty ref and set hi_hits to true. If
 // not found, delegate to Hash_Find__.
@@ -2229,13 +2251,17 @@ static String_Ref_t Hash_Find(uint64 Key, int64 Sub, char * S, int64 * Where, in
 {
   static jellyfish::mer_dna m;
   String_Ref_t H_Ref = { 0 };
+  uint64 rKey = word_reverse(Key) >> (2 * (32 - Kmer_Len));
 
   if(skip_mers) {
+    //    m.word__(0) = rKey;
     m.word__(0) = Key;
     m.reverse_complement();
     if(Key < m.word(0))
-      m.word__(0) = Key;
+      //      m.word__(0) = rKey;
+      m.word__(0) = rKey;
     if(skip_mers->check(m)) {
+      fprintf(stderr, "Skipping mer %s\n", m.to_str().c_str());
       setStringRefEmpty(H_Ref, TRUE);
       *hi_hits = TRUE;
       return H_Ref;

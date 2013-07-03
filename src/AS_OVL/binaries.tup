@@ -1,0 +1,22 @@
+include_rules
+
+ifeq (@(TUP_PLATFORM),linux)
+T_LDFLAGS += -lpthread
+T_CXXFLAGS += -pthread
+endif
+
+
+AS_OVL_CMN = $(TUP_CWD)/AS_OVL_delcher.o ../lib/libCA.a
+
+: $(TUP_CWD)/ShowCorrectsOVL.o $(AS_OVL_CMN) |> !lxxd |> show-corrects
+: $(TUP_CWD)/CatEratesOVL.o $(AS_OVL_CMN) |> !lxxd |> cat-erates
+: $(TUP_CWD)/FragCorrectOVL.o $(AS_OVL_CMN) |> !lxxd |> correct-frags
+: $(TUP_CWD)/CorrectOlapsOVL.o $(AS_OVL_CMN) |> !lxxd |> correct-olaps
+
+export PKG_CONFIG_PATH
+LDFLAGS_overlap += `pkg-config jellyfish-2.0 --libs`
+LDFLAGS_overlap_ca += `pkg-config jellyfish-2.0 --libs`
+: $(TUP_CWD)/AS_OVL_overlap.o $(TUP_CWD)/AS_OVL_driver.o $(AS_OVL_CMN) |> !lxxd |> overlap
+: $(TUP_CWD)/AS_OVL_overlap_ca.o $(TUP_CWD)/AS_OVL_driver_ca.o $(AS_OVL_CMN) |> !lxxd |> overlap_ca
+
+: $(TUP_CWD)/OlapFromSeedsOVL.o $(AS_OVL_CMN) |> !lxxd |> olap-from-seeds

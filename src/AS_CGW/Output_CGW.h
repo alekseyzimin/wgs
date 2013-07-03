@@ -22,7 +22,7 @@
 #ifndef OUTPUT_CGW_H
 #define OUTPUT_CGW_H
 
-static const char *rcsid_OUTPUT_CGW_H = "$Id: Output_CGW.h,v 1.7 2009/12/01 00:20:30 brianwalenz Exp $";
+// static const char *rcsid_OUTPUT_CGW_H = "$Id: Output_CGW.h,v 1.7 2009/12/01 00:20:30 brianwalenz Exp $";
 
 void MarkContigEdges(void);
 

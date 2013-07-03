@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: AS_UTL_heap.c,v 1.10 2008/12/05 19:06:12 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_UTL_heap.c,v 1.10 2008/12/05 19:06:12 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_UTL_heap.h"
@@ -75,7 +75,7 @@ InitHeapIterator_AS(Heap_AS *heap, HeapIterator_AS *iterator) {
 
 void *
 NextHeapIterator_AS(HeapIterator_AS *iterator) {
-  if (iterator->item >= iterator->array->nextAvail) {
+  if (iterator->item >= (int)iterator->array->nextAvail) {
     if (iterator->array->next == NULL)
       return(NULL);
     iterator->array = iterator->array->next;

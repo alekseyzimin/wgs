@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: trim.C,v 1.11 2009/06/10 18:05:13 brianwalenz Exp $";
+// static const char *rcsid = "$Id: trim.C,v 1.11 2009/06/10 18:05:13 brianwalenz Exp $";
 
 #include "trim.H"
 #include "util++.H"

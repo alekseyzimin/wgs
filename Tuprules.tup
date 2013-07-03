@@ -1,0 +1,75 @@
+&SRC = src
+&LIB = lib
+
+!cc    = |> ^ CC    %f^ $(CC) $(T_CPPFLAGS) @(CPPFLAGS) $(T_CFLAGS) $(CFLAGS_%B) @(CFLAGS) -c -o %o %f |> %B.o
+!cxx   = |> ^ CXX   %f^ $(CXX) $(T_CPPFLAGS) @(CPPFLAGS) $(T_CXXFLAGS) $(CXXFLAGS_%B) -I&(SRC)/AS_REZ @(CXXFLAGS) -c -o %o %f |> %B.o
+!ld    = |> ^ LD    %o^ $(CC) $(T_LDFLAGS) @(LDFLAGS) $(LDFLAGS_%o) @(LOADLIBES) @(LDLIBS) %f -o %o |>
+!lxxd  = |> ^ LXX   %o^ $(CXX) %f $(T_LDFLAGS) @(LDFLAGS) $(LDFLAGS_%o) @(LOADLIBES) @(LDLIBS) -o %o |>
+# !cld   = |> ^ CLD   %o^ $(CC) $(T_CPPFLAGS) $(CPPFLAGS) $(T_CFLAGS) $(CFLAGS_%B) $(CFLAGS) %f -o %o |>
+# !cxxld = |> ^ CXXLD %o^ $(CXX) $(T_CPPFLAGS) $(CPPFLAGS) $(T_CXXFLAGS) $(CXXFLAGS_%B) $(CXXFLAGS) $(T_LDFLAGS) $(LDFLAGS) $(LDFLAGS_%B) $(LOADLIBES) $(LDLIBS) %f -o %o |> %B
+!ar    = |> ^ AR    %o^ $(AR) $(ARFLAGS) %o %f |>
+!instbin = |> ^ INST %o^ cp -f %f %o; chmod 0755 %o |>
+!instscript = |> ^ INST %o^ $(INST) -m 0755 %f %o |>
+
+
+# Compilers and some flags set from configuration variant
+ifdef CC
+CC = @(CC)
+else
+CC = gcc
+endif
+
+ifdef CXX
+CXX = @(CXX)
+else
+CXX = g++
+endif
+
+ifdef AR
+AR = @(AR)
+else
+AR = ar
+endif
+
+ifdef ARFLAGS
+ARFLAGS = @(ARFLAGS)
+else
+ARFLAGS = rs
+endif
+
+ifdef INST
+INST = @(INST)
+else
+INST = install
+endif
+
+# Site name
+ifdef SITE_NAME
+SITE_NAME = @(SITE_NAME)
+endif
+
+ifeq ($(SITE_NAME),)
+  SITE_NAME = LOCAL
+endif
+
+ifneq ($(SITE_NAME),LOCAL)
+ ifneq ($(SITE_NAME),JCVI)
+  ifneq ($(SITE_NAME),BRI)
+    error Invalid SITE_NAME $(SITE_NAME).  If set, must be JCVI
+  endif
+ endif
+endif
+
+
+T_CPPFLAGS = -I$(TUP_CWD)/src -I$(TUP_CWD)/src/AS_RUN	\
+-I$(TUP_CWD)/src/AS_UTL -I$(TUP_CWD)/src/AS_UID		\
+-I$(TUP_CWD)/src/AS_MSG -I$(TUP_CWD)/src/AS_PER		\
+-I$(TUP_CWD)/src/AS_GKP -I$(TUP_CWD)/src/AS_OBT		\
+-I$(TUP_CWD)/src/AS_MER -I$(TUP_CWD)/src/AS_OVL		\
+-I$(TUP_CWD)/src/AS_OVS -I$(TUP_CWD)/src/AS_ALN		\
+-I$(TUP_CWD)/src/AS_CGB -I$(TUP_CWD)/src/AS_BOG		\
+-I$(TUP_CWD)/src/AS_REZ -I$(TUP_CWD)/src/AS_CNS		\
+-I$(TUP_CWD)/src/AS_LIN -I$(TUP_CWD)/src/AS_CGW		\
+-I$(TUP_CWD)/src/AS_TER -I$(TUP_CWD)/src/AS_ENV		\
+-I$(TUP_CWD)/src/AS_ARD -I$(TUP_CWD)/src/AS_REF
+

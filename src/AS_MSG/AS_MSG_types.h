@@ -23,7 +23,7 @@
 #ifndef AS_MSG_PMESG_TYPES_H
 #define AS_MSG_PMESG_TYPES_H
 
-static const char *rcsid_AS_MSG_PMESG_TYPES_H = "$Id: AS_MSG_types.h,v 1.3 2010/02/17 01:32:58 brianwalenz Exp $";
+// static const char *rcsid_AS_MSG_PMESG_TYPES_H = "$Id: AS_MSG_types.h,v 1.3 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <time.h>

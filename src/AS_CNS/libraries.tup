@@ -1,0 +1,17 @@
+AS_CNS_LIB_OBJS = $(TUP_CWD)/Array_CNS.o $(TUP_CWD)/MultiAlign.o		\
+                  $(TUP_CWD)/MultiAlignPrint.o				\
+                  $(TUP_CWD)/MultiAlignStore.o				\
+                  $(TUP_CWD)/MultiAlignment_CNS.o			\
+                  $(TUP_CWD)/RefreshMANode.o				\
+                  $(TUP_CWD)/AbacusRefine.o				\
+                  $(TUP_CWD)/ApplyAlignment.o $(TUP_CWD)/BaseCall.o	\
+                  $(TUP_CWD)/GetAlignmentTrace.o			\
+                  $(TUP_CWD)/MergeMultiAligns.o				\
+                  $(TUP_CWD)/MergeRefine.o				\
+                  $(TUP_CWD)/MultiAlignContig.o				\
+                  $(TUP_CWD)/MultiAlignUnitig.o				\
+                  $(TUP_CWD)/PrintAlignment.o				\
+                  $(TUP_CWD)/ReplaceEndUnitigInContig.o
+
+LIBCA_OBJS += $(AS_CNS_LIB_OBJS)
+: $(AS_CNS_LIB_OBJS) |> !ar |> libAS_CNS.a

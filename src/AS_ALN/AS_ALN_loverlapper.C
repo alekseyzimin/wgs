@@ -20,7 +20,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_ALN_loverlapper.c,v 1.24 2010/02/17 01:32:57 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_ALN_loverlapper.c,v 1.24 2010/02/17 01:32:57 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>

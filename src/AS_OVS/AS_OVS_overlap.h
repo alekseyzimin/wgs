@@ -22,7 +22,7 @@
 #ifndef AS_OVS_OVERLAP_H
 #define AS_OVS_OVERLAP_H
 
-static const char *rcsid_AS_OVS_OVERLAP_H = "$Id: AS_OVS_overlap.h,v 1.12 2009/10/26 13:20:26 brianwalenz Exp $";
+// static const char *rcsid_AS_OVS_OVERLAP_H = "$Id: AS_OVS_overlap.h,v 1.12 2009/10/26 13:20:26 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_MSG_pmesg.h"  //  pretty heavy just to get OverlapMesg.

@@ -53,7 +53,7 @@
  * $Revision: 1.8 $
 */
 
-static const char *rcsid = "$Id: AS_OVL_overlap.c,v 1.8 2008/10/08 22:02:58 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_OVL_overlap.c,v 1.8 2008/10/08 22:02:58 brianwalenz Exp $";
 
 /****************************************
  * Version of the main program

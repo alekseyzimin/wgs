@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: util++.C,v 1.8 2009/11/10 04:33:17 brianwalenz Exp $";
+// static const char *rcsid = "$Id: util++.C,v 1.8 2009/11/10 04:33:17 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

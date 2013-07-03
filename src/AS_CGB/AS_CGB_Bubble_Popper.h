@@ -22,7 +22,7 @@
 #ifndef _AS_CGB_BUBBLE_POPPER_H_
 #define _AS_CGB_BUBBLE_POPPER_H_
 
-static const char *rcsid__AS_CGB_BUBBLE_POPPER_H_ = "$Id: AS_CGB_Bubble_Popper.h,v 1.10 2009/06/10 18:05:13 brianwalenz Exp $";
+// static const char *rcsid__AS_CGB_BUBBLE_POPPER_H_ = "$Id: AS_CGB_Bubble_Popper.h,v 1.10 2009/06/10 18:05:13 brianwalenz Exp $";
 
 /* The bubble popper will REJECT bubbles with more than this many fragments! */
 #define POPPER_MAX_BUBBLE_SIZE 200

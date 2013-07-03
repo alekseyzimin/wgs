@@ -22,7 +22,7 @@
 #ifndef INSTRUMENT_CGW_H
 #define INSTRUMENT_CGW_H
 
-static const char *rcsid_INSTRUMENT_CGW_H = "$Id: Instrument_CGW.h,v 1.14 2010/04/26 03:59:33 brianwalenz Exp $";
+// static const char *rcsid_INSTRUMENT_CGW_H = "$Id: Instrument_CGW.h,v 1.14 2010/04/26 03:59:33 brianwalenz Exp $";
 
 #include <math.h>
 

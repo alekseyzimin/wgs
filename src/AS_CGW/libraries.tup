@@ -1,0 +1,26 @@
+AS_CGW_LIB_OBJS = $(TUP_CWD)/Globals_CGW.o				\
+                  $(TUP_CWD)/AS_CGW_EdgeDiagnostics.o			\
+                  $(TUP_CWD)/CIEdgeT_CGW.o				\
+                  $(TUP_CWD)/CIScaffoldT_Biconnected_CGW.o		\
+                  $(TUP_CWD)/CIScaffoldT_CGW.o				\
+                  $(TUP_CWD)/CIScaffoldT_Cleanup_CGW.o			\
+                  $(TUP_CWD)/CIScaffoldT_Merge_CGW.o			\
+                  $(TUP_CWD)/Celamy_CGW.o				\
+                  $(TUP_CWD)/ChunkOverlap_CGW.o				\
+                  $(TUP_CWD)/ContigT_CGW.o				\
+                  $(TUP_CWD)/DemoteUnitigsWithRBP_CGW.o			\
+                  $(TUP_CWD)/fragmentPlacement.o			\
+                  $(TUP_CWD)/GraphCGW_T.o $(TUP_CWD)/Input_CGW.o	\
+                  $(TUP_CWD)/Instrument_CGW.o				\
+                  $(TUP_CWD)/InterleavedMerging.o			\
+                  $(TUP_CWD)/LeastSquaresGaps_CGW.o			\
+                  $(TUP_CWD)/MergeEdges_CGW.o $(TUP_CWD)/Output_CGW.o	\
+                  $(TUP_CWD)/SEdgeT_CGW.o				\
+                  $(TUP_CWD)/ScaffoldGraph_CGW.o			\
+                  $(TUP_CWD)/SplitChunks_CGW.o				\
+                  $(TUP_CWD)/SplitScaffolds_CGW.o			\
+                  $(TUP_CWD)/Stats_CGW.o				\
+                  $(TUP_CWD)/TransitiveReduction_CGW.o
+
+LIBCA_OBJS += $(AS_CGW_LIB_OBJS)
+: $(AS_CGW_LIB_OBJS) |> !ar |> libAS_CGW.a

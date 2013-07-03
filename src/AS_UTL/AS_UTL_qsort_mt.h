@@ -31,7 +31,7 @@
 #ifndef QSORT_MT_H
 #define QSORT_MT_H
 
-static const char *rcsid_QSORT_MT_H = "$Id: AS_UTL_qsort_mt.h,v 1.2 2008/10/08 22:03:00 brianwalenz Exp $";
+// static const char *rcsid_QSORT_MT_H = "$Id: AS_UTL_qsort_mt.h,v 1.2 2008/10/08 22:03:00 brianwalenz Exp $";
 
 void
 qsort_mt(void *a,

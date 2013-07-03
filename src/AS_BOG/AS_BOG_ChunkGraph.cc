@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_BOG_ChunkGraph.cc,v 1.30 2010/01/25 12:58:37 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_BOG_ChunkGraph.cc,v 1.30 2010/01/25 12:58:37 brianwalenz Exp $";
 
 #include "AS_BOG_Datatypes.hh"
 #include "AS_BOG_ChunkGraph.hh"

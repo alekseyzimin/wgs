@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: AS_BOG_UnitigGraph.cc,v 1.130 2010/04/27 14:56:58 brianwalenz Exp $";
+// static const char *rcsid = "$Id: AS_BOG_UnitigGraph.cc,v 1.130 2010/04/27 14:56:58 brianwalenz Exp $";
 
 #include "AS_BOG_Datatypes.hh"
 #include "AS_BOG_UnitigGraph.hh"

@@ -1,0 +1,7 @@
+AS_REZ_LIB_OBJS = $(TUP_CWD)/ConsistencyChecksREZ.o			\
+                  $(TUP_CWD)/GapFillREZ.o $(TUP_CWD)/GapWalkerREZ.o	\
+                  $(TUP_CWD)/StatisticsREZ.o $(TUP_CWD)/UpdateREZ.o	\
+                  $(TUP_CWD)/UtilsREZ.o $(TUP_CWD)/MicroHetREZ.o
+
+LIBCA_OBJS += $(AS_REZ_LIB_OBJS)
+: $(AS_REZ_LIB_OBJS) |> !ar |> libAS_REZ.a

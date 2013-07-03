@@ -1,0 +1,15 @@
+include_rules
+
+AS_GKP_OBJS = $(TUP_CWD)/AS_GKP_buildPartition.o			\
+              $(TUP_CWD)/AS_GKP_checkLibrary.o				\
+              $(TUP_CWD)/AS_GKP_checkFrag.o				\
+              $(TUP_CWD)/AS_GKP_checkLink.o				\
+              $(TUP_CWD)/AS_GKP_checkPlace.o $(TUP_CWD)/AS_GKP_dump.o	\
+              $(TUP_CWD)/AS_GKP_edit.o $(TUP_CWD)/AS_GKP_errors.o	\
+              $(TUP_CWD)/AS_GKP_illumina.o
+
+: $(TUP_CWD)/AS_GKP_main.o $(AS_GKP_OBJS) ../lib/libCA.a |> !lxxd |> gatekeeper
+: $(TUP_CWD)/AS_GKP_bench.o ../lib/libCA.a |> !lxxd |> gatekeeperbench
+: $(TUP_CWD)/sffToCA.o ../lib/libCA.a |> !lxxd |> sffToCA
+: $(TUP_CWD)/fastqToCA.o ../lib/libCA.a |> !lxxd |> fastqToCA
+: $(TUP_CWD)/fastqSample.o ../lib/libCA.a |> !lxxd |> fastqSample

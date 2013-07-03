@@ -70,8 +70,9 @@ const char *mainid = "$Id: AS_OVL_overlap_common.h,v 1.61 2010/04/02 06:55:32 br
 #include  <float.h>
 #include  <fstream>
 
-#include  <jellyfish/mer_dna_bloom_counter.hpp>
+#include  <jellyfish/jellyfish.hpp>
 #include  <jellyfish/file_header.hpp>
+#include  <jellyfish/mapped_file.hpp>
 
 /*************************************************************************/
 /* Local include files */
@@ -404,8 +405,10 @@ char  Quality_Buffer [2 * AS_READ_MAX_NORMAL_LEN];
 
 FILE  * BOL_File = NULL;
 // FILE  * Kmer_Skip_File = NULL;
-const char*                       Kmer_Skip_Path = NULL;
-jellyfish::mer_dna_bloom_counter* skip_mers      = NULL;
+const char*             Kmer_Skip_Path = NULL;
+jellyfish::mapped_file* skip_mers_file = NULL;
+binary_query*           skip_mers      = NULL;
+// jellyfish::mer_dna_bloom_counter* skip_mers      = NULL;
     // File and filter of kmers to be ignored in the hash table
     // Specified by the  -k  option
 Output_Stream  Out_Stream = NULL;
@@ -2252,16 +2255,25 @@ static String_Ref_t Hash_Find(uint64 Key, int64 Sub, char * S, int64 * Where, in
   static jellyfish::mer_dna m;
   String_Ref_t H_Ref = { 0 };
   uint64 rKey = word_reverse(Key) >> (2 * (32 - Kmer_Len));
+  uint64 rcKey = ~Key;
+  if(Kmer_Len < 32)
+    rcKey &= ((uint64_t)1 << (2 * Kmer_Len)) - 1;
+
+  // uint64 rKey = ((uint64_t)-1 - word_reverse(Key)) >> (2 * (32 - Kmer_Len));
+
+  //  m.word__(0) = rKey;
+  //  printf("%s\n", m.to_str().c_str());
 
   if(skip_mers) {
-    //    m.word__(0) = rKey;
-    m.word__(0) = Key;
-    m.reverse_complement();
-    if(Key < m.word(0))
-      //      m.word__(0) = rKey;
+    if(rKey < rcKey) {
       m.word__(0) = rKey;
+    } else {
+      m.word__(0) = rcKey;
+    }
+
+    //    fprintf(stderr, "Check mer %s\n", m.to_str().c_str());
     if(skip_mers->check(m)) {
-      fprintf(stderr, "Skipping mer %s\n", m.to_str().c_str());
+      //      fprintf(stderr, "Skipping mer %s\n", m.to_str().c_str());
       setStringRefEmpty(H_Ref, TRUE);
       *hi_hits = TRUE;
       return H_Ref;
@@ -2833,9 +2845,14 @@ static void Mark_Skip_Kmers(void) {
             Kmer_Skip_Path);
     exit(1);
   }
-  if(header.format() != "bloomcounter") {
-    fprintf(stderr, "Unexpected skip k-mer file format '%s'. Should be 'bloomcounter'.\n",
-            header.format().c_str());
+  /* if(header.format() != "bloomcounter") { */
+  /*   fprintf(stderr, "Unexpected skip k-mer file format '%s'. Should be 'bloomcounter'.\n", */
+  /*           header.format().c_str()); */
+  /*   exit(1); */
+  /* } */
+  if(header.format() != binary_dumper::format) {
+    fprintf(stderr, "Unexpected skip k-mer file format '%s'. Should be '%s'.\n",
+            header.format().c_str(), binary_dumper::format);
     exit(1);
   }
   if(Kmer_Len != header.key_len() / 2) {
@@ -2844,8 +2861,11 @@ static void Mark_Skip_Kmers(void) {
     exit(1);
   }
   jellyfish::mer_dna::k(Kmer_Len);
-  jellyfish::hash_pair<jellyfish::mer_dna> fns(header.matrix(1), header.matrix(2));
-  skip_mers = new jellyfish::mer_dna_bloom_counter(header.size(), header.nb_hashes(), in, fns);
+  /* jellyfish::hash_pair<jellyfish::mer_dna> fns(header.matrix(1), header.matrix(2)); */
+  /* skip_mers = new jellyfish::mer_dna_bloom_counter(header.size(), header.nb_hashes(), in, fns); */
+  skip_mers_file = new jellyfish::mapped_file(Kmer_Skip_Path);
+  skip_mers      = new binary_query(skip_mers_file->base() + header.offset(), header.key_len(), header.counter_len(),
+                                    header.matrix(), header.size() - 1, skip_mers_file->length() - header.offset());
 }
 
 /* static void  Mark_Skip_Kmers */

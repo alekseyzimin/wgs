@@ -22,7 +22,7 @@
 #ifndef AS_UTL_HISTOGRAM_H
 #define AS_UTL_HISTOGRAM_H
 
-static const char *rcsid_AS_UTL_HISTOGRAM_H = "$Id: AS_UTL_histogram.h,v 1.7 2009/06/10 18:05:14 brianwalenz Exp $";
+// static const char *rcsid_AS_UTL_HISTOGRAM_H = "$Id: AS_UTL_histogram.h,v 1.7 2009/06/10 18:05:14 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

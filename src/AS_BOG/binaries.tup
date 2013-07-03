@@ -1,0 +1,9 @@
+AS_BOG_LIB_OBJS = $(TUP_CWD)/AS_BOG_BestOverlapGraph.o	\
+                  $(TUP_CWD)/AS_BOG_ChunkGraph.o	\
+                  $(TUP_CWD)/AS_BOG_MateChecker.o	\
+                  $(TUP_CWD)/AS_BOG_Unitig.o		\
+                  $(TUP_CWD)/AS_BOG_UnitigGraph.o
+
+: $(TUP_CWD)/BuildUnitigs.o $(AS_BOG_LIB_OBJS) ../lib/libCA.a |> !lxxd |> buildUnitigs
+: $(TUP_CWD)/fixUnitigs.o ../lib/libCA.a |> !lxxd |> fixUnitigs
+: $(TUP_CWD)/scoreOverlaps.o ../lib/libCA.a |> !lxxd |> scoreOverlaps

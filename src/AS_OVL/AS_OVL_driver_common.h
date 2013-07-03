@@ -28,7 +28,7 @@
 #ifndef AS_OVL_DRIVER_COMMON_H
 #define AS_OVL_DRIVER_COMMON_H
 
-static const char *rcsid_AS_OVL_DRIVER_COMMON_H = "$Id: AS_OVL_driver_common.h,v 1.29 2009/06/10 18:05:13 brianwalenz Exp $";
+// static const char *rcsid_AS_OVL_DRIVER_COMMON_H = "$Id: AS_OVL_driver_common.h,v 1.29 2009/06/10 18:05:13 brianwalenz Exp $";
 
 #include  <unistd.h>
 

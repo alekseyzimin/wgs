@@ -21,7 +21,7 @@
 #ifndef MULTIALIGNMENT_CNS_INCLUDE
 #define MULTIALIGNMENT_CNS_INCLUDE
 
-static const char *rcsid_MULTIALIGNMENT_CNS_INCLUDE = "$Id: MultiAlignment_CNS.h,v 1.56 2009/10/05 22:49:42 brianwalenz Exp $";
+// static const char *rcsid_MULTIALIGNMENT_CNS_INCLUDE = "$Id: MultiAlignment_CNS.h,v 1.56 2009/10/05 22:49:42 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_UTL_Var.h"

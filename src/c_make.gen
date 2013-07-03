@@ -383,8 +383,8 @@ $(CXX_OBJECTS_C): %.o: %.C
 	$(CXX) $(CPPFLAGS) $(CXXDEFS) $(CXXFLAGS) -c $(INC_DIRS) -o $(LOCAL_OBJ)/$*.o $<
 
 #### Missing files are there, we just need to rename them.
-$(CXX_SOURCES_C): %.C:
-	@ln -s $*.c $*.C
+# $(CXX_SOURCES_C): %.C:
+# 	@ln -s $*.c $*.C
 
 $(LIBRARIES):
 	@ echo "################### " $@ "#####################";

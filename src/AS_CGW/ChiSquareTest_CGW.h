@@ -22,7 +22,7 @@
 #ifndef ChiSquareTest_CGW_H
 #define ChiSquareTest_CGW_H
 
-static const char *rcsid_ChiSquareTest_CGW_H = "$Id: ChiSquareTest_CGW.h,v 1.7 2010/01/17 07:11:14 brianwalenz Exp $";
+// static const char *rcsid_ChiSquareTest_CGW_H = "$Id: ChiSquareTest_CGW.h,v 1.7 2010/01/17 07:11:14 brianwalenz Exp $";
 
 /* Data structures for clustering edges based on Chi Squared tests on
    combinations of edges */

@@ -1,0 +1,4 @@
+include_rules
+
+: $(TUP_CWD)/uidserver.o ../lib/libAS_UID.a ../lib/libAS_UTL.a |> !lxxd |> uidserver
+: $(TUP_CWD)/uidclient.o ../lib/libAS_UID.a ../lib/libAS_UTL.a |> !lxxd |> uidclient

@@ -22,7 +22,7 @@
 #ifndef AS_OVS_OVERLAPFILE_H
 #define AS_OVS_OVERLAPFILE_H
 
-static const char *rcsid_AS_OVS_OVERLAPFILE_H = "$Id: AS_OVS_overlapFile.h,v 1.11 2008/10/14 03:02:01 brianwalenz Exp $";
+// static const char *rcsid_AS_OVS_OVERLAPFILE_H = "$Id: AS_OVS_overlapFile.h,v 1.11 2008/10/14 03:02:01 brianwalenz Exp $";
 
 #include <stdio.h>
 

@@ -1,0 +1,19 @@
+include_rules
+
+LIBCA_OBJS += ../src/AS_global.o
+
+include ../src/AS_UTL/libraries.tup
+include ../src/AS_UID/libraries.tup
+include ../src/AS_MSG/libraries.tup
+include ../src/AS_PER/libraries.tup
+include ../src/AS_OBT/libraries.tup
+include ../src/AS_OVL/libraries.tup
+include ../src/AS_OVS/libraries.tup
+include ../src/AS_ALN/libraries.tup
+include ../src/AS_CGB/libraries.tup
+include ../src/AS_REZ/libraries.tup
+include ../src/AS_CNS/libraries.tup
+include ../src/AS_LIN/libraries.tup
+include ../src/AS_CGW/libraries.tup
+
+: $(LIBCA_OBJS) |> !ar |> libCA.a

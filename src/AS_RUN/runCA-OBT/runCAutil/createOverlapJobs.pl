@@ -111,8 +111,8 @@ sub createOverlapJobs($) {
     print F "\$bin/overlap $ovlOpt -M $ovlMemory -t $ovlThreads \\\n";
     print F "  \$opt \\\n";
     print F "  -k $merSize \\\n";
-    print F "  -k $wrk/0-mercounts/$asm.nmers.obt.fasta \\\n" if ($isTrim eq "trim");
-    print F "  -k $wrk/0-mercounts/$asm.nmers.ovl.fasta \\\n" if ($isTrim ne "trim");
+    print F "  -k $wrk/0-mercounts/$asm.nmers.obt.jf \\\n" if ($isTrim eq "trim");
+    print F "  -k $wrk/0-mercounts/$asm.nmers.ovl.jf \\\n" if ($isTrim ne "trim");
     print F "  -o $wrk/$outDir/\$bat/\$job.ovb.WORKING.gz \\\n";
     print F "  $wrk/$asm.gkpStore \\\n";
     print F "&& \\\n";

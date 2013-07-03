@@ -22,7 +22,7 @@
 #ifndef FRAGCORRECTOVL_H
 #define FRAGCORRECTOVL_H
 
-static const char *rcsid_FRAGCORRECTOVL_H = "$Id: FragCorrectOVL.h,v 1.8 2009/10/26 13:20:26 brianwalenz Exp $";
+// static const char *rcsid_FRAGCORRECTOVL_H = "$Id: FragCorrectOVL.h,v 1.8 2009/10/26 13:20:26 brianwalenz Exp $";
 
 typedef  enum {
    DELETE,

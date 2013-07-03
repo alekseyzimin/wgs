@@ -1,0 +1,12 @@
+include_rules
+
+SRCS = 
+
+ifdef KMER
+T_CXXFLAGS += -I@(KMER)/include -pthread
+SRCS += meryl.C mercy.C mercy-regions.C overmerry.C merTrim.C estimate-mer-threshold.C AS_MER_gkpStore_to_FastABase.C AS_MER_gkpStoreChain.C
+else
+SRCS += AS_MER_meryl.cc
+endif
+
+: foreach $(SRCS) |> !cxx |>

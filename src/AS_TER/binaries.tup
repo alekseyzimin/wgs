@@ -1,0 +1,5 @@
+: $(TUP_CWD)/terminator.o ../lib/libCA.a |> !lxxd |> terminator
+: $(TUP_CWD)/asmOutputFasta.o ../lib/libCA.a |> !lxxd |> asmOutputFasta
+: $(TUP_CWD)/asmOutputStatistics.o ../lib/libCA.a |> !lxxd |> asmOutputStatistics
+: $(TUP_CWD)/fragsInVars.o ../lib/libCA.a |> !lxxd |> fragsInVars
+: $(TUP_CWD)/buildPosMap.o ../lib/libCA.a |> !lxxd |> buildPosMap

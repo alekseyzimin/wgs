@@ -22,7 +22,7 @@
 #ifndef CA_ALN_SCAFCOMP
 #define CA_ALN_SCAFCOMP
 
-static const char *rcsid_CA_ALN_SCAFCOMP = "$Id: CA_ALN_scafcomp.h,v 1.7 2008/10/08 22:02:54 brianwalenz Exp $";
+// static const char *rcsid_CA_ALN_SCAFCOMP = "$Id: CA_ALN_scafcomp.h,v 1.7 2008/10/08 22:02:54 brianwalenz Exp $";
 
 typedef struct {
   int gap_length;  /* Length of the inter-contig gap */

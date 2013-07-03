@@ -22,7 +22,7 @@
 #ifndef AS_OBT_ACCEPTABLEOVERLAP_H
 #define AS_OBT_ACCEPTABLEOVERLAP_H
 
-static const char *rcsid_AS_OBT_ACCEPTABLEOVERLAP_H = "$Id: AS_OBT_acceptableOverlap.h,v 1.1 2008/10/14 03:05:37 brianwalenz Exp $";
+// static const char *rcsid_AS_OBT_ACCEPTABLEOVERLAP_H = "$Id: AS_OBT_acceptableOverlap.h,v 1.1 2008/10/14 03:05:37 brianwalenz Exp $";
 
 #include "AS_OVS_overlap.h"
 

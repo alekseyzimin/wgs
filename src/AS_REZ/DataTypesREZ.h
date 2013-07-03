@@ -22,7 +22,7 @@
 #ifndef DATA_TYPES_REZ_H
 #define DATA_TYPES_REZ_H
 
-static const char *rcsid_DATA_TYPES_REZ_H = "$Id: DataTypesREZ.h,v 1.11 2010/02/17 01:32:58 brianwalenz Exp $";
+// static const char *rcsid_DATA_TYPES_REZ_H = "$Id: DataTypesREZ.h,v 1.11 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include "AS_global.h"
 #include "AS_CGW_dataTypes.h"

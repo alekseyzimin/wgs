@@ -1,0 +1,3 @@
+: $(TUP_CWD)/utgcns.o ../lib/libCA.a |> !lxxd |> utgcns
+: $(TUP_CWD)/ctgcns.o ../lib/libCA.a |> !lxxd |> ctgcns
+: $(TUP_CWD)/tigStore.o ../lib/libCA.a |> !lxxd |> tigStore

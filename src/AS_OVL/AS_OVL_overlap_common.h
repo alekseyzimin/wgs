@@ -68,6 +68,11 @@ const char *mainid = "$Id: AS_OVL_overlap_common.h,v 1.61 2010/04/02 06:55:32 br
 #include  <string.h>
 #include  <unistd.h>
 #include  <float.h>
+#include  <fstream>
+
+#include  <jellyfish/jellyfish.hpp>
+#include  <jellyfish/file_header.hpp>
+#include  <jellyfish/mapped_file.hpp>
 
 /*************************************************************************/
 /* Local include files */
@@ -399,8 +404,12 @@ char  Sequence_Buffer [2 * AS_READ_MAX_NORMAL_LEN];
 char  Quality_Buffer [2 * AS_READ_MAX_NORMAL_LEN];
 
 FILE  * BOL_File = NULL;
-FILE  * Kmer_Skip_File = NULL;
-    // File of kmers to be ignored in the hash table
+// FILE  * Kmer_Skip_File = NULL;
+const char*             Kmer_Skip_Path = NULL;
+jellyfish::mapped_file* skip_mers_file = NULL;
+binary_query*           skip_mers      = NULL;
+// jellyfish::mer_dna_bloom_counter* skip_mers      = NULL;
+    // File and filter of kmers to be ignored in the hash table
     // Specified by the  -k  option
 Output_Stream  Out_Stream = NULL;
 BinaryOverlapFile  *Out_BOF = NULL;
@@ -457,6 +466,8 @@ static int  Get_Range
 static int  Has_Bad_Window
     (char a [], int n, int window_len, int threshold);
 static String_Ref_t  Hash_Find
+    (uint64 Key, int64 Sub, char * S, int64 * Where, int * hi_hits);
+static String_Ref_t  Hash_Find__
     (uint64 Key, int64 Sub, char * S, int64 * Where, int * hi_hits);
 static void  Hash_Insert
     (String_Ref_t, uint64, char *);
@@ -606,7 +617,8 @@ main(int argc, char **argv) {
             (isdigit(argv[arg][0]) && isdigit(argv[arg][1]) && (argv[arg][2] == 0))) {
           Kmer_Len = atoi(argv[arg]);
         } else {
-          Kmer_Skip_File = File_Open (argv[arg], "r");
+          //          Kmer_Skip_File = File_Open (argv[arg], "r");
+          Kmer_Skip_Path = argv[arg];
         }
       } else if (strcmp(argv[arg], "-l") == 0) {
         Frag_Olap_Limit = strtol(argv[++arg], NULL, 10);
@@ -963,14 +975,14 @@ fprintf (stderr, "Stats written to file '%s'\n", STAT_FILE_NAME);
 fclose (Stat_File);
 #endif
 
-   fprintf (stderr, " Kmer hits without olaps = "F_S64"\n", Kmer_Hits_Without_Olap_Ct);
-   fprintf (stderr, "    Kmer hits with olaps = "F_S64"\n", Kmer_Hits_With_Olap_Ct);
-   fprintf (stderr, "  Multiple overlaps/pair = "F_S64"\n", Multi_Overlap_Ct);
-   fprintf (stderr, " Total overlaps produced = "F_S64"\n", Total_Overlaps);
-   fprintf (stderr, "      Contained overlaps = "F_S64"\n", Contained_Overlap_Ct);
-   fprintf (stderr, "       Dovetail overlaps = "F_S64"\n", Dovetail_Overlap_Ct);
-   fprintf (stderr, "Rejected by short window = "F_S64"\n", Bad_Short_Window_Ct);
-   fprintf (stderr, " Rejected by long window = "F_S64"\n", Bad_Long_Window_Ct);
+   fprintf (stderr, " Kmer hits without olaps = " F_S64 "\n", Kmer_Hits_Without_Olap_Ct);
+   fprintf (stderr, "    Kmer hits with olaps = " F_S64 "\n", Kmer_Hits_With_Olap_Ct);
+   fprintf (stderr, "  Multiple overlaps/pair = " F_S64 "\n", Multi_Overlap_Ct);
+   fprintf (stderr, " Total overlaps produced = " F_S64 "\n", Total_Overlaps);
+   fprintf (stderr, "      Contained overlaps = " F_S64 "\n", Contained_Overlap_Ct);
+   fprintf (stderr, "       Dovetail overlaps = " F_S64 "\n", Dovetail_Overlap_Ct);
+   fprintf (stderr, "Rejected by short window = " F_S64 "\n", Bad_Short_Window_Ct);
+   fprintf (stderr, " Rejected by long window = " F_S64 "\n", Bad_Long_Window_Ct);
 
    delete OldFragStore;
 
@@ -1035,7 +1047,7 @@ static String_Ref_t  Add_Extra_Hash_String
 //  a single reference to the beginning of it.
 
   {
-   String_Ref_t  ref;
+   String_Ref_t  ref = { 0 };
    size_t  new_len;
    int  len, sub;
 
@@ -1461,7 +1473,7 @@ int  Build_Hash_Index
       Put_String_In_Hash (String_Ct);
 
       if ((String_Ct % 100000) == 0)
-        fprintf (stderr, "String_Ct:%d  totalLen:"F_S64"  Hash_Entries:"F_S64"  Load:%.1f%%\n",
+        fprintf (stderr, "String_Ct:%d  totalLen:" F_S64 "  Hash_Entries:" F_S64 "  Load:%.1f%%\n",
                  String_Ct,
                  total_len,
                  Hash_Entries,
@@ -1530,7 +1542,7 @@ Collision_Ct = 0;
 }
 #endif
 
-   if  (Kmer_Skip_File != NULL)
+ if  (Kmer_Skip_Path != NULL)
        Mark_Skip_Kmers ();
 
    // Coalesce reference chain into adjacent entries in  Extra_Ref_Space
@@ -2213,11 +2225,66 @@ static void  Flip_Screen_Range
    return;
   }
 
+// Checkered mask. cmask<uint16_t, 1> is every other bit on
+// (0x55). cmask<uint16_t,2> is two bits one, two bits off (0x33). Etc.
+template<typename U, int len, int l = sizeof(U) * 8 / (2 * len)>
+struct cmask {
+  static const U v =
+    (cmask<U, len, l - 1>::v << (2 * len)) | (((U)1 << len) - 1);
+};
+template<typename U, int len>
+struct cmask<U, len, 0> {
+  static const U v = 0;
+};
 
+static uint64 word_reverse(uint64 w) {
+  typedef uint64 U;
+  w = ((w >> 2)  & cmask<U, 2 >::v) | ((w & cmask<U, 2 >::v) << 2);
+  w = ((w >> 4)  & cmask<U, 4 >::v) | ((w & cmask<U, 4 >::v) << 4);
+  w = ((w >> 8)  & cmask<U, 8 >::v) | ((w & cmask<U, 8 >::v) << 8);
+  w = ((w >> 16) & cmask<U, 16>::v) | ((w & cmask<U, 16>::v) << 16);
+  w = ( w >> 32                   ) | ( w                    << 32);
+  return w;
+}
 
+// Wrapper around Hash_Find__. First look up in the bloom filter for a
+// skip mer. If found, return an empty ref and set hi_hits to true. If
+// not found, delegate to Hash_Find__.
+static String_Ref_t Hash_Find(uint64 Key, int64 Sub, char * S, int64 * Where, int * hi_hits)
+{
+  static jellyfish::mer_dna m;
+  String_Ref_t H_Ref = { 0 };
+  uint64 rKey = word_reverse(Key) >> (2 * (32 - Kmer_Len));
+  uint64 rcKey = ~Key;
+  if(Kmer_Len < 32)
+    rcKey &= ((uint64_t)1 << (2 * Kmer_Len)) - 1;
 
+  // uint64 rKey = ((uint64_t)-1 - word_reverse(Key)) >> (2 * (32 - Kmer_Len));
 
-static String_Ref_t  Hash_Find
+  //  m.word__(0) = rKey;
+  //  printf("%s\n", m.to_str().c_str());
+
+  if(skip_mers) {
+    if(rKey < rcKey) {
+      m.word__(0) = rKey;
+    } else {
+      m.word__(0) = rcKey;
+    }
+
+    //    fprintf(stderr, "Check mer %s\n", m.to_str().c_str());
+    if(skip_mers->check(m)) {
+      //      fprintf(stderr, "Skipping mer %s\n", m.to_str().c_str());
+      setStringRefEmpty(H_Ref, TRUE);
+      *hi_hits = TRUE;
+      return H_Ref;
+    }
+  }
+  H_Ref = Hash_Find__(Key, Sub, S, Where, hi_hits);
+  return H_Ref;
+}
+
+// Original Hash_Find, looking up in the actual hash
+static String_Ref_t  Hash_Find__
     (uint64 Key, int64 Sub, char * S, int64 * Where, int * hi_hits)
 
 //  Search for string  S  with hash key  Key  in the global
@@ -2229,7 +2296,7 @@ static String_Ref_t  Hash_Find
 //  because it was screened out, otherwise set to FALSE.
 
   {
-   String_Ref_t  H_Ref;
+    String_Ref_t  H_Ref = { 0 };
    char  * T;
    unsigned char  Key_Check;
    int64  Ct, Probe;
@@ -2769,77 +2836,107 @@ static void  Mark_Screened_Ends_Single
    return;
   }
 
-
-
-static void  Mark_Skip_Kmers
-    (void)
-
-//  Set  Empty  bit true for all entries in global  Hash_Table
-//  that match a kmer in file  Kmer_Skip_File .
-//  Add the entry (and then mark it empty) if it's not in  Hash_Table.
-
-  {
-   uint64  key;
-   char  line [MAX_LINE_LEN];
-   int  ct = 0;
-
-   rewind (Kmer_Skip_File);
-
-   while  (fgets (line, MAX_LINE_LEN, Kmer_Skip_File) != NULL)
-     {
-      int  i, len;
-
-      ct ++;
-      len = strlen (line) - 1;
-      if  (line [0] != '>' || line [len] != '\n')
-          {
-           fprintf (stderr, "ERROR:  Bad line %d in kmer skip file\n", ct);
-           fputs (line, stderr);
-           //AZ
-	   continue;
-	   //exit (1);
-          }
-
-      if  (fgets (line, MAX_LINE_LEN, Kmer_Skip_File) == NULL)
-          {
-           fprintf (stderr, "ERROR:  Bad line after %d in kmer skip file\n", ct);
-	   //AZ
-	continue;
-           //exit (1);
-          }
-      ct ++;
-      len = strlen (line) - 1;
-      if  (len != Kmer_Len || line [len] != '\n')
-          {
-           fprintf (stderr, "ERROR:  Bad line %d in kmer skip file\n", ct);
-           fputs (line, stderr);
-           //AZ
-	   continue;
-	   //exit (1);
-          }
-      line [len] = '\0';
-
-      key = 0;
-      for  (i = 0;  i < len;  i ++)
-        {
-         line [i] = tolower (line [i]);
-         key |= (uint64) (Bit_Equivalent [(int) line [i]]) << (2 * i);
-        }
-      Hash_Mark_Empty (key, line);
-
-      reverseComplementSequence (line, len);
-      key = 0;
-      for  (i = 0;  i < len;  i ++)
-        key |= (uint64) (Bit_Equivalent [(int) line [i]]) << (2 * i);
-      Hash_Mark_Empty (key, line);
-     }
-
-   fprintf (stderr, "String_Ct = %d  Extra_String_Ct = %d  Extra_String_Subcount = %d\n",
-        String_Ct, Extra_String_Ct, Extra_String_Subcount);
-   fprintf (stderr, "Read %d kmers to mark to skip\n", ct / 2);
-
-   return;
+static void Mark_Skip_Kmers(void) {
+  // Load the bloom filter containing skip k-mers
+  std::ifstream in(Kmer_Skip_Path);
+  jellyfish::file_header header(in);
+  if(!in.good()) {
+    fprintf(stderr, "Failed to open and parse skip k-mer file '%s'.\n",
+            Kmer_Skip_Path);
+    exit(1);
   }
+  /* if(header.format() != "bloomcounter") { */
+  /*   fprintf(stderr, "Unexpected skip k-mer file format '%s'. Should be 'bloomcounter'.\n", */
+  /*           header.format().c_str()); */
+  /*   exit(1); */
+  /* } */
+  if(header.format() != binary_dumper::format) {
+    fprintf(stderr, "Unexpected skip k-mer file format '%s'. Should be '%s'.\n",
+            header.format().c_str(), binary_dumper::format);
+    exit(1);
+  }
+  if(Kmer_Len != header.key_len() / 2) {
+    fprintf(stderr, "k-mer length in skip k-mer file (%d) different than -k parameter (%d).\n",
+            (int)header.key_len() / 2, (int)Kmer_Len);
+    exit(1);
+  }
+  jellyfish::mer_dna::k(Kmer_Len);
+  /* jellyfish::hash_pair<jellyfish::mer_dna> fns(header.matrix(1), header.matrix(2)); */
+  /* skip_mers = new jellyfish::mer_dna_bloom_counter(header.size(), header.nb_hashes(), in, fns); */
+  skip_mers_file = new jellyfish::mapped_file(Kmer_Skip_Path);
+  skip_mers      = new binary_query(skip_mers_file->base() + header.offset(), header.key_len(), header.counter_len(),
+                                    header.matrix(), header.size() - 1, skip_mers_file->length() - header.offset());
+}
+
+/* static void  Mark_Skip_Kmers */
+/*     (void) */
+
+/* //  Set  Empty  bit true for all entries in global  Hash_Table */
+/* //  that match a kmer in file  Kmer_Skip_File . */
+/* //  Add the entry (and then mark it empty) if it's not in  Hash_Table. */
+
+/*   { */
+/*    uint64  key; */
+/*    char  line [MAX_LINE_LEN]; */
+/*    int  ct = 0; */
+
+/*    rewind (Kmer_Skip_File); */
+
+/*    while  (fgets (line, MAX_LINE_LEN, Kmer_Skip_File) != NULL) */
+/*      { */
+/*       int  i, len; */
+
+/*       ct ++; */
+/*       len = strlen (line) - 1; */
+/*       if  (line [0] != '>' || line [len] != '\n') */
+/*           { */
+/*            fprintf (stderr, "ERROR:  Bad line %d in kmer skip file\n", ct); */
+/*            fputs (line, stderr); */
+/*            //AZ */
+/* 	   continue; */
+/* 	   //exit (1); */
+/*           } */
+
+/*       if  (fgets (line, MAX_LINE_LEN, Kmer_Skip_File) == NULL) */
+/*           { */
+/*            fprintf (stderr, "ERROR:  Bad line after %d in kmer skip file\n", ct); */
+/* 	   //AZ */
+/* 	continue; */
+/*            //exit (1); */
+/*           } */
+/*       ct ++; */
+/*       len = strlen (line) - 1; */
+/*       if  (len != Kmer_Len || line [len] != '\n') */
+/*           { */
+/*            fprintf (stderr, "ERROR:  Bad line %d in kmer skip file\n", ct); */
+/*            fputs (line, stderr); */
+/*            //AZ */
+/* 	   continue; */
+/* 	   //exit (1); */
+/*           } */
+/*       line [len] = '\0'; */
+
+/*       key = 0; */
+/*       for  (i = 0;  i < len;  i ++) */
+/*         { */
+/*          line [i] = tolower (line [i]); */
+/*          key |= (uint64) (Bit_Equivalent [(int) line [i]]) << (2 * i); */
+/*         } */
+/*       Hash_Mark_Empty (key, line); */
+
+/*       reverseComplementSequence (line, len); */
+/*       key = 0; */
+/*       for  (i = 0;  i < len;  i ++) */
+/*         key |= (uint64) (Bit_Equivalent [(int) line [i]]) << (2 * i); */
+/*       Hash_Mark_Empty (key, line); */
+/*      } */
+
+/*    fprintf (stderr, "String_Ct = %d  Extra_String_Ct = %d  Extra_String_Subcount = %d\n", */
+/*         String_Ct, Extra_String_Ct, Extra_String_Subcount); */
+/*    fprintf (stderr, "Read %d kmers to mark to skip\n", ct / 2); */
+
+/*    return; */
+/*   } */
 
 
 
@@ -4109,7 +4206,7 @@ static void  Put_String_In_Hash
 //  global variables  Data, String_Start, String_Info, ....
 
   {
-   String_Ref_t  ref;
+   String_Ref_t  ref = { 0 };
    char  * p, * window;
    int  kmers_inserted = 0;
    int  skip_ct;
@@ -4260,7 +4357,7 @@ static int  Read_Next_Frag
      }
    if  (OFFSET_MASK < frag_len)
      {
-       fprintf (stderr, "ERROR:  Read "F_IID" is too long (%lu) for hash table\n",
+       fprintf (stderr, "ERROR:  Read " F_IID " is too long (%lu) for hash table\n",
                 myRead->gkFragment_getReadIID(), frag_len);
        exit (-1);
      }

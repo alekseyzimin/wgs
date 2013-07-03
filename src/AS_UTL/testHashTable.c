@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: testHashTable.c,v 1.5 2008/12/05 19:06:12 brianwalenz Exp $";
+// static const char *rcsid = "$Id: testHashTable.c,v 1.5 2008/12/05 19:06:12 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <string.h>

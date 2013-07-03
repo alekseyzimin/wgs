@@ -1,0 +1,8 @@
+: $(TUP_CWD)/greedyFragmentTiling.o ../lib/libCA.a |> !lxxd |> greedyFragmentTiling
+: $(TUP_CWD)/metagenomics_ovl_analyses.o ../lib/libCA.a |> !lxxd |> metagenomics_ovl_analyses
+: $(TUP_CWD)/chimChe.o ../lib/libCA.a |> !lxxd |> chimChe
+
+AS_ENV_SCRIPTS1 = $(TUP_CWD)/greedy_layout_to_IUM.pl $(TUP_CWD)/utg2fasta.pl
+
+: foreach $(AS_ENV_SCRIPTS1) |> !instbin |> %B
+: $(TUP_CWD)/run_greedy.csh |> !instbin |> %b

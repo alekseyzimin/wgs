@@ -42,7 +42,7 @@
 #ifndef  __SHAREDOVL_H_INCLUDED
 #define  __SHAREDOVL_H_INCLUDED
 
-static const char *rcsid_SHAREDOVL_H_INCLUDED = "$Id: SharedOVL.h,v 1.16 2009/10/26 13:20:26 brianwalenz Exp $";
+// static const char *rcsid_SHAREDOVL_H_INCLUDED = "$Id: SharedOVL.h,v 1.16 2009/10/26 13:20:26 brianwalenz Exp $";
 
 
 #include "AS_OVL_delcher.h"

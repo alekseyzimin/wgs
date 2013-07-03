@@ -1,0 +1,6 @@
+include_rules
+
+export PKG_CONFIG_PATH
+CXXFLAGS_AS_OVL_overlap = `pkg-config jellyfish-2.0 --cflags` -std=c++0x
+CXXFLAGS_AS_OVL_overlap_ca = `pkg-config jellyfish-2.0 --cflags` -std=c++0x
+: foreach *.C |> !cxx |>

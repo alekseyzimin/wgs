@@ -23,7 +23,7 @@
 #ifndef BCPOutput_H
 #define BCPOutput_H
 
-static const char *rcsid_BCPOutput_H = "$Id: BCPOutput.hh,v 1.9 2010/02/12 20:32:44 brianwalenz Exp $";
+// static const char *rcsid_BCPOutput_H = "$Id: BCPOutput.hh,v 1.9 2010/02/12 20:32:44 brianwalenz Exp $";
 
 #include <iostream>
 #include "SQLOutput.hh"

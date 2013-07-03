@@ -22,7 +22,7 @@
 #ifndef AS_PER_GKPFRGSTORE_H
 #define AS_PER_GKPFRGSTORE_H
 
-static const char *rcsid_AS_PER_GKPFRGSTORE_H = "$Id: AS_PER_gkpStore.h,v 1.60 2009/08/14 13:37:08 skoren Exp $";
+// static const char *rcsid_AS_PER_GKPFRGSTORE_H = "$Id: AS_PER_gkpStore.h,v 1.60 2009/08/14 13:37:08 skoren Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

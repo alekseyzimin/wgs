@@ -22,7 +22,7 @@
 #ifndef OVERLAPSTORE_H
 #define OVERLAPSTORE_H
 
-static const char *rcsid_OVERLAPSTORE_H = "$Id: overlapStore.h,v 1.17 2010/04/16 21:08:10 brianwalenz Exp $";
+// static const char *rcsid_OVERLAPSTORE_H = "$Id: overlapStore.h,v 1.17 2010/04/16 21:08:10 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

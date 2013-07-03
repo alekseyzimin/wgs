@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static const char *rcsid = "$Id: DBTextOutput.cc,v 1.13 2010/02/17 01:32:57 brianwalenz Exp $";
+// static const char *rcsid = "$Id: DBTextOutput.cc,v 1.13 2010/02/17 01:32:57 brianwalenz Exp $";
 
 #include <iostream>
 #include <assert.h>

@@ -1,0 +1,9 @@
+include_rules
+
+: $(TUP_CWD)/initialTrim.o $(TUP_CWD)/trim.o ../lib/libCA.a |> !lxxd |> initialTrim
+: $(TUP_CWD)/consolidate.o $(TUP_CWD)/util++.o $(TUP_CWD)/readOverlap.o ../lib/libCA.a |> !lxxd |> consolidate
+: $(TUP_CWD)/merge-trimming.o $(TUP_CWD)/trim.o ../lib/libCA.a |> !lxxd |> merge-trimming
+: $(TUP_CWD)/overlapMask.o $(TUP_CWD)/util++.o $(TUP_CWD)/readOverlap.o ../lib/libCA.a |> !lxxd |> overlapMask
+: $(TUP_CWD)/chimera.o $(TUP_CWD)/util++.o $(TUP_CWD)/readOverlap.o ../lib/libCA.a |> !lxxd |> chimera
+: $(TUP_CWD)/deduplicate.o $(TUP_CWD)/util++.o $(TUP_CWD)/readOverlap.o ../lib/libCA.a |> !lxxd |> deduplicate
+: $(TUP_CWD)/removeMateOverlap.o $(TUP_CWD)/util++.o $(TUP_CWD)/readOverlap.o ../lib/libCA.a |> !lxxd |> removeMateOverlap

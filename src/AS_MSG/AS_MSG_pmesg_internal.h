@@ -22,7 +22,7 @@
 #ifndef AS_MSG_PMESG_INTERNAL_H
 #define AS_MSG_PMESG_INTERNAL_H
 
-static const char *rcsid_AS_MSG_PMESG_INTERNAL_H = "$Id: AS_MSG_pmesg_internal.h,v 1.11 2010/01/25 17:34:27 brianwalenz Exp $";
+// static const char *rcsid_AS_MSG_PMESG_INTERNAL_H = "$Id: AS_MSG_pmesg_internal.h,v 1.11 2010/01/25 17:34:27 brianwalenz Exp $";
 
 //  FreeBSD 6.1 fgets() sporadically replaces \n with \0, which
 //  horribly breaks this reader.  Defined this to replace

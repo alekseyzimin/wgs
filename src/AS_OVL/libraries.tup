@@ -1,0 +1,6 @@
+include_rules
+
+AS_OVL_LIB_OBJS = $(TUP_CWD)/SharedOVL.o $(TUP_CWD)/AS_OVL_delcher.o
+
+LIBCA_OBJS += $(AS_OVL_LIB_OBJS)
+: $(AS_OVL_LIB_OBJS) |> !ar |> libAS_OVL.a

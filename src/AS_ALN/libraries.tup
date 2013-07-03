@@ -1,0 +1,12 @@
+AS_ALN_LIB_OBJS = $(TUP_CWD)/AS_ALN_dpaligner.o		\
+                  $(TUP_CWD)/AS_ALN_qvaligner.o		\
+                  $(TUP_CWD)/AS_ALN_loverlapper.o	\
+                  $(TUP_CWD)/AS_ALN_pieceOlap.o		\
+                  $(TUP_CWD)/AS_ALN_forcns.o		\
+                  $(TUP_CWD)/CA_ALN_local.o		\
+                  $(TUP_CWD)/CA_ALN_overlap.o		\
+                  $(TUP_CWD)/CA_ALN_scafcomp.o		\
+                  $(TUP_CWD)/AS_ALN_bruteforcedp.o
+
+LIBCA_OBJS += $(AS_ALN_LIB_OBJS)
+: $(AS_ALN_LIB_OBJS) |> !ar |> libAS_ALN.a

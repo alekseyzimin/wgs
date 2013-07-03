@@ -1,0 +1,12 @@
+include_rules
+
+AS_OVS_STR_OBJS = $(TUP_CWD)/overlapStore.o		\
+                  $(TUP_CWD)/overlapStore_build.o	\
+                  $(TUP_CWD)/overlapStore_merge.o	\
+                  $(TUP_CWD)/overlapStore_dump.o	\
+                  $(TUP_CWD)/overlapStore_erates.o
+
+: $(AS_OVS_STR_OBJS) ../lib/libCA.a |> !lxxd |> overlapStore
+: $(TUP_CWD)/overlapStats.o ../lib/libCA.a |> !lxxd |> overlapStats
+: $(TUP_CWD)/convertOverlap.o ../lib/libCA.a |> !lxxd |> convertOverlap
+: $(TUP_CWD)/filterOverlap.o ../lib/libCA.a |> !lxxd |> filterOverlap

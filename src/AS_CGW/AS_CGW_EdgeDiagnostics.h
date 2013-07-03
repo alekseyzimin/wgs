@@ -22,7 +22,7 @@
 #ifndef AS_CGW_EDGEDIAGNOSTICS_H
 #define AS_CGW_EDGEDIAGNOSTICS_H
 
-static const char *rcsid_AS_CGW_EDGEDIAGNOSTICS_H = "$Id: AS_CGW_EdgeDiagnostics.h,v 1.6 2010/02/17 01:32:58 brianwalenz Exp $";
+// static const char *rcsid_AS_CGW_EDGEDIAGNOSTICS_H = "$Id: AS_CGW_EdgeDiagnostics.h,v 1.6 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include <math.h>
 

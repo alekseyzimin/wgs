@@ -256,7 +256,7 @@ sub meryl {
 #here we count mers for the ovl overlapper
     if(not(-e "$wrk/0-mercounts/$asm.nmers.ovl.bf")){
       if(not(-e "$wrk/0-mercounts/$asm.nmers.ovl.jf")){
-        runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore | jellyfish-2.0  count -L $obtT -C -m $ovlMerSize -s $jf_size -o $asm.nmers.ovl.jf -t $merylThreads /dev/fd/0");
+        runCommand("$wrk/0-mercounts", "$bin/gatekeeper  -dumpfastaseq $wrk/$asm.gkpStore | jellyfish-2.0  count -L $ovlT -C -m $ovlMerSize -s $jf_size -o $asm.nmers.ovl.jf -t $merylThreads /dev/fd/0");
         caFailure("Jellyfish failed", undef) if(not(-e "$wrk/0-mercounts/$asm.nmers.ovl.jf"));
 	}
 #      runCommand("$wrk/0-mercounts", "jellyfish-2.0 histo -t $merylThreads -h 1 ovlMerCounts.jf > ovlMerCounts.nb");

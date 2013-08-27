@@ -3276,12 +3276,17 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
 
     numMerged = MergeScaffolds(iSpec, verbose);
     if(numMerged >0){mergedSomething=TRUE;}else{mergedSomething=FALSE;};
+    if(numMerged <5) 
+	minWeightThreshold-=0.2;
+    if(minWeightThreshold<2.0) 
+	minWeightThreshold=2.0;
+
 
    //AZ 
     int maxAllowedIterations=512;
     if(strcmp(logicalcheckpointnumber,"ckp07-2SM-partial")==0)
 	maxAllowedIterations=16;
-    if((iterations > 512+maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<10)||(iterations > maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<=2)) {
+    if((iterations > 512+maxAllowedIterations && minWeightThreshold <= 3.0 && numMerged<10)||(iterations > maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<=2)) {
         fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded maxAllowedIterations = %d iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,maxAllowedIterations,minWeightThreshold);
               mergedSomething=FALSE;
 

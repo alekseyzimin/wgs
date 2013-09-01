@@ -3286,7 +3286,7 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
     int maxAllowedIterations=512;
     if(strcmp(logicalcheckpointnumber,"ckp07-2SM-partial")==0)
 	maxAllowedIterations=16;
-    if((iterations > 512+maxAllowedIterations && minWeightThreshold <= 3.0 && numMerged<10)||(iterations > maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<=2)) {
+    if((iterations > 512+maxAllowedIterations && minWeightThreshold < 3.0 && numMerged<10)||(iterations > maxAllowedIterations && minWeightThreshold == 2.0 && numMerged<=2)) {
         fprintf(stderr, "MergeScaffoldsAggressive()-- iter %d -- exceeded maxAllowedIterations = %d iterations on weak merge. minWeightThreshold = %.1lf\n",iterations,maxAllowedIterations,minWeightThreshold);
               mergedSomething=FALSE;
 

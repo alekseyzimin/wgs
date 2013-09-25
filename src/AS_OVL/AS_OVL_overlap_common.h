@@ -70,8 +70,6 @@ const char *mainid = "$Id: AS_OVL_overlap_common.h,v 1.61 2010/04/02 06:55:32 br
 #include  <float.h>
 #include  <fstream>
 
-//AZ
-#include "config.h"
 #include  <jellyfish/jellyfish.hpp>
 #include  <jellyfish/file_header.hpp>
 #include  <jellyfish/mapped_file.hpp>

@@ -260,7 +260,7 @@ static void  Display_Frags
 static void  Dump_Erate_File
     (char * path, int32 lo_id, int32 hi_id, Olap_Info_t * olap, uint64 num);
 static void  Fasta_Print
-    (FILE * fp, char * s, char * hdr);
+    (FILE * fp, const char * s, const char * hdr);
 static char  Filter
     (char ch);
 static int  Find
@@ -420,7 +420,7 @@ static void  Apply_Seq_Corrects
 //  otherwise, realloc a new string for the revised sequence.
 
   {
-   char  buff [2 * AS_READ_MAX_NORMAL_LEN];
+   char  buff [2 * AS_READ_MAX_NORMAL_LEN + 1];
    Adjust_t  adj_buff [2 * AS_READ_MAX_NORMAL_LEN];
    int  adj_val, len, new_len;
    int  i, j, k, ct;
@@ -928,7 +928,7 @@ static void  Dump_Erate_File
 
 
 static void  Fasta_Print
-    (FILE * fp, char * s, char * hdr)
+    (FILE * fp, const char * s, const char * hdr)
 
 //  Print string  s  in fasta format to  fp .  Put string  hdr
 //  on header line.
@@ -2150,7 +2150,8 @@ static void  Redo_Olaps
    uint64  next_olap;
    Correction_Output_t  msg;
    Correction_t  correct [AS_READ_MAX_NORMAL_LEN];
-   Adjust_t  adjust [AS_READ_MAX_NORMAL_LEN];
+   Adjust_t*  adjust = (Adjust_t*)safe_malloc(2 * AS_READ_MAX_NORMAL_LEN);
+   char*  seq_buff = (char*)safe_malloc(2 * AS_READ_MAX_NORMAL_LEN + 1);
    int16  adjust_ct;
    int  num_corrects;
    uint32  correct_iid = 0, next_iid;
@@ -2169,10 +2170,7 @@ static void  Redo_Olaps
                    && next_olap < Num_Olaps;
            i ++)
      {
-      char  seq_buff [AS_READ_MAX_NORMAL_LEN + 1];
       char *seqptr;
-      char  * seq_ptr = seq_buff;
-      Adjust_t  * adjust_ptr = adjust;
       uint32  frag_iid;
       unsigned  deleted;
       int  frag_len, result;
@@ -2221,8 +2219,9 @@ static void  Redo_Olaps
 //printf ("frag_iid = %d  before corrections\n", frag_iid);
 //Fasta_Print (stdout, seq_ptr, "Before");
 
-           Apply_Seq_Corrects (& seq_ptr, & adjust_ptr, & adjust_ct,
+           Apply_Seq_Corrects (& seq_buff, & adjust, & adjust_ct,
                                correct, num_corrects, TRUE);
+           frag_len = strlen(seq_buff);
 
 //**ALD
 //printf ("frag_iid = %d  after corrections\n", frag_iid);
@@ -2240,6 +2239,9 @@ static void  Redo_Olaps
          next_olap ++;
         }
      }
+
+   safe_free(seq_buff);
+   safe_free(adjust);
 
    delete Frag_Stream;
    delete gkpStore;

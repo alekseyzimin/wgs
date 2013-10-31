@@ -10,6 +10,7 @@ AS_OVL_CMN = $(TUP_CWD)/AS_OVL_delcher.o ../lib/libCA.a
 
 : $(TUP_CWD)/ShowCorrectsOVL.o $(AS_OVL_CMN) |> !lxxd |> show-corrects
 : $(TUP_CWD)/CatEratesOVL.o $(AS_OVL_CMN) |> !lxxd |> cat-erates
+: $(TUP_CWD)/CatCorrectsOVL.o $(AS_OVL_CMN) |> !lxxd |> cat-corrects
 : $(TUP_CWD)/FragCorrectOVL.o $(AS_OVL_CMN) |> !lxxd |> correct-frags
 : $(TUP_CWD)/CorrectOlapsOVL.o $(AS_OVL_CMN) |> !lxxd |> correct-olaps
 

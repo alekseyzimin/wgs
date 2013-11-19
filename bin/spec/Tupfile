@@ -1,0 +1,6 @@
+include_rules
+
+SPECD = ../../src/AS_RUN/runCA-OBT/spec
+AS_RUN_SPECS = $(SPECD)/OBT.specFile $(SPECD)/noOBT.specFile		\
+               $(SPECD)/noVec.specFile $(SPECD)/metaGenomic.specFile
+: foreach $(AS_RUN_SPECS) |> ^ CP   %o^ cp -f %f %o |> %b

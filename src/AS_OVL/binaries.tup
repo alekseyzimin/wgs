@@ -14,9 +14,9 @@ AS_OVL_CMN = $(TUP_CWD)/AS_OVL_delcher.o ../lib/libCA.a
 : $(TUP_CWD)/FragCorrectOVL.o $(AS_OVL_CMN) |> !lxxd |> correct-frags
 : $(TUP_CWD)/CorrectOlapsOVL.o $(AS_OVL_CMN) |> !lxxd |> correct-olaps
 
-export PKG_CONFIG_PATH
-LDFLAGS_overlap += `pkg-config jellyfish-2.0 --libs`
-LDFLAGS_overlap_ca += `pkg-config jellyfish-2.0 --libs`
+export LD_RUN_PATH
+LDFLAGS_overlap += @(JELLYFISH_LIBS)
+LDFLAGS_overlap_ca += @(JELLYFISH_LIBS)
 : $(TUP_CWD)/AS_OVL_overlap.o $(TUP_CWD)/AS_OVL_driver.o $(AS_OVL_CMN) |> !lxxd |> overlap
 : $(TUP_CWD)/AS_OVL_overlap_ca.o $(TUP_CWD)/AS_OVL_driver_ca.o $(AS_OVL_CMN) |> !lxxd |> overlap_ca
 

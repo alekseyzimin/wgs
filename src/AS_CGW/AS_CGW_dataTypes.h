@@ -31,7 +31,7 @@
 
 #define CHECK_CONNECTIVITY TRUE
 
-#define CGW_MIN_READS_IN_UNIQUE  2
+#define CGW_MIN_READS_IN_UNIQUE  3
 
 //  We've moved to a linear model of variance as a function of length.
 //  We chose the FUDGE_FACTOR as follows:

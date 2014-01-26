@@ -1,7 +1,7 @@
 #include "f2c.h"
 #include<math.h>
 
-/* Subroutine */ int dpotf2_(char *uplo, integer *n, doublereal *a, integer *
+/* Subroutine */ int dpotf2_(const char *uplo, integer *n, doublereal *a, integer *
 	lda, integer *info)
 {
 /*  -- LAPACK routine (version 2.0) --

@@ -117,8 +117,8 @@
     static integer i2, i3;
     extern /* Subroutine */ int dsyrk_(char *, char *, integer *, integer *,
 	    doublereal *, doublereal *, integer *, doublereal *, doublereal *,
-	     integer *), dpbtf2_(char *, integer *, integer *,
-	     doublereal *, integer *, integer *), dpotf2_(char *,
+	     integer *), dpbtf2_(const char *, integer *, integer *,
+	     doublereal *, integer *, integer *), dpotf2_(const char *,
 	    integer *, doublereal *, integer *, integer *);
     static integer ib, nb, ii, jj;
     extern /* Subroutine */ int xerbla_(char *, integer *);

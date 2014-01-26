@@ -20,7 +20,7 @@
     static doublereal temp;
     static integer i, j, k;
     static logical lside;
-    extern logical lsame_(char *, char *);
+    extern logical lsame_(const char *, const char *);
     static integer nrowa;
     static logical upper;
     extern /* Subroutine */ int xerbla_(char *, integer *);

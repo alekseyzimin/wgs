@@ -110,7 +110,7 @@
     extern /* Subroutine */ int dgemm_(char *, char *, integer *, integer *,
 	    integer *, doublereal *, doublereal *, integer *, doublereal *,
 	    integer *, doublereal *, doublereal *, integer *);
-    extern logical lsame_(char *, char *);
+    extern logical lsame_(const char *, const char *);
     extern /* Subroutine */ int dtrsm_(char *, char *, char *, char *,
 	    integer *, integer *, doublereal *, doublereal *, integer *,
 	    doublereal *, integer *);
@@ -122,7 +122,7 @@
 	    integer *, doublereal *, integer *, integer *);
     static integer ib, nb, ii, jj;
     extern /* Subroutine */ int xerbla_(char *, integer *);
-    extern integer ilaenv_(integer *, char *, char *, integer *, integer *,
+    extern integer ilaenv_(integer *, const char *, const char *, integer *, integer *,
 	    integer *, integer *, ftnlen, ftnlen);
 
 

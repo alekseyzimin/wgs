@@ -77,7 +77,7 @@
     integer ab_dim1, ab_offset, b_dim1, b_offset, i__1;
     /* Local variables */
     static integer j;
-    extern logical lsame_(char *, char *);
+    extern logical lsame_(const char *, const char *);
     extern /* Subroutine */ int dtbsv_(char *, char *, char *, integer *,
 	    integer *, doublereal *, integer *, doublereal *, integer *);
     static logical upper;

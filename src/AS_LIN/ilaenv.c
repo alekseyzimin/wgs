@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-integer ilaenv_(integer *ispec, char *name, char *opts, integer *n1, integer *
+integer ilaenv_(integer *ispec, const char *name, const char *opts, integer *n1, integer *
 	n2, integer *n3, integer *n4, ftnlen name_len, ftnlen opts_len)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --
@@ -113,7 +113,7 @@ integer ilaenv_(integer *ispec, char *name, char *opts, integer *n1, integer *
        System generated locals */
     integer ret_val;
     /* Builtin functions
-       Subroutine */ int s_copy(char *, char *, ftnlen, ftnlen);
+       Subroutine */ int s_copy(char *, const char *, ftnlen, ftnlen);
     integer s_cmp(char *, char *, ftnlen, ftnlen);
     /* Local variables */
     static integer i;

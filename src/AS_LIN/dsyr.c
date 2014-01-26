@@ -18,7 +18,7 @@
     static integer info;
     static doublereal temp;
     static integer i, j;
-    extern logical lsame_(char *, char *);
+    extern logical lsame_(const char *, const char *);
     static integer ix, jx, kx;
     extern /* Subroutine */ int xerbla_(char *, integer *);
 

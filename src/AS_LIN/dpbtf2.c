@@ -113,7 +113,7 @@
     static integer j;
     extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *,
 	    integer *);
-    extern logical lsame_(char *, char *);
+    extern logical lsame_(const char *, const char *);
     static logical upper;
     static integer kn;
     extern /* Subroutine */ int xerbla_(char *, integer *);

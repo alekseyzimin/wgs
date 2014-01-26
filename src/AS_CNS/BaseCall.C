@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: BaseCall.c,v 1.2 2009/07/10 01:22:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: BaseCall.c,v 1.2 2009/07/10 01:22:58 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>

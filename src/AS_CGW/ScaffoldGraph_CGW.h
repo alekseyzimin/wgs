@@ -268,7 +268,7 @@ void DumpACIScaffold(FILE *stream, ScaffoldGraphT *graph,
 void DumpACIScaffoldNew(FILE *stream, ScaffoldGraphT *graph,
                         CIScaffoldT *scaffold, int raw);
 void PrintContigEdgeInScfContext(FILE *fp, GraphCGW_T *graph,
-                                 char *label, EdgeCGW_T *edge,
+                                 const char *label, EdgeCGW_T *edge,
                                  CDS_CID_t cid);
 
 typedef enum {
@@ -338,9 +338,9 @@ int CheckScaffoldConnectivityAndSplit(ScaffoldGraphT *graph,
 
 
 void PrintCIEdgeT(FILE *fp, ScaffoldGraphT *graph,
-                  char *label, CIEdgeT *edge, CDS_CID_t cid);
+                  const char *label, CIEdgeT *edge, CDS_CID_t cid);
 void PrintSEdgeT(FILE *fp, ScaffoldGraphT *graph,
-                 char *label, SEdgeT *edge, CDS_CID_t sid);
+                 const char *label, SEdgeT *edge, CDS_CID_t sid);
 
 
 

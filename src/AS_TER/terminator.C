@@ -81,7 +81,7 @@ public:
     exit(1);
   };
 
-  void   dump(char *label, FILE *F) {
+  void   dump(const char *label, FILE *F) {
     for(int32 i=0; i<=len; i++) {
       if (AS_UID_isDefined(map[i]))
         fprintf(F,"%s\t%d\t%s\n", label, i, AS_UID_toString(map[i]));

@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: Input_CGW.c,v 1.69 2010/01/17 03:10:10 brianwalenz Exp $";
+static const char *rcsid = "$Id: Input_CGW.c,v 1.69 2010/01/17 03:10:10 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

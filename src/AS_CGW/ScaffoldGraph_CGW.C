@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: ScaffoldGraph_CGW.c,v 1.52 2010/02/26 05:14:51 brianwalenz Exp $";
+static const char *rcsid = "$Id: ScaffoldGraph_CGW.c,v 1.52 2010/02/26 05:14:51 brianwalenz Exp $";
 
 //#define DEBUG 1
 #include <stdio.h>

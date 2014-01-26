@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: RefreshMANode.c,v 1.4 2009/09/29 18:45:42 brianwalenz Exp $";
+static const char *rcsid = "$Id: RefreshMANode.c,v 1.4 2009/09/29 18:45:42 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>

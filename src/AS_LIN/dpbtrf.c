@@ -1,7 +1,7 @@
 #include "f2c.h"
 #include <stdio.h>
 
-/* Subroutine */ int dpbtrf_(char *uplo, integer *n, integer *kd, doublereal *
+/* Subroutine */ int dpbtrf_(const char *uplo, integer *n, integer *kd, doublereal *
 	ab, integer *ldab, integer *info)
 {
 /*  -- LAPACK routine (version 2.0) --

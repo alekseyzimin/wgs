@@ -362,7 +362,7 @@ processSCF(SnapScaffoldMesg *scf_mesg) {
 
 
 
-FILE *openOutput(char *prefix, char *format) {
+FILE *openOutput(const char *prefix, const char *format) {
   char  N[FILENAME_MAX];
   FILE *F;
 

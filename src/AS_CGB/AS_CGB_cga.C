@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: AS_CGB_cga.c,v 1.25 2010/02/04 21:52:59 brianwalenz Exp $";
+static const char *rcsid = "$Id: AS_CGB_cga.c,v 1.25 2010/02/04 21:52:59 brianwalenz Exp $";
 
 //  A chunk graph analyzer. This functional unit computes graph
 //  statistics, and writes the chunk graph in the term representation
@@ -37,7 +37,7 @@ typedef enum {
 
 #define MAX_NUM_CHUNK_LABELS 4
 
-char * ChunkLabelDesc[MAX_NUM_CHUNK_LABELS] = {
+const char * ChunkLabelDesc[MAX_NUM_CHUNK_LABELS] = {
   "singleton contained ",      // Contained fragments that form singleton unitigs.
   "singleton non-contained",   // The rest of the singleton unitigs.
   "non-singleton spanned",     // The non-singleton unitigs that are spanned by one fragment.

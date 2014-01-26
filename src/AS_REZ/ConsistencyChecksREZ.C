@@ -30,7 +30,7 @@
 
 **********************************************************************/
 
-static char *rcsid = "$Id: ConsistencyChecksREZ.c,v 1.17 2010/02/17 01:32:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: ConsistencyChecksREZ.c,v 1.17 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

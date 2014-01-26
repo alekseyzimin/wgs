@@ -193,7 +193,7 @@ const int  STACK_SIZE = 32;
 const double  VARIANCE_FUDGE_FACTOR = 3.0 * CGW_FUDGE_FACTOR;
 // Multiply this by total overlap length to estimate variance
 
-char  * Colour_String [NUM_COLOURS]
+const char  * Colour_String [NUM_COLOURS]
 = {
   "C000000 T2 S  # Unused",
   "CFFFF00 T2 S  # Unique",

@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: TransitiveReduction_CGW.c,v 1.32 2010/02/17 01:32:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: TransitiveReduction_CGW.c,v 1.32 2010/02/17 01:32:58 brianwalenz Exp $";
 
 //#define INSTRUMENT_CGW
 //#define INSTRUMENT_SMOOTHED

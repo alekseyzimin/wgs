@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: MultiAlignUnitig.c,v 1.30 2010/04/23 11:18:12 brianwalenz Exp $";
+static const char *rcsid = "$Id: MultiAlignUnitig.c,v 1.30 2010/04/23 11:18:12 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>

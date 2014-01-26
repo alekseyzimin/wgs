@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: SplitScaffolds_CGW.c,v 1.17 2010/02/17 01:32:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: SplitScaffolds_CGW.c,v 1.17 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

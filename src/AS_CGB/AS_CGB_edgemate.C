@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: AS_CGB_edgemate.c,v 1.13 2009/07/30 10:42:55 brianwalenz Exp $";
+static const char *rcsid = "$Id: AS_CGB_edgemate.c,v 1.13 2009/07/30 10:42:55 brianwalenz Exp $";
 
 //  Description: These routines find and access the mate directed edge
 //  for a given edge of an overlap.
@@ -305,9 +305,9 @@ IntEdge_ID check_symmetry_of_the_edge_mates(Tfragment frags[],
 //  it's commonly called with check_symmetry_of_the_edge_mates(), and
 //  they're both disabled.
 //
-void count_fragment_and_edge_labels(Tfragment frags[],
-                                    Tedge     edges[],
-                                    char      comment[]) {
+void count_fragment_and_edge_labels(Tfragment  frags[],
+                                    Tedge      edges[],
+                                    const char comment[]) {
   FILE *fout = stderr;
 
   fprintf(stderr, "count_fragment_and_edge_labels()--  Disabled.\n");

@@ -71,7 +71,7 @@
 void
 alignLinker(char           *alignA,
             char           *alignB,
-            char           *stringA,
+            const char     *stringA,
             char           *stringB,
             dpCell        (*M)[AS_READ_MAX_NORMAL_LEN + 1],
             alignLinker_s  *a,

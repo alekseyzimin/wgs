@@ -376,7 +376,7 @@ NextConsensusBead(ConsensusBeadIterator *bi);
 void
 ClearBead(int32 bid);
 void
-AlignBeadToColumn(int32 cid, int32 bid, char *label);
+AlignBeadToColumn(int32 cid, int32 bid, const char *label);
 int32
 UnAlignBeadFromColumn(int32 bid);
 int32

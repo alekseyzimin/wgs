@@ -314,7 +314,7 @@ private:
 
 
 void
-printReport(char          *type,
+printReport(const char    *type,
             AS_UID         uid,
             AS_IID         iid,
             intervalList  &IL,

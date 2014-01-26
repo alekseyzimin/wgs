@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: CIScaffoldT_Merge_CGW.c,v 1.57 2010/04/26 03:59:33 brianwalenz Exp $";
+static const char *rcsid = "$Id: CIScaffoldT_Merge_CGW.c,v 1.57 2010/04/26 03:59:33 brianwalenz Exp $";
 
 //
 //  The ONLY exportable function here is MergeScaffoldsAggressive.
@@ -3232,7 +3232,7 @@ static
 void
 MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
                            InterleavingSpec * iSpec,
-                           char *logicalcheckpointnumber,
+                           const char *logicalcheckpointnumber,
                            int verbose) {
   static VA_TYPE(PtrT) *sEdges = NULL;
   static VA_TYPE(PtrT) *overlapSEdges = NULL;
@@ -3320,7 +3320,7 @@ MergeScaffoldsExhaustively(ScaffoldGraphT * graph,
 
 //static
 void
-MergeScaffoldsAggressive(ScaffoldGraphT *graph, char *logicalcheckpointnumber, int verbose) {
+MergeScaffoldsAggressive(ScaffoldGraphT *graph, const char *logicalcheckpointnumber, int verbose) {
   InterleavingSpec iSpec;
 
   if (verbose)

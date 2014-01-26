@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: CIEdgeT_CGW.c,v 1.20 2010/02/17 01:32:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: CIEdgeT_CGW.c,v 1.20 2010/02/17 01:32:58 brianwalenz Exp $";
 
 //#define DEBUG 1
 #include <stdio.h>
@@ -42,10 +42,10 @@ static char *rcsid = "$Id: CIEdgeT_CGW.c,v 1.20 2010/02/17 01:32:58 brianwalenz 
 
 
 void PrintCIEdgeT(FILE *fp, ScaffoldGraphT *graph,
-                  char *label, CIEdgeT *edge, CDS_CID_t cid){
+                  const char *label, CIEdgeT *edge, CDS_CID_t cid){
   char actualOverlap[256];
   int32 delta = 0;
-  char *flag = "  ", *flagTrans = "  ";
+  const char *flag = "  ", *flagTrans = "  ";
   ChunkInstanceT *ChunkInstanceA =
     GetChunkInstanceT(graph->ChunkInstances, edge->idA);
   ChunkInstanceT *ChunkInstanceB =

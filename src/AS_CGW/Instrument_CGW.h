@@ -533,7 +533,7 @@ typedef struct
 int DoSimpleScaffoldChecks(FILE * fp,
                            ScaffoldGraphT * graph,
                            CIScaffoldT * scaff);
-int DoSimpleScaffoldGraphChecks(ScaffoldGraphT * graph, char * filename);
+int DoSimpleScaffoldGraphChecks(ScaffoldGraphT * graph, const char * filename);
 
 void DestroyMateInstrumenter(MateInstrumenter * mi);
 int InitializeMateInstrumenter(ScaffoldGraphT * graph,
@@ -568,7 +568,7 @@ void ComputeContigInstrumenterStats(ScaffoldGraphT * graph,
 void PrintContigInstrumenter(ScaffoldGraphT * graph,
                              ContigInstrumenter * ci,
                              InstrumenterVerbosity verbose,
-                             char * prefix,
+                             const char * prefix,
                              FILE * printTo);
 
 void PrintScaffoldInstrumenterMateDetails(ScaffoldInstrumenter * si,
@@ -576,7 +576,7 @@ void PrintScaffoldInstrumenterMateDetails(ScaffoldInstrumenter * si,
 					  int printType);
 void PrintExternalMateDetailsAndDists(ScaffoldGraphT * graph,
 				      VA_TYPE(MateDetail) * mda,
-				      char * prefix,
+				      const char * prefix,
 				      FILE * printTo,
 				      int printtype);
 void PrintUnmatedDetails(ScaffoldInstrumenter * si,
@@ -604,7 +604,7 @@ void ComputeScaffoldInstrumenterStats(ScaffoldGraphT * graph,
 void PrintScaffoldInstrumenter(ScaffoldGraphT * graph,
                                ScaffoldInstrumenter * si,
                                InstrumenterVerbosity verbose,
-                               char * prefix,
+                               const char * prefix,
                                FILE * printTo);
 
 void DestroyScaffoldGraphInstrumenter(ScaffoldGraphInstrumenter * sgi);
@@ -654,7 +654,7 @@ int32 GetMateStatsHappy(MateStatsSet * mss);
 int32 GetMateStatsMissing(MateStatsSet * mss);
 void PrintFragment(CIFragT * frag, CDS_CID_t index, FILE * printTo);
 void PrintBreakpoint(InstrumenterBreakpoint * bp,
-                     char * prefix,
+                     const char * prefix,
                      FILE * printTo);
 void FindRockStoneUnitigs(ScaffoldGraphT * graph);
 

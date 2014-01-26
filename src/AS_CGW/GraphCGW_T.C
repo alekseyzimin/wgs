@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: GraphCGW_T.c,v 1.85 2010/02/17 01:32:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: GraphCGW_T.c,v 1.85 2010/02/17 01:32:58 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -173,8 +173,8 @@ void DeleteGraphCGW(GraphCGW_T *graph){
 
 /* Diagnostic */
 size_t ReportMemorySizeGraphCGW(GraphCGW_T *graph, FILE *stream){
-  char *nodeName;
-  char *edgeName;
+  const char *nodeName;
+  const char *edgeName;
   size_t totalMemorySize = 0;
 
   switch(graph->type){
@@ -879,7 +879,7 @@ void PrintGraphEdge(FILE *fp, GraphCGW_T *graph,
   char actualOverlap[256];
   int32 actual = 0;
   int32 delta = 0;
-  char *flagTrans = "  ";
+  const char *flagTrans = "  ";
   char flagbuf[32];
   ChunkInstanceT *ChunkInstanceA = GetGraphNode(graph, edge->idA);
   ChunkInstanceT *ChunkInstanceB = GetGraphNode(graph, edge->idB);
@@ -959,12 +959,12 @@ void PrintGraphEdge(FILE *fp, GraphCGW_T *graph,
 
 
 void PrintContigEdgeInScfContext(FILE *fp, GraphCGW_T *graph,
-                                 char *label, EdgeCGW_T *edge,
+                                 const char *label, EdgeCGW_T *edge,
                                  CDS_CID_t cid){
   char actualOverlap[256];
   int32 actual = 0;
   int32 delta = 0;
-  char *flagTrans = "  ";
+  const char *flagTrans = "  ";
   char flagbuf[32];
   ChunkInstanceT *ChunkInstanceA = GetGraphNode(graph, edge->idA);
   ChunkInstanceT *ChunkInstanceB = GetGraphNode(graph, edge->idB);
@@ -1220,7 +1220,7 @@ CDS_CID_t AddGraphEdge(GraphCGW_T *graph,
 
 void DumpGraph(GraphCGW_T *graph, FILE *stream){
 
-  char *graphType = "";
+  const char *graphType = "";
   GraphNodeIterator nodes;
   GraphEdgeIterator edges;
   NodeCGW_T *node = NULL;
@@ -3051,7 +3051,7 @@ void ComputeMatePairDetailedStatus(void) {
 
 void ComputeMatePairStatisticsRestricted(int operateOnNodes,
                                          int32 minSamplesForOverride,
-                                         char *instance_label) {
+                                         const char *instance_label) {
   GraphCGW_T *graph = NULL;
   GraphNodeIterator nodes;
   NodeCGW_T *node;

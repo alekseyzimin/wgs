@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: CIScaffoldT_Biconnected_CGW.c,v 1.16 2009/07/27 08:08:28 brianwalenz Exp $";
+static const char *rcsid = "$Id: CIScaffoldT_Biconnected_CGW.c,v 1.16 2009/07/27 08:08:28 brianwalenz Exp $";
 
 //#define DEBUG 1
 #include <stdio.h>

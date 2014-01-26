@@ -24,7 +24,7 @@
       pairs of DNA strings.
    Assumptions:  Input meets specifications in the ProtoIO documents
  *********************************************************************/
-static char *rcsid = "$Id: AS_OVL_driver_ca.c,v 1.6 2008/10/08 22:02:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: AS_OVL_driver_ca.c,v 1.6 2008/10/08 22:02:58 brianwalenz Exp $";
 
 /* RCS info
  * $Id: AS_OVL_driver_ca.c,v 1.6 2008/10/08 22:02:58 brianwalenz Exp $

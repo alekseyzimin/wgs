@@ -28,8 +28,8 @@
 
 void
 MergeScaffoldsAggressive(ScaffoldGraphT *sgraph,
-                              char *logicalname,
-                              int verbose);
+                         const char *logicalname,
+                         int verbose);
 
 
 #endif

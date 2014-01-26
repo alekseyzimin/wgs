@@ -35,7 +35,7 @@ const char *mainid = "$Id: fastqToCA.C,v 1.5 2010/04/16 21:24:06 brianwalenz Exp
 
 
 void
-addFeature(LibraryMesg *libMesg, char *feature, char *value) {
+addFeature(LibraryMesg *libMesg, const char *feature, const char *value) {
   int32 nf = libMesg->num_features;
 
   libMesg->features[nf] = (char *)safe_malloc(sizeof(char) * (strlen(feature) + 1));
@@ -51,20 +51,20 @@ addFeature(LibraryMesg *libMesg, char *feature, char *value) {
 
 int
 main(int argc, char **argv) {
-  int       insertSize       = 0;
-  int       insertStdDev     = 0;
-  char     *libraryName      = 0L;
+  int   insertSize   = 0;
+  int   insertStdDev = 0;
+  char *libraryName  = 0L;
 
-  bool      isMated          = false;
+  bool isMated = false;
 
-  char     *type             = "illumina";
+  const char *type = "illumina";
 
-  char     *orientInnie      = "innie";
-  char     *orientOuttie     = "outtie";
-  char     *orient           = orientInnie;
+  const char     *orientInnie  = "innie";
+  const char     *orientOuttie = "outtie";
+  const char     *orient       = orientInnie;
 
-  char    **fastq            = new char * [argc];
-  int32     fastqLen         = 0;
+  char  **fastq    = new char * [argc];
+  int32   fastqLen = 0;
 
   argc = AS_configure(argc, argv);
 

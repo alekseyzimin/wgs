@@ -1303,10 +1303,10 @@ static int  Char_To_Code
 // Return a value 0..4 corresponding to a,c,g,t,- respectively
 
   {
-   char  * s = "acgt-";
+   const char  * s = "acgt-";
    char  * p;
 
-   p = strchr (s, tolower (ch));
+   p = strchr ((char*)s, tolower (ch));
    if (p == NULL)
      {
       fprintf (stderr, "ERROR:  line %d  file %s\n", __LINE__, __FILE__);
@@ -1325,7 +1325,7 @@ static int  Code_To_Char
 // Return character a,c,g,t,- corresponding to codes 0..4 respectively
 
   {
-   char  * s = "acgt-";
+   const char  * s = "acgt-";
 
    if (code < 0 || 4 < code)
      {

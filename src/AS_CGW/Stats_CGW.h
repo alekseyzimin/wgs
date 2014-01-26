@@ -26,9 +26,9 @@
 
 void GenerateCIGraphStats(void);
 void GenerateCIGraph_U_Stats(void);
-void GeneratePlacedContigGraphStats(char *phase, int iteration);
-void GenerateScaffoldGraphStats(char *phase, int interation);
-void GenerateLinkStats(GraphCGW_T *graph, char *phase, int iteration);
-void GenerateSurrogateStats(char *label);
+void GeneratePlacedContigGraphStats(const char *phase, int iteration);
+void GenerateScaffoldGraphStats(const char *phase, int interation);
+void GenerateLinkStats(GraphCGW_T *graph, const char *phase, int iteration);
+void GenerateSurrogateStats(const char *label);
 
 #endif

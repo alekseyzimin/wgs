@@ -89,7 +89,7 @@ typedef struct {
 
 /*** AVL-TREE LIST ROUTINES ***/
 
-static void OutOfMemory(char *where)
+static void OutOfMemory(const char *where)
 { fprintf(stderr,"COMPARE_LOCAL: Out of memory (%s)\n",where);
   exit (1);
 }
@@ -999,8 +999,8 @@ fprintf(file,"begpos %d endpos %d comp %d\n",
   fprintf(file,"\n");
 }
 
-static char *Gap_Types[] = { "Boundary", "Minor", "Mismatch", "Indel",
-                             "Tandem Repeat", "Tandem w. Spacer"};
+static const char *Gap_Types[] = { "Boundary", "Minor", "Mismatch", "Indel",
+                                   "Tandem Repeat", "Tandem w. Spacer"};
 
 void Print_Local_Overlap(FILE *file, Local_Overlap *desc, int indent)
 {

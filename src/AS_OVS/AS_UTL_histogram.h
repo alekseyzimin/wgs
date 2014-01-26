@@ -179,7 +179,7 @@ AS_UTL_histogramCompute(AS_UTL_histogram *h) {
 
 
 void
-AS_UTL_histogramShow(AS_UTL_histogram *h, FILE *F, char *label) {
+AS_UTL_histogramShow(AS_UTL_histogram *h, FILE *F, const char *label) {
   int64   max, min;
   int64   rng, i;
 
@@ -269,7 +269,7 @@ AS_UTL_histogramShow(AS_UTL_histogram *h, FILE *F, char *label) {
 
 
 void
-AS_UTL_histogramDump(AS_UTL_histogram *h, char *filename, char *label) {
+AS_UTL_histogramDump(AS_UTL_histogram *h, char *filename, const char *label) {
   FILE   *F;
   uint64  i;
 
@@ -353,13 +353,13 @@ AS_UTL_histogram3dCompute(AS_UTL_histogram3d *h) {
 
 
 void
-AS_UTL_histogram3dShow(AS_UTL_histogram3d *h, char *label) {
+AS_UTL_histogram3dShow(AS_UTL_histogram3d *h, const char *label) {
 }
 
 
 
 void
-AS_UTL_histogram3dDump(AS_UTL_histogram3d *h, char *filename, char *label) {
+AS_UTL_histogram3dDump(AS_UTL_histogram3d *h, char *filename, const char *label) {
   FILE   *F;
   uint64  x, y;
 

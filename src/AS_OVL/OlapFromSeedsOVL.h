@@ -273,7 +273,7 @@ static double  Char_Match_Value = 0.0;
 static int  Check_Correlated_Differences = FALSE;
   // If set true by the -w option then check for confirmed differences
   // in columns to eliminate overlaps
-static char  * Correction_Filename = DEFAULT_CORRECTION_FILENAME;
+static const char  * Correction_Filename = DEFAULT_CORRECTION_FILENAME;
   // Name of file to which correction information is sent
 static int  Degree_Threshold = DEFAULT_DEGREE_THRESHOLD;
   // Set keep flag on end of fragment if number of olaps < this value

@@ -87,9 +87,9 @@ int  examineGap(ContigT *lcontig, int lFragIid,
 
 //  In eCR-diagnostic.c
 //
-void DumpContigMultiAlignInfo (char *label, MultiAlignT *cma, int contigID);
-void DumpUnitigInfo(char *label, NodeCGW_T *unitig);
-void DumpContigUngappedOffsets(char *label, int contigID);
+void DumpContigMultiAlignInfo (const char *label, MultiAlignT *cma, int contigID);
+void DumpUnitigInfo(const char *label, NodeCGW_T *unitig);
+void DumpContigUngappedOffsets(const char *label, int contigID);
 
 
 int                      totalContigsBaseChange = 0;

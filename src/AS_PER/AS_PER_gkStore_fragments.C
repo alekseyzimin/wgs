@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: AS_PER_gkStore_fragments.C,v 1.2 2010/03/05 03:34:07 brianwalenz Exp $";
+static const char *rcsid = "$Id: AS_PER_gkStore_fragments.C,v 1.2 2010/03/05 03:34:07 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: Celamy_CGW.c,v 1.26 2009/10/05 22:49:42 brianwalenz Exp $";
+static const char *rcsid = "$Id: Celamy_CGW.c,v 1.26 2009/10/05 22:49:42 brianwalenz Exp $";
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +63,7 @@ int do_compute_missing_overlaps      = 0;
 #define FWD_SURRO_COLOR  2
 #define REV_SURRO_COLOR  3
 
-static char *Colors[NUM_COLOURS] = {
+static const char *Colors[NUM_COLOURS] = {
   "CFF0000",
   "C00FF00",
   "C0000FF",
@@ -83,7 +83,7 @@ static char *Colors[NUM_COLOURS] = {
   "C40FF40",
   "C4040FF" };
 
-static  char  * Colour_String [NUM_COLOURS] = {
+static  const char  * Colour_String [NUM_COLOURS] = {
   "C000000 T2 S  # Unused",
   "CFFFF00 T2 S  # DUnique",
   "CFF8040 T2 S  # Consistent",

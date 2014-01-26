@@ -254,7 +254,7 @@ public:
   uint32     getClrEnd(void) { return(seqMap[clrEnd]); };
   uint32     getSeqLen(void) { return(seqMap[seqLen]); };
 
-  void       dump(FILE *F, char *label);
+  void       dump(FILE *F, const char *label);
 
   //  Public for the writer.
   gkFragment           fr;
@@ -943,7 +943,7 @@ mertrimComputation::attemptTrimming(void) {
 
 
 void
-mertrimComputation::dump(FILE *F, char *label) {
+mertrimComputation::dump(FILE *F, const char *label) {
   fprintf(F, "%s read %d len %d (trim %d-%d)\n", label, readIID, seqLen, clrBgn, clrEnd);
   for (uint32 i=0; origSeq[i]; i++) {
     if (i == clrBgn)

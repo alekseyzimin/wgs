@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: ApplyAlignment.c,v 1.7 2009/07/13 23:55:25 brianwalenz Exp $";
+static const char *rcsid = "$Id: ApplyAlignment.c,v 1.7 2009/07/13 23:55:25 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -289,7 +289,7 @@ alignPosition(int32 *aindex, int32 &apos, int32  alen,
               int32 *bindex, int32 &bpos, int32  blen,
               int32 &lasta,
               int32 &lastb,
-              char  *label) {
+              const char  *label) {
 
   assert(apos < alen);
   assert(bpos < blen);

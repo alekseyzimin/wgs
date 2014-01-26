@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: PrintAlignment.c,v 1.1 2009/05/29 17:29:19 brianwalenz Exp $";
+static const char *rcsid = "$Id: PrintAlignment.c,v 1.1 2009/05/29 17:29:19 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>

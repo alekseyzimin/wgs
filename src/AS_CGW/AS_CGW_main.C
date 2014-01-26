@@ -102,7 +102,7 @@ main(int argc, char **argv) {
   int    repeatRezLevel   = 0;
 
   int    restartFromCheckpoint = -1;
-  char  *restartFromLogical    = "ckp00";
+  const char  *restartFromLogical    = "ckp00";
 
   int    doResolveSurrogates               = 1;      //  resolveSurrogates
   int    placeAllFragsInSinglePlacedSurros = 0;      //  resolveSurrogates

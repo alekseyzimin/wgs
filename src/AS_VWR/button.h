@@ -61,7 +61,7 @@ void mt_set_outline(MT_OBJECT *o, int is_on);
 void mt_set_hilite(MT_OBJECT *o, int is_on);
 
 void mt_set_vis(MT_OBJECT *o, int is_on);
-void mt_set_label(MT_OBJECT *o, char *label);
+void mt_set_label(MT_OBJECT *o, const char *label);
 void mt_set_callback(MT_OBJECT *o,
                      int (*callback)(MT_OBJECT *p, long d), long data);
 
@@ -90,7 +90,7 @@ void  mt_set_text(MT_OBJECT *o, char *text, int bsel, int esel);
 void  mt_set_focus(MT_OBJECT *o);
 
 MT_OBJECT *mt_new_button(int x, int y, int w, int h, int vis,
-                         int classa, char *label);
+                         int classa, const char *label);
 int  mt_get_button(MT_OBJECT *b);
 void mt_set_button(MT_OBJECT *b, int is_down);
 void mt_button_colors(MT_OBJECT *b, long   up, long down, long dark,

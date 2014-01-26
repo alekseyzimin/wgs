@@ -26,7 +26,7 @@
 
 static
 int
-decodeBoolean(char *feature, char *value) {
+decodeBoolean(const char *feature, const char *value) {
   int  ret = 0;
 
   //  Decodes a string with 0/1, false/true, no/yes into an integer flag.

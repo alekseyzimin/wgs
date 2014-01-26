@@ -81,7 +81,7 @@ FILE *scflen = NULL;
 
 
 FILE *
-openFile(char *label, char *prefix, int write) {
+openFile(const char *label, char *prefix, int write) {
   char  N[FILENAME_MAX];
   FILE *F = NULL;
 

@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: Output_CGW.c,v 1.48 2009/12/01 00:20:30 brianwalenz Exp $";
+static const char *rcsid = "$Id: Output_CGW.c,v 1.48 2009/12/01 00:20:30 brianwalenz Exp $";
 
 #include <assert.h>
 #include <math.h>

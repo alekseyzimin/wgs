@@ -72,7 +72,7 @@ void
 EnableRange_VA(VarArrayType *va, size_t index);
 
 void
-SetElements_VA(VarArrayType *va, size_t index, void *data, size_t nume);
+SetElements_VA(VarArrayType *va, size_t index, const void *data, size_t nume);
 
 VarArrayType *
 Clone_VA(VarArrayType *fr);
@@ -174,7 +174,7 @@ static void SetRangeVA_ ## Type (VA_TYPE(Type) *va, \
       SetElements_VA(va,index,data,num_elements);    \
 }\
 static void AppendVA_ ## Type (VA_TYPE(Type) *va, \
-			       Type *data){ \
+			       const Type *data){ \
       SetElements_VA(va,GetNumElements_VA(va),data,1);       \
 }\
 static void AppendRangeVA_ ## Type (VA_TYPE(Type) *va, \

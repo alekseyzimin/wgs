@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: AS_CGW_EdgeDiagnostics.c,v 1.27 2010/02/17 01:32:58 brianwalenz Exp $";
+static const char *rcsid = "$Id: AS_CGW_EdgeDiagnostics.c,v 1.27 2010/02/17 01:32:58 brianwalenz Exp $";
 
 
 #include <stdio.h>
@@ -700,9 +700,9 @@ int CheckAllContigOrientationsInAllScaffolds(ScaffoldGraphT * graph,
 
 #define DIFFERENT_EDGE_FACTOR    0.1f
 
-int CompareEdgeFloats(float   edgeFloat,
-                      float   fragsFloat,
-                      char * message)
+int CompareEdgeFloats(float        edgeFloat,
+                      float        fragsFloat,
+                      const char * message)
 {
   float   delta = fabs(edgeFloat - fragsFloat);
   if(delta > 1.f &&

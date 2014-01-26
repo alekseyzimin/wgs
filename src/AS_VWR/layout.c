@@ -3713,7 +3713,7 @@ static int IsAnEval(PTree *p)
 }
 
 static int IsAnInstance(PTree *p, int idx, int xmn, int xmx,
-                           char *name, char *label, int evn)
+                           char *name, const char *label, int evn)
 { ISA_idx   = idx;
   ISA_min   = xmn;
   ISA_max   = xmx;

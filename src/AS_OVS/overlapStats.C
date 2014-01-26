@@ -175,7 +175,7 @@ process_FragmentEnds(OVSoverlap *ovls, uint64 ovlsLen, gkStore *gkp,
 }
 
 void
-finalize_FragmentEnds(gkStore *gkp, RepeatModel *rm, FragmentEndData *red, char *label) {
+finalize_FragmentEnds(gkStore *gkp, RepeatModel *rm, FragmentEndData *red, const char *label) {
   char  name[FILENAME_MAX];
   int   i;
 

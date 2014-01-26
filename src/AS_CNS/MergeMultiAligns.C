@@ -19,7 +19,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-static char *rcsid = "$Id: MergeMultiAligns.c,v 1.9 2009/10/26 13:20:26 brianwalenz Exp $";
+static const char *rcsid = "$Id: MergeMultiAligns.c,v 1.9 2009/10/26 13:20:26 brianwalenz Exp $";
 
 #include <stdlib.h>
 #include <stdio.h>

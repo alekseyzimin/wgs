@@ -143,11 +143,11 @@ static void get ## type ## Store(type ## Store fs, int index, type ## Record *dr
 static void set ## type ## Store(type ## Store fs, int index, type ## Record *dr){\
   setIndexStore(fs,index,dr); \
 }\
-static type ## Store create ## type ## Store(char *StorePath, char *ext, int firstID){\
+static type ## Store create ## type ## Store(const char *StorePath, const char *ext, int firstID){\
   type ## Store s = createIndexStore(StorePath,ext, sizeof(type ## Record), firstID);\
   return s;\
 }\
-static type ## Store open ## type ## Store(char *StorePath, char *rw){\
+static type ## Store open ## type ## Store(const char *StorePath, const char *rw){\
   return openStore(StorePath, rw);\
 }\
 static void append ## type ## Store(type ## Store store, type ## Record *element){\
@@ -279,9 +279,9 @@ typedef struct
   HashTable_AS *      hashTable; // for looking up chromosome UIDs
 } MapStore;
 
-MapStore * CreateMapStore(char * path);
-MapStore * OpenMapStore(char * path);
-MapStore * OpenReadOnlyMapStore(char * path);
+MapStore * CreateMapStore(const char * path);
+MapStore * OpenMapStore(const char * path);
+MapStore * OpenReadOnlyMapStore(const char * path);
 void CloseMapStore(MapStore * mapStore);
 
 int CopyMapStoreFiles(MapStore * mapStore, char * destPath);

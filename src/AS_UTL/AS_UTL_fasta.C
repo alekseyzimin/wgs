@@ -77,8 +77,8 @@ AS_UTL_writeFastA(FILE *f,
 
 void
 AS_UTL_writeQVFastA(FILE *f,
-                    char *q, int ql, int bl,
-                    char *h, ...) {
+                    const char *q, int ql, int bl,
+                    const char *h, ...) {
   va_list ap;
   char   *o  = (char *)safe_malloc(sizeof(char) * (3*ql + 3*ql / 70 + 2));
   int     qi = 0;
@@ -118,9 +118,9 @@ AS_UTL_writeQVFastA(FILE *f,
 
 void
 AS_UTL_writeFastQ(FILE *f,
-                  char *s, int sl,
-                  char *q, int ql,
-                  char *h, ...) {
+                  const char *s, int sl,
+                  const char *q, int ql,
+                  const char *h, ...) {
   va_list ap;
   char   *o  = (char *)safe_malloc(sizeof(char) * (ql + 1));
   int     qi = 0;

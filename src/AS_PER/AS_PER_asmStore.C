@@ -18,7 +18,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-static char *rcsid = "$Id: AS_PER_asmStore.c,v 1.15 2009/06/10 18:05:14 brianwalenz Exp $";
+static const char *rcsid = "$Id: AS_PER_asmStore.c,v 1.15 2009/06/10 18:05:14 brianwalenz Exp $";
 
 /*************************************************************************
  Module:  AS_PER_asmStore
@@ -48,7 +48,7 @@ static char *rcsid = "$Id: AS_PER_asmStore.c,v 1.15 2009/06/10 18:05:14 brianwal
 #include "AS_PER_genericStore.h"
 #include "AS_PER_asmStore.h"
 
-char * ASM_Filenames[NUM_ASM_FILES] =
+const char * ASM_Filenames[NUM_ASM_FILES] =
 {
   "asm.mdi",
   "asm.bkt",
@@ -69,11 +69,11 @@ char * ASM_Filenames[NUM_ASM_FILES] =
   "asm.scf",
   "asm.scg",
   "asm.scc",
-
+  
   "asm.phash"
 };
 
-char * MAP_Filenames[NUM_MAP_FILES] =
+const char * MAP_Filenames[NUM_MAP_FILES] =
 {
   "map.chr",
 
@@ -81,7 +81,7 @@ char * MAP_Filenames[NUM_MAP_FILES] =
   "map.phash",
 };
 
-int testOpenFile(char * path, char * name, char * mode)
+int testOpenFile(const char * path, const char * name, const char * mode)
 {
   char fullName[FILENAME_MAX];
   FILE * fp;
@@ -98,7 +98,7 @@ int testOpenFile(char * path, char * name, char * mode)
 }
 int TestOpenAssemblyStore(AssemblyStore *asmStore)
 {
-  char * mode = "r+";
+  const char * mode = "r+";
   int exists = 0;
   int i;
   int fileCount = 0;
@@ -124,7 +124,7 @@ int TestOpenAssemblyStore(AssemblyStore *asmStore)
 }
 
 
-void removeFile(char * path, char * name)
+void removeFile(const char * path, const char * name)
 {
   char command[FILENAME_MAX];
   int sysret;
@@ -155,7 +155,7 @@ int RemoveMapStoreFiles(MapStore * mapStore)
 }
 
 
-void copyFile(char * filename, char * fromDir, char * toDir)
+void copyFile(const char * filename, const char * fromDir, const char * toDir)
 {
   char buffer[FILENAME_MAX];
   int sysret;
@@ -194,7 +194,7 @@ int CopyMapStoreFiles(MapStore *mapStore, char *path)
 }
 
 
-AssemblyStore * OpenAssemblyStoreCommon(char * path, char *mode)
+AssemblyStore * OpenAssemblyStoreCommon(const char * path, const char *mode)
 {
   char name[FILENAME_MAX];
   AssemblyStore * asmStore;
@@ -269,7 +269,7 @@ AssemblyStore * OpenAssemblyStoreCommon(char * path, char *mode)
 
   return asmStore;
 }
-MapStore * OpenMapStoreCommon(char * path, char *mode)
+MapStore * OpenMapStoreCommon(const char * path, const char *mode)
 {
   char name[FILENAME_MAX];
   MapStore * mapStore;
@@ -310,19 +310,19 @@ MapStore * OpenMapStoreCommon(char * path, char *mode)
 }
 
 
-AssemblyStore * OpenAssemblyStore(char * path)
+AssemblyStore * OpenAssemblyStore(const char * path)
 {
   return OpenAssemblyStoreCommon(path, "r+");
 }
-AssemblyStore * OpenReadOnlyAssemblyStore(char * path)
+AssemblyStore * OpenReadOnlyAssemblyStore(const char * path)
 {
   return OpenAssemblyStoreCommon(path, "r");
 }
-MapStore * OpenMapStore(char * path)
+MapStore * OpenMapStore(const char * path)
 {
   return OpenMapStoreCommon(path, "r+");
 }
-MapStore * OpenReadOnlyMapStore(char * path)
+MapStore * OpenReadOnlyMapStore(const char * path)
 {
   return OpenMapStoreCommon(path, "r");
 }

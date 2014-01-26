@@ -81,10 +81,10 @@ void    MgenError(const char * const mesg);
 
 char   *GetText(const char * const tag, FILE *fin, const int delnewlines);
 char   *GetString(const char * const tag, FILE *fin);
-char    GetType(char *format, char *name, FILE *fin);
+char    GetType(const char *format, const char *name, FILE *fin);
 
-AS_UID  GetUID(char *tag, FILE *fin);
-AS_UID  GetUIDIID(char *tag, AS_IID *iid, FILE *fin);
+AS_UID  GetUID(const char *tag, FILE *fin);
+AS_UID  GetUIDIID(const char *tag, AS_IID *iid, FILE *fin);
 
 #define GET_FIELD(lvalue,format,emesg)             if (sscanf(ReadLine(fin,TRUE),format,&(lvalue))             != 1) MfieldError(emesg)
 #define GET_PAIR(lvalue1,lvalue2,format,emesg)     if (sscanf(ReadLine(fin,TRUE),format,&(lvalue1),&(lvalue2)) != 2) MfieldError(emesg)

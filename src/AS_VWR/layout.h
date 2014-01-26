@@ -64,8 +64,8 @@ void ClearQueryColor(ObjectPacket *);
 
 void  DrawHistogram(MT_OBJECT *canvas, HistoPacket *hist,
                     int xmin, int xmax, int *bsize);
-int   DrawHistoInfo(MT_OBJECT *bar, HistoPacket *hist,char *label);
-int   DrawHistoInfoLabel(MT_OBJECT *bar, HistoPacket *hist, char *label);
+int   DrawHistoInfo(MT_OBJECT *bar, HistoPacket *hist,const char *label);
+int   DrawHistoInfoLabel(MT_OBJECT *bar, HistoPacket *hist, const char *label);
 void  GetHistoDims(HistoPacket *hist, int *min, int *max);
 void  SetHistoBorderMax(HistoPacket *hist, int minw, int minh);
 

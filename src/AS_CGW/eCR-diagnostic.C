@@ -25,7 +25,7 @@
 
 
 void
-DumpContigMultiAlignInfo (char *label, MultiAlignT *cma, int contigID) {
+DumpContigMultiAlignInfo (const char *label, MultiAlignT *cma, int contigID) {
   int           i, j;
   int           deletecma = 0;
 
@@ -69,7 +69,7 @@ DumpContigMultiAlignInfo (char *label, MultiAlignT *cma, int contigID) {
 
 
 void
-DumpUnitigInfo(char *label, NodeCGW_T *unitig) {
+DumpUnitigInfo(const char *label, NodeCGW_T *unitig) {
   int            i, j;
   MultiAlignT   *uma;
   IntUnitigPos  *pos;
@@ -98,7 +98,7 @@ DumpUnitigInfo(char *label, NodeCGW_T *unitig) {
 
 
 void
-DumpContigUngappedOffsets(char *label, int contigID) {
+DumpContigUngappedOffsets(const char *label, int contigID) {
   int                    numCIs;
   int                    i;
   MultiAlignT           *cma;

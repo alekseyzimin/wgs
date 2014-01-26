@@ -288,9 +288,9 @@ void reorder_edges(Tfragment *frags,
                    Tedge *edges);
 
 //  AS_CGB_count_fragment_and_edge_labels.c
-void count_fragment_and_edge_labels(Tfragment frags[],
-                                    Tedge     edges[],
-                                    char      comment[]);
+void count_fragment_and_edge_labels(Tfragment  frags[],
+                                    Tedge      edges[],
+                                    const char comment[]);
 
 
 ////////////////////////////////////////

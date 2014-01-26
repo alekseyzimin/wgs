@@ -77,14 +77,14 @@ AS_UTL_writeFastA(FILE *f,
 //  Writes QVs as decimal 'fasta' ("00 00 00 00 ...") with up to 'bl' QVs per line.
 void
 AS_UTL_writeQVFastA(FILE *f,
-                    char *q, int ql, int bl,
-                    char *h, ...);
+                    const char *q, int ql, int bl,
+                    const char *h, ...);
 
 //  Writes FastQ, converting CA QVs into Sanger QVs.
 void
 AS_UTL_writeFastQ(FILE *f,
-                  char *s, int sl,
-                  char *q, int ql,
-                  char *h, ...);
+                  const char *s, int sl,
+                  const char *q, int ql,
+                  const char *h, ...);
 
 #endif

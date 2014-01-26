@@ -313,7 +313,7 @@ char *mt_bitmap_label(MT_OBJECT *o)
   return (StringEncode);
 }
 
-static MT_OBJECT *label_test(char *label)
+static MT_OBJECT *label_test(const char *label)
 { unsigned long x;
   int i;
 
@@ -325,7 +325,7 @@ static MT_OBJECT *label_test(char *label)
   return ((MT_OBJECT *) x);
 }
 
-void mt_set_label(MT_OBJECT *o, char *label)
+void mt_set_label(MT_OBJECT *o, const char *label)
 { MT_OBJECT *bitlabel;
 
   bitlabel = label_test(label);
@@ -1097,7 +1097,7 @@ static void erase_button(MT_OBJECT *o)
 }
 
 MT_OBJECT *mt_new_button(int x, int y, int w, int h, int vis,
-                         int class, char *label)
+                         int class, const char *label)
 { button    *b;
   MT_OBJECT *fr, *o;
   MT_OBJECT *p;

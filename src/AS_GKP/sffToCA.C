@@ -59,7 +59,7 @@ const char *mainid = "$Id: sffToCA.c,v 1.47 2010/04/16 20:36:10 jasonmiller9704 
 #define TRIM_CHOP        3
 #define TRIM_ERRR        9
 
-char *TRIM_NAMES[4]  = { "none", "soft", "hard", "chop" };
+const char *TRIM_NAMES[4]  = { "none", "soft", "hard", "chop" };
 
 #define AS_LINKER_MAX_SEQS       50
 #define AS_LINKER_CUSTOM_OFFSET  24
@@ -102,7 +102,7 @@ statistics st = {0};
 
 static
 void
-writeStatistics(char **argv, int argc, int firstFileArg, char *fragName, int haveLinker, char **linker, int *search, char *stsName) {
+writeStatistics(char **argv, int argc, int firstFileArg, char *fragName, int haveLinker, const char *linker[], int *search, char *stsName) {
 
   errno = 0;
   FILE *statOut = fopen(stsName, "w");
@@ -1099,7 +1099,7 @@ int
 processMate(gkFragment *fr,
             gkFragment *m1,
             gkFragment *m2,
-            char        *linker[AS_LINKER_MAX_SEQS],
+            const char *linker[AS_LINKER_MAX_SEQS],
             int          search[AS_LINKER_MAX_SEQS],
 	    const int   stringent) {
 
@@ -1512,7 +1512,7 @@ processMate(gkFragment *fr,
 
 
 int
-detectMates(char *linker[AS_LINKER_MAX_SEQS], int search[AS_LINKER_MAX_SEQS]) {
+detectMates(const char *linker[AS_LINKER_MAX_SEQS], int search[AS_LINKER_MAX_SEQS]) {
   gkFragment    fr;
   gkFragment    m1;
   gkFragment    m2;
@@ -1814,16 +1814,16 @@ main(int argc, char **argv) {
   // One array stores the character sequences of the linker
   // A boolean array stores which linkers are to be used in the search
 
-  int       haveLinker        = FALSE;
-  int       invalidLinkerSeq  = FALSE;
-  char     *linker[AS_LINKER_MAX_SEQS] = { NULL };
-  int       search[AS_LINKER_MAX_SEQS] = { 0    };
+  int haveLinker                            = FALSE;
+  int invalidLinkerSeq                      = FALSE;
+  const char    *linker[AS_LINKER_MAX_SEQS] = { NULL };
+  int       search[AS_LINKER_MAX_SEQS]      = { 0    };
   
   // the first slot of the linker array is the FLX mate pair linker (which is a palindrome)
-  char   *linkerFLX     = linker[0] = "GTTGGAACCGAAAGGGTTTGAATTCAAACCCTTTCGGTTCCAAC";  // palindrome
+  const char *linkerFLX   = linker[0] = "GTTGGAACCGAAAGGGTTTGAATTCAAACCCTTTCGGTTCCAAC";  // palindrome
   // the next two slots are the Titanium linker. It requires two linkers because they are not palindromes
-  char   *linkerFIX     = linker[1] = "TCGTATAACTTCGTATAATGTATGCTATACGAAGTTATTACG";    // linker for Titanium reads
-  char   *linkerXIF     = linker[2] = "CGTAATAACTTCGTATAGCATACATTATACGAAGTTATACGA";    // rc of linker for Titanium reads
+  const char   *linkerFIX = linker[1] = "TCGTATAACTTCGTATAATGTATGCTATACGAAGTTATTACG";    // linker for Titanium reads
+  const char   *linkerXIF = linker[2] = "CGTAATAACTTCGTATAGCATACATTATACGAAGTTATACGA";    // rc of linker for Titanium reads
   // subsequent linkers will be used for future barcoding
   // final linkers are custom, provided by the user, filled in when parsing parameters
 

@@ -295,7 +295,7 @@ EdgeCGW_T *FindOverlapEdgeChiSquare(ScaffoldGraphT *graph,
     effectiveOlap = -(GetGraphNode(ScaffoldGraph->ContigGraph, targetId)->bpLength.mean + sourceCI->bpLength.mean - olap.overlap);
   }
 
-  if (olap.overlap == NULL)
+  if (olap.overlap == 0)
     return(NULL);
 
   edge = GetGraphEdge(graph->ContigGraph,

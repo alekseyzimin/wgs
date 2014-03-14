@@ -308,7 +308,7 @@ unitigConsensus::initialize(void) {
   assert(manode->lid == 0);
 
   frankensteinLen = 0;
-  frankensteinMax = 1024 * 1024;
+  frankensteinMax = 1024 * 1024 * 4;
   frankenstein    = (char *)safe_malloc(sizeof(char) * frankensteinMax);
   frankensteinBof = (int32 *)safe_malloc(sizeof(int32) * frankensteinMax);
 

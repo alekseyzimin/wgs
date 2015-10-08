@@ -343,7 +343,12 @@ void BestOverlapGraph::scoreEdge(const OVSoverlap& olap) {
       _best_overlaps_5p_score[olap.a_iid] = newScr;
   }
   else if(newScr == score){
-    fprintf(stderr,"conflicting same score overlap, deleting both %ld %ld new %ld %ld\n", olap.a_iid, best->frag_b_id, olap.a_iid, olap.b_iid);
+    //fprintf(stderr,"conflicting same score overlap, deleting both %ld %ld new %ld %ld\n", olap.a_iid, best->frag_b_id, olap.a_iid, olap.b_iid);
+    if (aend == THREE_PRIME)
+      _best_overlaps_3p_score[olap.a_iid] = newScr+1;
+    else
+      _best_overlaps_5p_score[olap.a_iid] = newScr+1;
+
     best->frag_b_id    = 0;
     best->bend         = 0;
     best->ahang        = 0;

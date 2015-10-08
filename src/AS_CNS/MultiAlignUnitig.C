@@ -1508,6 +1508,18 @@ MultiAlignUnitig(MultiAlignT     *ma,
     if (uc->alignFragmentToFragments())
       continue;
 
+//AZ last resort
+    AS_CNS_ERROR_RATE = 0.25;
+
+    if (uc->computePositionFromParent()    && uc->alignFragment())  goto applyAlignment;
+    if (uc->computePositionFromContainer() && uc->alignFragment())  goto applyAlignment;
+    if (uc->computePositionFromLayout()    && uc->alignFragment())  goto applyAlignment;
+    if (uc->computePositionFromAlignment() && uc->alignFragment())  goto applyAlignment;
+
+    if (uc->alignFragmentToFragments())
+      continue;
+
+
     //  Failed to align the fragment.  Dang.  Either fail immediately, or keep going expecting to
     //  fix things later.
 

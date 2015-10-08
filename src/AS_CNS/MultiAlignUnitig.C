@@ -1509,7 +1509,7 @@ MultiAlignUnitig(MultiAlignT     *ma,
       continue;
 
 //AZ last resort
-    AS_CNS_ERROR_RATE = 0.25;
+    AS_CNS_ERROR_RATE = MIN(AS_MAX_ERROR_RATE, 2.5 * AS_CNS_ERROR_RATE);
 
     if (uc->computePositionFromParent()    && uc->alignFragment())  goto applyAlignment;
     if (uc->computePositionFromContainer() && uc->alignFragment())  goto applyAlignment;

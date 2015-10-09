@@ -132,13 +132,13 @@ main(int argc, char **argv) {
          (frlen + fmlen - abs(ovl->begpos) - abs(ovl->endpos)) / 2 < 100)) {
 
       if(Ngaps)
-        fprintf(stdout, ">"F_S64" from mated fragments %s and %s\n%sNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN%s\n",
+        fprintf(stdout, ">" F_S64" from mated fragments %s and %s\n%sNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN%s\n",
                 mergeUID,
                 AS_UID_toString(fr.gkFragment_getReadUID()),
                 AS_UID_toString(fm.gkFragment_getReadUID()),
                 frseq, fmseq);
       else
-        fprintf(stdout, ">"F_S64"a (fragment %s)\n%s\n>"F_S64"b (fragment %s)\n%s\n",
+        fprintf(stdout, ">" F_S64"a (fragment %s)\n%s\n>" F_S64"b (fragment %s)\n%s\n",
                 mergeUID, AS_UID_toString(fr.gkFragment_getReadUID()), frseq,
                 mergeUID, AS_UID_toString(fm.gkFragment_getReadUID()), fmseq);
 
@@ -157,7 +157,7 @@ main(int argc, char **argv) {
     if (runConsensus == 0) {
       reverseComplementSequence(fmseq, fmlen);
 
-      fprintf(stdout, ">"F_S64" merged sequence of mated fragments %s and %s\n%s%s\n",
+      fprintf(stdout, ">" F_S64" merged sequence of mated fragments %s and %s\n%s%s\n",
               mergeUID,
               AS_UID_toString(fr.gkFragment_getReadUID()),
               AS_UID_toString(fm.gkFragment_getReadUID()),
@@ -227,7 +227,7 @@ main(int argc, char **argv) {
 
     GetMultiAlignUngappedConsensus(ma, cns, qlt);
 
-    fprintf(stdout, ">"F_S64" merged sequence of mated fragments %s and %s\n%s\n",
+    fprintf(stdout, ">" F_S64" merged sequence of mated fragments %s and %s\n%s\n",
             mergeUID,
             AS_UID_toString(fr.gkFragment_getReadUID()),
             AS_UID_toString(fm.gkFragment_getReadUID()),

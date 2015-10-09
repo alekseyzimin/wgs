@@ -171,19 +171,19 @@ public:
     if (tEnd > mIID)  tEnd = mIID;
 
     if (qBeg < tBeg) {
-      fprintf(stderr, "WARNING: reset -qb to -tb="F_U32"\n",
+      fprintf(stderr, "WARNING: reset -qb to -tb=" F_U32"\n",
               tBeg);
       qBeg = tBeg;
     }
 
     if (qBeg >= qEnd) {
-      fprintf(stderr, "ERROR: -qb="F_U32" and -qe="F_U32" are invalid ("F_U32" frags in the store)\n",
+      fprintf(stderr, "ERROR: -qb=" F_U32" and -qe=" F_U32" are invalid (" F_U32" frags in the store)\n",
               qBeg, qEnd, mIID);
       exit(1);
     }
 
     if (tBeg >= tEnd) {
-      fprintf(stderr, "ERROR: -tb="F_U32" and -te="F_U32" are invalid ("F_U32" frags in the store)\n",
+      fprintf(stderr, "ERROR: -tb=" F_U32" and -te=" F_U32" are invalid (" F_U32" frags in the store)\n",
               tBeg, tEnd, mIID);
       exit(1);
     }

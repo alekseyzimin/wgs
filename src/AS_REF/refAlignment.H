@@ -68,7 +68,7 @@ mappingDataSortByRefPosition(const void *a, const void *b) {
 static
 void
 mappingDataPrint(mappingData *md) {
-  fprintf(stderr, "%s,%d "F_U32"-"F_U32" %c %s "F_U32"-"F_U32"\n",
+  fprintf(stderr, "%s,%d " F_U32"-" F_U32" %c %s " F_U32"-" F_U32"\n",
           AS_UID_toString(md->frgUID), md->frgIID, md->frgBgn, md->frgEnd,
           (md->fwd) ? 'f' : 'r',
           AS_UID_toString(md->refUID), md->refBgn, md->refEnd);

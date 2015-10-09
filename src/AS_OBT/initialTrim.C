@@ -184,7 +184,7 @@ main(int argc, char **argv) {
       gkpStore->gkStore_delFragment(iid);
 
     if (logFile)
-      fprintf(logFile, "%s,"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"%s\n",
+      fprintf(logFile, "%s," F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"%s\n",
               AS_UID_toString(fr.gkFragment_getReadUID()),
               iid,
               fr.gkFragment_getClearRegionBegin(AS_READ_CLEAR_CLR),
@@ -201,18 +201,18 @@ main(int argc, char **argv) {
   delete gkpStore;
 
   fprintf(stdout, "Fragments with:\n");
-  fprintf(stdout, " no changes allowed:           "F_U32"\n", stat_immutable);
-  fprintf(stdout, " no QV trim allowed:           "F_U32"\n", stat_donttrim);
-  fprintf(stdout, " already deleted               "F_U32"\n", stat_alreadyDeleted);
-  fprintf(stdout, " no vector clear range known:  "F_U32" (trimed to quality clear)\n", stat_noVecClr);
-  fprintf(stdout, " no HQ non-vector sequence:    "F_U32" (deleted)\n", stat_noHQnonVec);
-  fprintf(stdout, " HQ vector trimmed:            "F_U32" (trimmed to intersection)\n", stat_HQtrim5 + stat_HQtrim3);
-  fprintf(stdout, "     5' end:                   "F_U32"\n", stat_HQtrim5);
-  fprintf(stdout, "     3' end:                   "F_U32"\n", stat_HQtrim3);
-  fprintf(stdout, " LQ vector trimmed:            "F_U32" (trimmed to intersection)\n", stat_LQtrim5 + stat_LQtrim3);
-  fprintf(stdout, "     5' end:                   "F_U32"\n", stat_LQtrim5);
-  fprintf(stdout, "     3' end:                   "F_U32"\n", stat_LQtrim3);
-  fprintf(stdout, " final clear range too short:  "F_U32" (deleted)\n", stat_tooShort);
+  fprintf(stdout, " no changes allowed:           " F_U32"\n", stat_immutable);
+  fprintf(stdout, " no QV trim allowed:           " F_U32"\n", stat_donttrim);
+  fprintf(stdout, " already deleted               " F_U32"\n", stat_alreadyDeleted);
+  fprintf(stdout, " no vector clear range known:  " F_U32" (trimed to quality clear)\n", stat_noVecClr);
+  fprintf(stdout, " no HQ non-vector sequence:    " F_U32" (deleted)\n", stat_noHQnonVec);
+  fprintf(stdout, " HQ vector trimmed:            " F_U32" (trimmed to intersection)\n", stat_HQtrim5 + stat_HQtrim3);
+  fprintf(stdout, "     5' end:                   " F_U32"\n", stat_HQtrim5);
+  fprintf(stdout, "     3' end:                   " F_U32"\n", stat_HQtrim3);
+  fprintf(stdout, " LQ vector trimmed:            " F_U32" (trimmed to intersection)\n", stat_LQtrim5 + stat_LQtrim3);
+  fprintf(stdout, "     5' end:                   " F_U32"\n", stat_LQtrim5);
+  fprintf(stdout, "     3' end:                   " F_U32"\n", stat_LQtrim3);
+  fprintf(stdout, " final clear range too short:  " F_U32" (deleted)\n", stat_tooShort);
 
   return(0);
 }

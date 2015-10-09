@@ -485,12 +485,12 @@ static void chunk_classification_of_fragments
 
         if( (inpx != 0) && (jnpx != 0) ) {
           const IntFragment_ID iid = get_iid_fragment(frags,vid);
-          fprintf(stderr,"Woops: iid="F_IID " vid="F_IID " inpx=%d jnpx=%d\n",
+          fprintf(stderr,"Woops: iid=" F_IID " vid=" F_IID " inpx=%d jnpx=%d\n",
                   iid,vid,inpx,jnpx);
         }
         if( (insx != 0) && (jnsx != 0) ) {
           const IntFragment_ID iid = get_iid_fragment(frags,vid);
-          fprintf(stderr,"Woops: iid="F_IID " vid="F_IID " insx=%d jnsx=%d\n",
+          fprintf(stderr,"Woops: iid=" F_IID " vid=" F_IID " insx=%d jnsx=%d\n",
                   iid,vid,insx,jnsx);
         }
 

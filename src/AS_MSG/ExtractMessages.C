@@ -167,7 +167,7 @@ main(int argc, char **argv) {
 
   for (i=0; i<=NUM_OF_REC_TYPES; i++)
     if (count[i] > 0)
-      fprintf(stderr, "%s num "F_OFF_T" size "F_OFF_T" avg %f\n",
+      fprintf(stderr, "%s num " F_OFF_T" size " F_OFF_T" avg %f\n",
               MessageTypeName[i], count[i], size[i], (double)size[i] / count[i]);
 
   exit(0);

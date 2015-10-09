@@ -156,7 +156,7 @@ MakeRoom_VA(VarArrayType *va,
 
 #ifdef ALWAYS_MOVE_VA_ON_MAKEROOM
   if (oldSize > 0)
-    fprintf(stderr, "* MakeRoom_VA reallocated '%s' from "F_SIZE_T" bytes to "F_SIZE_T" bytes.\n", va->typeofElement, oldSize, newSize);
+    fprintf(stderr, "* MakeRoom_VA reallocated '%s' from " F_SIZE_T" bytes to " F_SIZE_T" bytes.\n", va->typeofElement, oldSize, newSize);
 #endif
 
   return TRUE;
@@ -341,7 +341,7 @@ ReadVA(FILE *fp, VarArrayType *va, FileVarArrayType *vat) {
     size_t numRead = AS_UTL_safeRead(fp, va->Elements, "LoadFromFile_VA", va->sizeofElement, va->numElements);
 
     if (va->numElements != numRead)
-      fprintf(stderr, "ReadVA()-- Short read from va <%s>; expected "F_S64" elements, read "F_S64" elements.\n",
+      fprintf(stderr, "ReadVA()-- Short read from va <%s>; expected " F_S64" elements, read " F_S64" elements.\n",
               va->typeofElement, va->numElements, numRead), exit(1);
   }
 }

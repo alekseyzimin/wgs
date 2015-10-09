@@ -64,7 +64,7 @@ main(int argc, char **argv) {
   fprintf(stderr, "testing.\n");
   for (i=0; i<NUM_ENTRIES; i++) {
     if (LookupValueInHashTable_AS(hashtable, inputs[i], 0) != inputs[i]) {
-      fprintf(stderr, "hash error for "F_U64"\n", inputs[i]);
+      fprintf(stderr, "hash error for " F_U64"\n", inputs[i]);
     }
   }
 
@@ -80,7 +80,7 @@ main(int argc, char **argv) {
   fprintf(stderr, "testing.\n");
   for (i=0; i<NUM_ENTRIES; i++) {
     if (LookupValueInHashTable_AS(hashtable, inputs[i], 0) != inputs[i]) {
-      fprintf(stderr, "hash error for "F_U64"\n", inputs[i]);
+      fprintf(stderr, "hash error for " F_U64"\n", inputs[i]);
     }
   }
 

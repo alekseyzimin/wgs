@@ -277,7 +277,7 @@ main (int argc, char * argv []) {
   fprintf(stderr, "Bad mate threshold    = %d\n", badMateBreakThreshold);
   fprintf(stderr, "Error threshold       = %.3f (%.3f%%)\n", erate, erate * 100);
   fprintf(stderr, "Error limit           = %.3f errors\n", elimit);
-  fprintf(stderr, "Genome Size           = "F_S64"\n", genome_size);
+  fprintf(stderr, "Genome Size           = " F_S64"\n", genome_size);
   fprintf(stderr, "\n");
   fprintf(stderr, "sizeof(DoveTailNode)  = %d\n", sizeof(DoveTailNode));
   fprintf(stderr, "\n");

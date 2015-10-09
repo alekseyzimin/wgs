@@ -77,7 +77,7 @@ updateErates(char *storeName, char *eratesName) {
   orig = AS_OVS_openOverlapStorePrivate(storeName, TRUE,  TRUE);
 
   if (iNum != orig->ovs.numOverlapsTotal) {
-    fprintf(stderr, "ERROR: iNum "F_U64" != orig->ovs.numOverlapsTotal "F_U64"\n",
+    fprintf(stderr, "ERROR: iNum " F_U64" != orig->ovs.numOverlapsTotal " F_U64"\n",
             iNum, orig->ovs.numOverlapsTotal);
 
     // The backup gets nuked by the close call, restore to avoid

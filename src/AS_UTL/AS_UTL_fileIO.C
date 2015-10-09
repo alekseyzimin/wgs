@@ -72,7 +72,7 @@ AS_UTL_safeWrite(FILE *file, const void *buffer, const char *desc, size_t size, 
 
     if (errno) {
       fprintf(stderr, "safeWrite()-- Write failure on %s: %s\n", desc, strerror(errno));
-      fprintf(stderr, "safeWrite()-- Wanted to write "F_SIZE_T" objects (size="F_SIZE_T"), wrote "F_SIZE_T".\n",
+      fprintf(stderr, "safeWrite()-- Wanted to write " F_SIZE_T" objects (size=" F_SIZE_T"), wrote " F_SIZE_T".\n",
               towrite, size, written);
       assert(errno == 0);
     }
@@ -88,7 +88,7 @@ AS_UTL_safeWrite(FILE *file, const void *buffer, const char *desc, size_t size, 
 #ifdef VERIFY_WRITE_POSITIONS
   if ((expectedposition > 0) &&
       (AS_UTL_ftell(file) != expectedposition)) {
-    fprintf(stderr, "safeWrite()-- EXPECTED "F_OFF_T", ended up at "F_OFF_T"\n",
+    fprintf(stderr, "safeWrite()-- EXPECTED " F_OFF_T", ended up at " F_OFF_T"\n",
             expectedposition, AS_UTL_ftell(file));
     assert(AS_UTL_ftell(file) == expectedposition);
   }
@@ -117,7 +117,7 @@ AS_UTL_safeRead(FILE *file, void *buffer, const char *desc, size_t size, size_t 
 
     if ((errno) && (errno != EINTR)) {
       fprintf(stderr, "safeRead()-- Read failure on %s: %s.\n", desc, strerror(errno));
-      fprintf(stderr, "safeRead()-- Wanted to read "F_SIZE_T" objects (size="F_SIZE_T"), read "F_SIZE_T".\n",
+      fprintf(stderr, "safeRead()-- Wanted to read " F_SIZE_T" objects (size=" F_SIZE_T"), read " F_SIZE_T".\n",
               toread, size, written);
       assert(errno == 0);
     }
@@ -126,7 +126,7 @@ AS_UTL_safeRead(FILE *file, void *buffer, const char *desc, size_t size, size_t 
  finish:
   //  Just annoys developers.  Stop it.
   //if (position != nobj)
-  //  fprintf(stderr, "AS_UTL_safeRead()--  Short read; wanted "F_SIZE_T" objects, read "F_SIZE_T" instead.\n",
+  //  fprintf(stderr, "AS_UTL_safeRead()--  Short read; wanted " F_SIZE_T" objects, read " F_SIZE_T" instead.\n",
   //          nobj, position);
   return(position);
 }
@@ -316,7 +316,7 @@ AS_UTL_fseek(FILE *stream, off_t offset, int whence) {
   if ((whence == SEEK_SET) && (beginpos == offset)) {
 #ifdef DEBUG_SEEK
     //  This isn't terribly informative, and adds a lot of clutter.
-    //fprintf(stderr, "AS_UTL_fseek()--  seek to "F_OFF_T" (whence=%d); already there\n", offset, whence);
+    //fprintf(stderr, "AS_UTL_fseek()--  seek to " F_OFF_T" (whence=%d); already there\n", offset, whence);
 #endif
     return;
   }
@@ -330,7 +330,7 @@ AS_UTL_fseek(FILE *stream, off_t offset, int whence) {
   }
 
 #ifdef DEBUG_SEEK
-  fprintf(stderr, "AS_UTL_fseek()--  seek to "F_OFF_T" (requested "F_OFF_T", whence=%d) from "F_OFF_T"\n",
+  fprintf(stderr, "AS_UTL_fseek()--  seek to " F_OFF_T" (requested " F_OFF_T", whence=%d) from " F_OFF_T"\n",
           AS_UTL_ftell(stream), offset, whence, beginpos);
 #endif
 

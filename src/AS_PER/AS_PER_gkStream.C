@@ -205,7 +205,7 @@ gkStream::next(gkFragment *fr) {
         loaded = nextStream(fsb, &fr->fr.strobe, 0, NULL);
         break;
       default:
-        fprintf(stderr, "gkStream::next()-- invalid type "F_U32" for iid "F_U32"\n", type, curIID);
+        fprintf(stderr, "gkStream::next()-- invalid type " F_U32" for iid " F_U32"\n", type, curIID);
         assert(0);
         break;
     }

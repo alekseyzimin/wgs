@@ -283,7 +283,7 @@ updateFragmentWithParent(IntUnitigMesg *iunitig, int thisFrag, OverlapStore *ovs
 
     //  Report we did something.
     //
-    fprintf(stderr, "Updated fragment "F_IID" from "F_IID",%d,%d to "F_IID",%d,%d\n",
+    fprintf(stderr, "Updated fragment " F_IID" from " F_IID",%d,%d to " F_IID",%d,%d\n",
             iunitig->f_list[thisFrag].ident,
             oldParent,
             oldAHang,
@@ -344,7 +344,7 @@ updateFragmentWithParent(IntUnitigMesg *iunitig, int thisFrag, OverlapStore *ovs
     if (ahang <= 0)
       continue;
 
-    fprintf(stderr, "shifttest ovl=%d testFrag="F_IID" pos %d-%d  thisFrag="F_IID" pos %d-%d  hangs %d,%d\n",
+    fprintf(stderr, "shifttest ovl=%d testFrag=" F_IID" pos %d-%d  thisFrag=" F_IID" pos %d-%d  hangs %d,%d\n",
             testOvl,
             iunitig->f_list[testFrag].ident,
             iunitig->f_list[testFrag].position.bgn,
@@ -362,7 +362,7 @@ updateFragmentWithParent(IntUnitigMesg *iunitig, int thisFrag, OverlapStore *ovs
 
     iunitig->f_list[testFrag] = fragCopy;
 
-    fprintf(stderr, "Shifted fragment "F_IID" from position %d to position %d\n",
+    fprintf(stderr, "Shifted fragment " F_IID" from position %d to position %d\n",
             iunitig->f_list[testFrag].ident,
             thisFrag, testFrag);
 
@@ -380,7 +380,7 @@ updateFragmentWithParent(IntUnitigMesg *iunitig, int thisFrag, OverlapStore *ovs
 
   //  And we failed.  Good luck with this one.
   //
-  fprintf(stderr, "Failed to update fragment "F_IID" from "F_IID",%d,%d.\n",
+  fprintf(stderr, "Failed to update fragment " F_IID" from " F_IID",%d,%d.\n",
           iunitig->f_list[thisFrag].ident,
           oldParent,
           oldAHang,

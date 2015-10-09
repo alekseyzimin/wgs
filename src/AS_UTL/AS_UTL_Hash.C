@@ -440,7 +440,7 @@ DeleteFromHashTable_AS(HashTable_AS *table,
 
 #if 0
   if (keylen > 0)
-    fprintf(stderr, "delete - key "F_U64" %d,%d,%d keylen %d hashkey %d bucket %d\n",
+    fprintf(stderr, "delete - key " F_U64" %d,%d,%d keylen %d hashkey %d bucket %d\n",
             key,
             ((int *)key)[0],
             ((int *)key)[1],
@@ -545,7 +545,7 @@ LookupInHashTable_AS(HashTable_AS *table,
 
 #if 0
   if (keylen > 0)
-    fprintf(stderr, "lookup - key "F_U64" %d,%d,%d keylen %d hashkey %d bucket %d\n",
+    fprintf(stderr, "lookup - key " F_U64" %d,%d,%d keylen %d hashkey %d bucket %d\n",
             key,
             ((int *)key)[0],
             ((int *)key)[1],

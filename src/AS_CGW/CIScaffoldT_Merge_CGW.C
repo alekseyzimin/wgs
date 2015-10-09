@@ -129,7 +129,7 @@ InsertScaffoldContentsIntoScaffold(ScaffoldGraphT *sgraph,
   // CheckCIScaffoldTLength(sgraph, oldScaffold);
   // CheckCIScaffoldTLength(sgraph, newScaffold);
 
-  fprintf(stderr,"InsertScaffoldContentsIntoScaffold()-- Insert scaffold "F_CID" (%.0fbp) into scaffold "F_CID" (%.0fbp) at offset %.3f +/- %.3f orient %c\n",
+  fprintf(stderr,"InsertScaffoldContentsIntoScaffold()-- Insert scaffold " F_CID" (%.0fbp) into scaffold " F_CID" (%.0fbp) at offset %.3f +/- %.3f orient %c\n",
           oldScaffoldID, oldScaffold->bpLength.mean,
           newScaffoldID, newScaffold->bpLength.mean,
           offset->mean, sqrt(offset->variance),
@@ -177,7 +177,7 @@ InsertScaffoldContentsIntoScaffold(ScaffoldGraphT *sgraph,
     //assert(offsetAEnd.variance >= 0.0);
     //assert(offsetBEnd.variance >= 0.0);
 
-    fprintf(stderr,"InsertScaffoldContentsIntoScaffold()-- Insert CI "F_CID" (%.0fbp) at offset (%.0f,%.0f); was at (%.0f,%.0f)\n",
+    fprintf(stderr,"InsertScaffoldContentsIntoScaffold()-- Insert CI " F_CID" (%.0fbp) at offset (%.0f,%.0f); was at (%.0f,%.0f)\n",
             CI->id,
             CI->bpLength.mean,
             offsetAEnd.mean,     offsetBEnd.mean,
@@ -1910,7 +1910,7 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
       (maxDelta     <= 0.0))
     return(TRUE);
 
-  fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds "F_CID" (%.1fbp) and "F_CID" (%.1fbp): gap %.1fbp +- %.1fbp weight %d %s edge\n",
+  fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds " F_CID" (%.1fbp) and " F_CID" (%.1fbp): gap %.1fbp +- %.1fbp weight %d %s edge\n",
           scaffoldA->id, scaffoldA->bpLength.mean,
           scaffoldB->id, scaffoldB->bpLength.mean,
           curEdge->distance.mean,
@@ -1926,7 +1926,7 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
         if(scaffoldA->bpLength.mean<scaffoldB->bpLength.mean){
         if(abs(curEdge->distance.mean+5*sqrt(curEdge->distance.variance))<scaffoldA->bpLength.mean && curEdge->distance.mean+5*sqrt(curEdge->distance.variance)<-10000)
                 {
-                fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds "F_CID" (%.1fbp) and "F_CID" (%.1fbp): FAIL LARGE NEGATIVE GAP\n",
+                fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds " F_CID" (%.1fbp) and " F_CID" (%.1fbp): FAIL LARGE NEGATIVE GAP\n",
           scaffoldA->id, scaffoldA->bpLength.mean,
           scaffoldB->id, scaffoldB->bpLength.mean);
                 return(FALSE);
@@ -1934,7 +1934,7 @@ isQualityScaffoldMergingEdge(SEdgeT                     *curEdge,
         }else{ 
                 if(abs(curEdge->distance.mean+5*sqrt(curEdge->distance.variance))<scaffoldB->bpLength.mean && curEdge->distance.mean+5*sqrt(curEdge->distance.variance)<-10000)
                 {
-                fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds "F_CID" (%.1fbp) and "F_CID" (%.1fbp): FAIL LARGE NEGATIVE GAP\n",
+                fprintf(stderr,"isQualityScaffoldMergingEdge()-- Merge scaffolds " F_CID" (%.1fbp) and " F_CID" (%.1fbp): FAIL LARGE NEGATIVE GAP\n",
           scaffoldA->id, scaffoldA->bpLength.mean,
           scaffoldB->id, scaffoldB->bpLength.mean);
                 return(FALSE);

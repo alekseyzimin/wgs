@@ -166,8 +166,8 @@ main(int argc, char **argv) {
     fclose(Ai);
     fclose(Bi);
 
-    fprintf(stderr, "Found "F_U64" reads in '%s'\n", Ac, path1);
-    fprintf(stderr, "Found "F_U64" reads in '%s'\n", Bc, path2);
+    fprintf(stderr, "Found " F_U64" reads in '%s'\n", Ac, path1);
+    fprintf(stderr, "Found " F_U64" reads in '%s'\n", Bc, path2);
 
     if (Ac != Bc) {
       fprintf(stderr, "ERROR:  Number of reads must be the same.\n");

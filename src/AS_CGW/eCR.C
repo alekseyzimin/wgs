@@ -413,7 +413,7 @@ main(int argc, char **argv) {
           assert(bgnCur < endCur);
 
           if ((bgnOld != bgnCur) || (endOld != endCur)) {
-            fprintf(stderr, "WARNING:  Reset clear for frag "F_IID",%s (ctg %d scf %d) from (%d,%d) to (%d,%d)\n",
+            fprintf(stderr, "WARNING:  Reset clear for frag " F_IID",%s (ctg %d scf %d) from (%d,%d) to (%d,%d)\n",
                     fr.gkFragment_getReadIID(),
                     AS_UID_toString(fr.gkFragment_getReadUID()),
                     contigID, sid,
@@ -1798,7 +1798,7 @@ extendClearRange(int fragIid, int frag3pDelta) {
   ScaffoldGraph->gkpStore->gkStore_setFragment(&fr);
 
 #if 0
-  fprintf(stderr, "WARNING:  Set clear for frag "F_IID",%s from (%d,%d) to (%d,%d)\n",
+  fprintf(stderr, "WARNING:  Set clear for frag " F_IID",%s from (%d,%d) to (%d,%d)\n",
           fr.gkFragment_getReadIID(),
           AS_UID_toString(fr.gkFragment_getReadUID()),
           clr_bgn,
@@ -1827,7 +1827,7 @@ revertClearRange(int fragIid) {
   ScaffoldGraph->gkpStore->gkStore_setFragment(&fr);
 
 #if 0
-  fprintf(stderr, "WARNING:  Revert clear for frag "F_IID",%s to (%d,%d)\n",
+  fprintf(stderr, "WARNING:  Revert clear for frag " F_IID",%s to (%d,%d)\n",
           fr.gkFragment_getReadIID(),
           AS_UID_toString(fr.gkFragment_getReadUID()),
           clr_bgn,

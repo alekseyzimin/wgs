@@ -174,7 +174,7 @@ main( int argc, char **argv) {
 
       AS_UTL_writeFastA(stdout,
                         toprint, strlen(toprint), 0,
-                        ">"F_U64" /type=mini_scaffold /frgs=(%s,%s)\n",
+                        ">" F_U64" /type=mini_scaffold /frgs=(%s,%s)\n",
                         getUID(uids),
                         AS_UID_toString(fUID),
                         AS_UID_toString(mUID));

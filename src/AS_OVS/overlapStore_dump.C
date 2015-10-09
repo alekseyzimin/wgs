@@ -344,7 +344,7 @@ dumpPictureOVL(OVSoverlap *overlaps, uint64 novl, gkStore *gkpStore, uint32 clea
 
 void
 dumpPicture(char *ovlName, char *gkpName, uint32 clearRegion, double dumpERate, uint32 dumpType, uint32 qryIID) {
-  fprintf(stderr, "DUMPING PICTURE for ID "F_IID" in store %s (gkp %s clear %s)\n",
+  fprintf(stderr, "DUMPING PICTURE for ID " F_IID" in store %s (gkp %s clear %s)\n",
           qryIID, ovlName, gkpName, AS_READ_CLEAR_NAMES[clearRegion]);
 
   OverlapStore  *ovlStore = AS_OVS_openOverlapStore(ovlName);

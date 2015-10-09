@@ -131,7 +131,7 @@ dumpGateKeeperInfo(char       *gkpStoreName,
 
   //  Global
 
-  fprintf(stdout, "GLOBAL\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U64"\t"F_U64"\n",
+  fprintf(stdout, "GLOBAL\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U64"\t" F_U64"\n",
           numActiveFrag, numDeletedFrag, numMatedFrag, readLength, clearLength);
 
   //  Per Library
@@ -142,7 +142,7 @@ dumpGateKeeperInfo(char       *gkpStoreName,
    else
       fprintf(stdout, "%s\t", (j == 0 ? "LegacyUnmatedReads" : AS_UID_toString(gkp->gkStore_getLibrary(j)->libraryUID)));
 
-    fprintf(stdout, F_U32"\t"F_U32"\t"F_U32"\t"F_U64"\t"F_U64"\n",
+    fprintf(stdout, F_U32"\t" F_U32"\t" F_U32"\t" F_U64"\t" F_U64"\n",
             numActivePerLib[j], numDeletedPerLib[j], numMatedPerLib[j], readLengthPerLib[j], clearLengthPerLib[j]);
   }
 
@@ -184,7 +184,7 @@ dumpGateKeeperLibraries(char       *gkpStoreName,
       gkpl->gkLibrary_encodeFeatures(&lmesg);
 
       if (asTable) {
-        fprintf(stdout, "%s\t"F_IID"\t%s\t%.3f\t%.3f\t%d\n",
+        fprintf(stdout, "%s\t" F_IID"\t%s\t%.3f\t%.3f\t%d\n",
                 (withoutUIDs == TRUE ? "NA" : AS_UID_toString(gkpl->libraryUID)), i,
                 AS_READ_ORIENT_NAMES[gkpl->orientation],
                 gkpl->mean,
@@ -193,7 +193,7 @@ dumpGateKeeperLibraries(char       *gkpStoreName,
       } else {
         uint32 f;
 
-        fprintf(stdout, "libraryIdent         = %s,"F_IID"\n", AS_UID_toString(gkpl->libraryUID), i);
+        fprintf(stdout, "libraryIdent         = %s," F_IID"\n", AS_UID_toString(gkpl->libraryUID), i);
         fprintf(stdout, "libraryOrientation   = %s\n", AS_READ_ORIENT_NAMES[gkpl->orientation]);
         fprintf(stdout, "libraryMean          = %.3f\n", gkpl->mean);
         fprintf(stdout, "libraryStdDev        = %.3f\n", gkpl->stddev);
@@ -255,7 +255,7 @@ dumpGateKeeperFragments(char       *gkpStoreName,
         libuid = gkp->gkStore_getLibrary(libiid)->libraryUID;
 
       if (asTable) {
-        fprintf(stdout, "%s\t"F_IID"\t%s\t"F_IID"\t%s\t"F_IID"\t%d\t%d\t%s\t%d\t%d\t%d\n",
+        fprintf(stdout, "%s\t" F_IID"\t%s\t" F_IID"\t%s\t" F_IID"\t%d\t%d\t%s\t%d\t%d\t%d\n",
                 (withoutUIDs == TRUE ? "NA" : AS_UID_toString(fr.gkFragment_getReadUID())), fr.gkFragment_getReadIID(),
                 (withoutUIDs == TRUE ? "NA" : AS_UID_toString(mateuid)), mateiid,
                 (withoutUIDs == TRUE ? "NA" : AS_UID_toString(libuid)), libiid,
@@ -265,9 +265,9 @@ dumpGateKeeperFragments(char       *gkpStoreName,
                 fr.gkFragment_getSequenceLength(),
                 clrBgn, clrEnd);
       } else {
-        fprintf(stdout, "fragmentIdent           = %s,"F_IID"\n", AS_UID_toString(fr.gkFragment_getReadUID()), fr.gkFragment_getReadIID());
-        fprintf(stdout, "fragmentMate            = %s,"F_IID"\n", AS_UID_toString(mateuid), mateiid);
-        fprintf(stdout, "fragmentLibrary         = %s,"F_IID"\n", AS_UID_toString(libuid), libiid);
+        fprintf(stdout, "fragmentIdent           = %s," F_IID"\n", AS_UID_toString(fr.gkFragment_getReadUID()), fr.gkFragment_getReadIID());
+        fprintf(stdout, "fragmentMate            = %s," F_IID"\n", AS_UID_toString(mateuid), mateiid);
+        fprintf(stdout, "fragmentLibrary         = %s," F_IID"\n", AS_UID_toString(libuid), libiid);
 
         fprintf(stdout, "fragmentIsDeleted       = %d\n", fr.gkFragment_getIsDeleted());
         fprintf(stdout, "fragmentIsNonRandom     = %d\n", fr.gkFragment_getIsNonRandom());
@@ -300,8 +300,8 @@ dumpGateKeeperFragments(char       *gkpStoreName,
           fprintf(stdout, "fragmentQuality       = %s\n", qlt);
         }
 
-        fprintf(stdout, "fragmentSeqOffset       = "F_U64"\n", fr.gkFragment_getSequenceOffset());
-        fprintf(stdout, "fragmentQltOffset       = "F_U64"\n", fr.gkFragment_getQualityOffset());
+        fprintf(stdout, "fragmentSeqOffset       = " F_U64"\n", fr.gkFragment_getSequenceOffset());
+        fprintf(stdout, "fragmentQltOffset       = " F_U64"\n", fr.gkFragment_getQualityOffset());
       }
     }
   }
@@ -372,7 +372,7 @@ dumpGateKeeperAsFasta(char       *gkpStoreName,
 
         if (dumpQuality >=2) {
           AS_UTL_writeQVFastA(stdout, seq, clrEnd-clrBeg, 0,
-                              ">%s,"F_IID" mate=%s,"F_IID" lib=%s,"F_IID" clr=%s,%d,%d deleted=%d\n",
+                              ">%s," F_IID" mate=%s," F_IID" lib=%s," F_IID" clr=%s,%d,%d deleted=%d\n",
                               AS_UID_toString(fr.gkFragment_getReadUID()), fr.gkFragment_getReadIID(),
                               AS_UID_toString(mateuid), mateiid,
                               AS_UID_toString(libuid), libiid,
@@ -381,7 +381,7 @@ dumpGateKeeperAsFasta(char       *gkpStoreName,
 
         } else {
           AS_UTL_writeFastA(stdout, seq, clrEnd-clrBeg, 0,
-                            ">%s,"F_IID" mate=%s,"F_IID" lib=%s,"F_IID" clr=%s,%d,%d deleted=%d\n",
+                            ">%s," F_IID" mate=%s," F_IID" lib=%s," F_IID" clr=%s,%d,%d deleted=%d\n",
                             AS_UID_toString(fr.gkFragment_getReadUID()), fr.gkFragment_getReadIID(),
                             AS_UID_toString(mateuid), mateiid,
                             AS_UID_toString(libuid), libiid,

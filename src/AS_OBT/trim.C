@@ -203,7 +203,7 @@ findGoodQuality(double  *qltD,
       }
 
       else {
-        fprintf(stderr, "UNMATCHED OVERLAP\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\n",
+        fprintf(stderr, "UNMATCHED OVERLAP\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\n",
                 f[fpos].start, f[fpos].end, r[rpos].start, r[rpos].end);
       }
     }

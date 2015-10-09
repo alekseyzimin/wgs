@@ -133,21 +133,21 @@ processIUM(IntUnitigMesg *ium_mesg) {
   if ((UTGseqout) && (ium_mesg->num_frags > minNumFragsInUnitig)) {
     AS_UTL_writeFastA(UTGseqout,
                       ium_mesg->consensus, len, 70,
-                      ">ium"F_IID" length=%d num_frags="F_IID" Astat=%.2f\n",
+                      ">ium" F_IID" length=%d num_frags=" F_IID" Astat=%.2f\n",
                       ium_mesg->iaccession,
                       strlen(ium_mesg->consensus),
                       ium_mesg->num_frags,
                       ium_mesg->coverage_stat);
     AS_UTL_writeFastA(UTGqltout,
                       ium_mesg->quality, len, 70,
-                      ">ium"F_IID" length=%d num_frags="F_IID" Astat=%.2f\n",
+                      ">ium" F_IID" length=%d num_frags=" F_IID" Astat=%.2f\n",
                       ium_mesg->iaccession,
                       strlen(ium_mesg->consensus),
                       ium_mesg->num_frags,
                       ium_mesg->coverage_stat);
     AS_UTL_writeQVFastA(UTGquaout,
                         ium_mesg->quality, len, 20,
-                        ">ium"F_IID" length=%d num_frags="F_IID" Astat=%.2f\n",
+                        ">ium" F_IID" length=%d num_frags=" F_IID" Astat=%.2f\n",
                         ium_mesg->iaccession,
                         strlen(ium_mesg->consensus),
                         ium_mesg->num_frags,
@@ -167,21 +167,21 @@ processUTG(SnapUnitigMesg  *utg_mesg) {
   if ((UTGseqout) && (utg_mesg->num_frags > minNumFragsInUnitig)) {
     AS_UTL_writeFastA(UTGseqout,
                       utg_mesg->consensus, len, 70,
-                      ">utg%s length=%d num_frags="F_IID" Astat=%.2f\n",
+                      ">utg%s length=%d num_frags=" F_IID" Astat=%.2f\n",
                       AS_UID_toString(utg_mesg->eaccession),
                       strlen(utg_mesg->consensus),
                       utg_mesg->num_frags,
                       utg_mesg->coverage_stat);
     AS_UTL_writeFastA(UTGqltout,
                       utg_mesg->quality, len, 70,
-                      ">utg%s length=%d num_frags="F_IID" Astat=%.2f\n",
+                      ">utg%s length=%d num_frags=" F_IID" Astat=%.2f\n",
                       AS_UID_toString(utg_mesg->eaccession),
                       strlen(utg_mesg->consensus),
                       utg_mesg->num_frags,
                       utg_mesg->coverage_stat);
     AS_UTL_writeQVFastA(UTGquaout,
                         utg_mesg->quality, len, 20,
-                        ">utg%s length=%d num_frags="F_IID" Astat=%.2f\n",
+                        ">utg%s length=%d num_frags=" F_IID" Astat=%.2f\n",
                         AS_UID_toString(utg_mesg->eaccession),
                         strlen(utg_mesg->consensus),
                         utg_mesg->num_frags,
@@ -220,7 +220,7 @@ processCCO(SnapConConMesg *cco_mesg) {
 
   cd->len = degap(cd->cns, cd->qlt);
 
-  //fprintf(stderr, "CCO: "F_IID" len: %d -> %d\n", cco_mesg->iaccession, cco_mesg->length, cd->len);
+  //fprintf(stderr, "CCO: " F_IID" len: %d -> %d\n", cco_mesg->iaccession, cco_mesg->length, cd->len);
 
   if (ctgDataMax <= cco_mesg->iaccession) {
     ctgDataMax = cco_mesg->iaccession + 32 * 1024 * 1024;

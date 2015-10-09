@@ -406,11 +406,11 @@ MateChecker::evaluateMates(UnitigGraph &tigGraph) {
     }
   }
 
-  fprintf(stderr, "MATE HAPPINESS (dove/dove):  unmated %11"F_U64P"  mated %11"F_U64P"  sameTig: happy %11"F_U64P" grumpy %11"F_U64P"  diffTig: end-end %11"F_U64P" end-int %11"F_U64P" int-int %11"F_U64P"\n",
+  fprintf(stderr, "MATE HAPPINESS (dove/dove):  unmated %11" F_U64P"  mated %11" F_U64P"  sameTig: happy %11" F_U64P" grumpy %11" F_U64P"  diffTig: end-end %11" F_U64P" end-int %11" F_U64P" int-int %11" F_U64P"\n",
           unmated[0], mated[0], happy[0], grumpy[0], different[0][0], different[0][1], different[0][2]);
-  fprintf(stderr, "MATE HAPPINESS (dove/cont):  unmated %11"F_U64P"  mated %11"F_U64P"  sameTig: happy %11"F_U64P" grumpy %11"F_U64P"  diffTig: end-end %11"F_U64P" end-int %11"F_U64P" int-int %11"F_U64P"\n",
+  fprintf(stderr, "MATE HAPPINESS (dove/cont):  unmated %11" F_U64P"  mated %11" F_U64P"  sameTig: happy %11" F_U64P" grumpy %11" F_U64P"  diffTig: end-end %11" F_U64P" end-int %11" F_U64P" int-int %11" F_U64P"\n",
           unmated[1], mated[1], happy[1], grumpy[1], different[1][0], different[1][1], different[1][2]);
-  fprintf(stderr, "MATE HAPPINESS (cont/cont):  unmated %11"F_U64P"  mated %11"F_U64P"  sameTig: happy %11"F_U64P" grumpy %11"F_U64P"  diffTig: end-end %11"F_U64P" end-int %11"F_U64P" int-int %11"F_U64P"\n",
+  fprintf(stderr, "MATE HAPPINESS (cont/cont):  unmated %11" F_U64P"  mated %11" F_U64P"  sameTig: happy %11" F_U64P" grumpy %11" F_U64P"  diffTig: end-end %11" F_U64P" end-int %11" F_U64P" int-int %11" F_U64P"\n",
           unmated[2], mated[2], happy[2], grumpy[2], different[2][0], different[2][1], different[2][2]);
 }
 

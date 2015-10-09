@@ -159,7 +159,7 @@ VA_DEF(COSData);
 static
 void
 PrintSegment(FILE * fp, Segment * segment) {
-  fprintf(fp, "  A: %d, B: %d, beg,end,len: ("F_S32", "F_S32", "F_S32")\n",
+  fprintf(fp, "  A: %d, B: %d, beg,end,len: (" F_S32", " F_S32", " F_S32")\n",
           segment->a_contig, segment->b_contig,
           segment->overlap->begpos, segment->overlap->endpos,
           segment->overlap->length);
@@ -177,15 +177,15 @@ static
 void
 PrintScafCompScaffold(FILE * fp, Scaffold * scaffold) {
   int i;
-  fprintf(fp, "  length: "F_S32"\n", scaffold->length);
+  fprintf(fp, "  length: " F_S32"\n", scaffold->length);
   fprintf(fp, "  %d gaps:\n", scaffold->num_gaps);
-  fprintf(fp, "    tig   left: %10"F_S32P ",   length: %10"F_S32P "\n",
+  fprintf(fp, "    tig   left: %10" F_S32P ",   length: %10" F_S32P "\n",
           scaffold->ctgs[0].lft_end, scaffold->ctgs[0].length);
   for(i = 0; i < scaffold->num_gaps; i++) {
-    fprintf(fp, "    gap length: %10"F_S32P ",   stddev: %.2f\n",
+    fprintf(fp, "    gap length: %10" F_S32P ",   stddev: %.2f\n",
             scaffold->gaps[i].gap_length,
             scaffold->gaps[i].gap_var);
-    fprintf(fp, "    tig   left: %10"F_S32P ",   length: %10"F_S32P "\n",
+    fprintf(fp, "    tig   left: %10" F_S32P ",   length: %10" F_S32P "\n",
             scaffold->ctgs[i+1].lft_end, scaffold->ctgs[i+1].length);
   }
 }
@@ -193,7 +193,7 @@ PrintScafCompScaffold(FILE * fp, Scaffold * scaffold) {
 static
 void
 PrintContigElement(FILE * fp, ContigElement * ce) {
-  fprintf(fp, "    (%d, "F_CID ") len: %.f, min: %.f, max: %.f, orient: %c\n",
+  fprintf(fp, "    (%d, " F_CID ") len: %.f, min: %.f, max: %.f, orient: %c\n",
           ce->index, ce->id, ce->length, ce->minCoord, ce->maxCoord,
           ce->orient.toLetter());
 }
@@ -223,7 +223,7 @@ PrintLocal_Overlaps(FILE * fp, VA_TYPE(Local_Overlap) * los) {
   int i;
   Local_Overlap * lo = GetVA_Local_Overlap(los, 0);
   for(i = 0; i < GetNumVA_Local_Overlap(los); i++) {
-    fprintf(fp, "  beg: "F_S32", end: "F_S32", len: "F_S32"\n",
+    fprintf(fp, "  beg: " F_S32", end: " F_S32", len: " F_S32"\n",
             lo[i].begpos, lo[i].endpos, lo[i].length);
   }
 }
@@ -232,7 +232,7 @@ static
 void
 PrintScaffoldAlignmentInterface(FILE * fp, ScaffoldAlignmentInterface * sai) {
   fprintf(fp, "--------------- ScaffoldAlignmentInterface ----------------\n");
-  fprintf(fp, "band begin,end, best: "F_S32", "F_S32", %d\n",
+  fprintf(fp, "band begin,end, best: " F_S32", " F_S32", %d\n",
           sai->scaffoldA->bandBeg, sai->scaffoldA->bandEnd, sai->best);
   fprintf(fp, "\n");
 
@@ -679,7 +679,7 @@ PopulateScaffoldStuff(ScaffoldStuff * ss,
 #ifdef DEBUG1
     PrintContigElement(stderr, &ce);
     if(isA)
-      fprintf(stderr, "  minAHang: "F_S32", maxAHang:"F_S32"\n",
+      fprintf(stderr, "  minAHang: " F_S32", maxAHang:" F_S32"\n",
               ss->bandBeg, ss->bandEnd);
 #endif
 
@@ -1036,7 +1036,7 @@ PopulateScaffoldAlignmentInterface(CIScaffoldT * scaffoldA,
         else
           {
 #ifdef DEBUG1
-            fprintf(stderr, "There is no overlap between ("F_CID":"F_S32","F_S32") and ("F_CID":"F_S32","F_S32")\n",
+            fprintf(stderr, "There is no overlap between (" F_CID":" F_S32"," F_S32") and (" F_CID":" F_S32"," F_S32")\n",
                     ceA->id, ceA->minCoord, ceA->maxCoord,
                     ceB->id, ceB->minCoord, ceB->maxCoord);
 #endif
@@ -1047,7 +1047,7 @@ PopulateScaffoldAlignmentInterface(CIScaffoldT * scaffoldA,
           assert(ceA->maxCoord < ceB->minCoord + CGW_DP_MINLEN + 1||
                  ceB->maxCoord < ceA->minCoord + CGW_DP_MINLEN + 1);
 #ifdef DEBUG1
-          fprintf(stderr, "Not looking for overlap between ("F_CID":"F_S32","F_S32") and ("F_CID":"F_S32","F_S32")\n",
+          fprintf(stderr, "Not looking for overlap between (" F_CID":" F_S32"," F_S32") and (" F_CID":" F_S32"," F_S32")\n",
                   ceA->id, ceA->minCoord, ceA->maxCoord,
                   ceB->id, ceB->minCoord, ceB->maxCoord);
 #endif
@@ -2031,7 +2031,7 @@ void
 PrintScaffold_Tigs(FILE * fp, Scaffold_Tig * contigs, int numContigs) {
   int i;
   for(i = 0; i < numContigs; i++) {
-    fprintf(fp, "%d: length: "F_S32", left end: "F_S32"\n",
+    fprintf(fp, "%d: length: " F_S32", left end: " F_S32"\n",
             i, contigs[i].length, contigs[i].lft_end);
   }
 }
@@ -2049,7 +2049,7 @@ PrintSegments(FILE * fp, Segment * segments) {
       for(thisSegment = segments;
           thisSegment != NULL;
           thisSegment = thisSegment->next) {
-        fprintf(fp, "contigA: %d, contigB: %d, begpos: "F_S32", endpos: "F_S32", length: "F_S32"\n",
+        fprintf(fp, "contigA: %d, contigB: %d, begpos: " F_S32", endpos: " F_S32", length: " F_S32"\n",
                 thisSegment->a_contig, thisSegment->b_contig,
                 thisSegment->overlap->begpos, thisSegment->overlap->endpos,
                 thisSegment->overlap->length);
@@ -2139,7 +2139,7 @@ MakeScaffoldAlignmentAdjustments(CIScaffoldT * scaffoldA,
                                                 overlaps, numOverlaps,
                                                 cosData)) != 0) {
       fprintf(stderr, "*** WARNING ***\n"
-              "\tScaffolds "F_CID " and "F_CID " can't be merged with edge (%.2f,%.2f)\n"
+              "\tScaffolds " F_CID " and " F_CID " can't be merged with edge (%.2f,%.2f)\n"
               "\tbecause %d contigs would have to be re-ordered\n"
               "\t(consider modifying the code to handle this)\n",
               scaffoldA->id, scaffoldB->id,

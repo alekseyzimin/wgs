@@ -204,7 +204,7 @@ public:
     if (_iid == ~(uint64)0)
       _iid = Aiid;
     if (_iid != Aiid)
-      fprintf(stderr, "ERROR: adding "F_U64" to overlapList with iid="F_U64"\n", Aiid, _iid), exit(1);
+      fprintf(stderr, "ERROR: adding " F_U64" to overlapList with iid=" F_U64"\n", Aiid, _iid), exit(1);
       
     uint32   style = 0;
     if (Alhang > 0)  style |= 0x08;
@@ -250,7 +250,7 @@ public:
         break;
 
       default:
-        fprintf(stderr, "UNCLASSIFIED OVERLAP TYPE "F_U32"\n", style);
+        fprintf(stderr, "UNCLASSIFIED OVERLAP TYPE " F_U32"\n", style);
         exit(1);
         break;
     }
@@ -282,7 +282,7 @@ public:
         break;
     }
 
-    fprintf(out, F_U64W(6)" "F_U64W(6)" "F_U64W(2)" "F_U64W(4)" "F_U64W(4)"-"F_U64W(4)" "F_U64W(4)"  "F_U64W(4)" "F_U64W(4)"-"F_U64W(4)" "F_U64W(4)"%s\n",
+    fprintf(out, F_U64W(6)" " F_U64W(6)" " F_U64W(2)" " F_U64W(4)" " F_U64W(4)"-" F_U64W(4)" " F_U64W(4)"  " F_U64W(4)" " F_U64W(4)"-" F_U64W(4)" " F_U64W(4)"%s\n",
             _iid, _ovl[i].Biid, _ovl[i].style,
             _ovl[i].Alhang, _ovl[i].Abeg, _ovl[i].Aend, _ovl[i].Arhang,
             _ovl[i].Blhang, _ovl[i].Bbeg, _ovl[i].Bend, _ovl[i].Brhang,
@@ -324,7 +324,7 @@ printReport(const char    *type,
             const overlapList  *overlap) {
 
 #ifdef WITH_REPORT_FULL
-  fprintf(reportFile, "%s,"F_IID" %s!  "F_U32" intervals ("F_U32","F_U32").  "F_U32" potential chimeric overlaps (%5.2f%%).\n",
+  fprintf(reportFile, "%s," F_IID" %s!  " F_U32" intervals (" F_U32"," F_U32").  " F_U32" potential chimeric overlaps (%5.2f%%).\n",
           AS_UID_toString(uid), iid, type,
           IL.numberOfIntervals(), intervalBeg, intervalEnd,
           hasPotentialChimera, (double)hasPotentialChimera / (double)overlap->length() * 100);
@@ -346,7 +346,7 @@ printLogMessage(AS_UID        uid,
                 char const   *type,
                 char const   *message) {
 
-  fprintf(reportFile, "%s,"F_IID" %s Trimmed from "F_U32W(4)" "F_U32W(4)" to "F_U32W(4)" "F_U32W(4)".  %s, gatekeeper store %s.\n",
+  fprintf(reportFile, "%s," F_IID" %s Trimmed from " F_U32W(4)" " F_U32W(4)" to " F_U32W(4)" " F_U32W(4)".  %s, gatekeeper store %s.\n",
           AS_UID_toString(uid), iid, type,
           obtBgn, obtEnd,
           intervalBeg, intervalEnd,
@@ -425,7 +425,7 @@ adjust(OVSoverlap *ovl, uint32 ovlLen, const clear_t *clear) {
 
 #ifdef REPORT_OVERLAPS
     if (reportFile)
-      fprintf(reportFile, F_U32"\t"F_U32"\t%c\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\t%5.3f -- ",
+      fprintf(reportFile, F_U32"\t" F_U32"\t%c\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\t%5.3f -- ",
               idA, idB, ori, leftA, righA, lenA, leftB, righB, lenB, error);
 #endif
 
@@ -554,7 +554,7 @@ process(const AS_IID           iid,
   if ((doUpdate) && (clear[iid].doNotOBT))
     doUpdate = false;
 
-  //fprintf(reportFile, "process %s,"F_IID"\n", AS_UID_toString(clear[iid].uid), iid);
+  //fprintf(reportFile, "process %s," F_IID"\n", AS_UID_toString(clear[iid].uid), iid);
 
   uint32           loLinker = clear[iid].tntBeg;
   uint32           hiLinker = clear[iid].tntEnd;
@@ -627,7 +627,7 @@ process(const AS_IID           iid,
     //
     if (isLinker == true) {
 #ifdef DEBUG_ISLINKER
-      fprintf(reportFile, "frag %s,"F_IID" region "F_U32"-"F_U32" isectbefore "F_U32" isect "F_U32" isectafter "F_U32"\n",
+      fprintf(reportFile, "frag %s," F_IID" region " F_U32"-" F_U32" isectbefore " F_U32" isect " F_U32" isectafter " F_U32"\n",
               AS_UID_toString(clear[iid].uid), iid,
               loLinker, hiLinker, isectbefore, isect, isectafter);
 #endif
@@ -644,7 +644,7 @@ process(const AS_IID           iid,
         if ((ovllo <= loLinker) && (hiLinker <= ovlhi)) {
           ovl->style = 16;  //  Invalid style, will be ignored
 #ifdef DEBUG_ISLINKER
-          fprintf(reportFile, "  overlap "F_U32"-"F_U32" --> "F_U32"-"F_U32" delete\n", ovllo, ovlhi, 0, 0);
+          fprintf(reportFile, "  overlap " F_U32"-" F_U32" --> " F_U32"-" F_U32" delete\n", ovllo, ovlhi, 0, 0);
 #endif
           continue;
         }
@@ -660,9 +660,9 @@ process(const AS_IID           iid,
           if ((loLinker > ovlhi) || (ovl->Abeg > ovl->Aend) || (ovl->Aend - ovl->Abeg < 40)) {
             ovl->style = 16;
 #ifdef DEBUG_ISLINKER
-            fprintf(reportFile, "  overlap "F_U32"-"F_U32" --> "F_U64"-"F_U64" begin delete\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
+            fprintf(reportFile, "  overlap " F_U32"-" F_U32" --> " F_U64"-" F_U64" begin delete\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
           } else {
-            fprintf(reportFile, "  overlap "F_U32"-"F_U32" --> "F_U64"-"F_U64" begin\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
+            fprintf(reportFile, "  overlap " F_U32"-" F_U32" --> " F_U64"-" F_U64" begin\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
 #endif
           }
           continue;
@@ -679,9 +679,9 @@ process(const AS_IID           iid,
           if ((ovllo > hiLinker) || (ovl->Abeg > ovl->Aend) || (ovl->Aend - ovl->Abeg < 40)) {
             ovl->style = 16;
 #ifdef DEBUG_ISLINKER
-            fprintf(reportFile, "  overlap "F_U32"-"F_U32" --> "F_U64"-"F_U64" end delete\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
+            fprintf(reportFile, "  overlap " F_U32"-" F_U32" --> " F_U64"-" F_U64" end delete\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
           } else {
-            fprintf(reportFile, "  overlap "F_U32"-"F_U32" --> "F_U64"-"F_U64" end\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
+            fprintf(reportFile, "  overlap " F_U32"-" F_U32" --> " F_U64"-" F_U64" end\n", ovllo, ovlhi, ovl->Abeg, ovl->Aend);
 #endif
           }
           continue;
@@ -811,7 +811,7 @@ process(const AS_IID           iid,
       IL.add(bgn, end - bgn);
 
 #ifdef REPORT_OVERLAPS
-      fprintf(reportFile, "%6d "F_U64W(6)" "F_U64W(2)" "F_U64W(4)" "F_U64W(4)"-"F_U64W(4)" "F_U64W(4)"  "F_U64W(4)" "F_U64W(4)"-"F_U64W(4)" "F_U64W(4)" interval "F_U32W(4)"-"F_U32W(4)"%s\n",
+      fprintf(reportFile, "%6d " F_U64W(6)" " F_U64W(2)" " F_U64W(4)" " F_U64W(4)"-" F_U64W(4)" " F_U64W(4)"  " F_U64W(4)" " F_U64W(4)"-" F_U64W(4)" " F_U64W(4)" interval " F_U32W(4)"-" F_U32W(4)"%s\n",
               iid,
               ovl->Biid,
               ovl->style,
@@ -828,7 +828,7 @@ process(const AS_IID           iid,
 
 #ifdef DEBUG_INTERVAL
   for (uint32 interval=0; interval<IL.numberOfIntervals(); interval++)
-    fprintf(reportFile, "interval[%d] = "F_U64"-"F_U64"\n", interval, IL.lo(interval), IL.hi(interval));
+    fprintf(reportFile, "interval[%d] = " F_U64"-" F_U64"\n", interval, IL.lo(interval), IL.hi(interval));
 #endif
 
 
@@ -1164,7 +1164,7 @@ process(const AS_IID           iid,
   //
   for (uint32 interval=0; interval<IL.numberOfIntervals(); interval++) {
 #ifdef DEBUG_INTERVAL
-    fprintf(reportFile, "intervalHang[%d] %d,%d  interval "F_U64","F_U64" -- ",
+    fprintf(reportFile, "intervalHang[%d] %d,%d  interval " F_U64"," F_U64" -- ",
             interval,
             leftIntervalHang[interval], rightIntervalHang[interval],
             IL.lo(interval), IL.hi(interval));
@@ -1176,7 +1176,7 @@ process(const AS_IID           iid,
       intervalEnd = IL.hi(interval);
       intervalMax = intervalEnd - intervalBeg;
 #ifdef DEBUG_INTERVAL
-      fprintf(reportFile, "overlapregion "F_U32","F_U32" -- ", intervalBeg, intervalEnd);
+      fprintf(reportFile, "overlapregion " F_U32"," F_U32" -- ", intervalBeg, intervalEnd);
 #endif
     }
 
@@ -1193,7 +1193,7 @@ process(const AS_IID           iid,
       intervalEnd = IL.hi(interval);
       intervalMax = intervalEnd - intervalBeg;
 #ifdef DEBUG_INTERVAL
-      fprintf(reportFile, "+before "F_U32","F_U32" -- ", intervalBeg, intervalEnd);
+      fprintf(reportFile, "+before " F_U32"," F_U32" -- ", intervalBeg, intervalEnd);
 #endif
     }
 
@@ -1406,22 +1406,22 @@ main(int argc, char **argv) {
     fprintf(summaryFile, "are not meaningful, and likely wrong.\n");
     fprintf(summaryFile, "\n");
     fprintf(summaryFile, "READS\n");
-    fprintf(summaryFile, "total processed       "F_U32"\n", readsProcessed);
-    fprintf(summaryFile, "full coverage         "F_U32"\n", fullCoverage);
-    fprintf(summaryFile, "gap not chimera       "F_U32"\n", gapNotChimera);
-    fprintf(summaryFile, "no chimeric ovl       "F_U32"\n", noChimericOvl);
+    fprintf(summaryFile, "total processed       " F_U32"\n", readsProcessed);
+    fprintf(summaryFile, "full coverage         " F_U32"\n", fullCoverage);
+    fprintf(summaryFile, "gap not chimera       " F_U32"\n", gapNotChimera);
+    fprintf(summaryFile, "no chimeric ovl       " F_U32"\n", noChimericOvl);
     fprintf(summaryFile, "\n");
-    fprintf(summaryFile, "chimera fixed:        "F_U32"\n", chimeraFixed);
-    fprintf(summaryFile, "chimera deleted small "F_U32"\n", chimeraDeletedSmall);
+    fprintf(summaryFile, "chimera fixed:        " F_U32"\n", chimeraFixed);
+    fprintf(summaryFile, "chimera deleted small " F_U32"\n", chimeraDeletedSmall);
     fprintf(summaryFile, "\n");
-    fprintf(summaryFile, "spur fixed            "F_U32"\n", spurFixed);
-    fprintf(summaryFile, "spur deleted small    "F_U32"\n", spurDeletedSmall);
+    fprintf(summaryFile, "spur fixed            " F_U32"\n", spurFixed);
+    fprintf(summaryFile, "spur deleted small    " F_U32"\n", spurDeletedSmall);
     fprintf(summaryFile, "\n");
     fprintf(summaryFile, "CHIMERA\n");
-    fprintf(summaryFile, "from innie pair       "F_U32"\n", chimeraDetectedInnie);
-    fprintf(summaryFile, "from overhang         "F_U32"\n", chimeraDetectedOverhang);
-    fprintf(summaryFile, "from gap              "F_U32"\n", chimeraDetectedGap);
-    fprintf(summaryFile, "from linker           "F_U32"\n", chimeraDetectedLinker);
+    fprintf(summaryFile, "from innie pair       " F_U32"\n", chimeraDetectedInnie);
+    fprintf(summaryFile, "from overhang         " F_U32"\n", chimeraDetectedOverhang);
+    fprintf(summaryFile, "from gap              " F_U32"\n", chimeraDetectedGap);
+    fprintf(summaryFile, "from linker           " F_U32"\n", chimeraDetectedLinker);
   }
 
   exit(0);

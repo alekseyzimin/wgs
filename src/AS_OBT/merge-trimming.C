@@ -251,7 +251,7 @@ main(int argc, char **argv) {
           }
 
           if (logFile)
-            fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (no overlaps)\n",
+            fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (no overlaps)\n",
                     AS_UID_toString(uid), lid, qltL0, qltR0, l, r);
           result_noOverlaps++;
         } else {
@@ -262,11 +262,11 @@ main(int argc, char **argv) {
 
           if (logFile) {
             if (l < r) {
-              fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (no overlaps, intersection too short, deleted)\n",
+              fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (no overlaps, intersection too short, deleted)\n",
                       AS_UID_toString(uid), lid, qltL0, qltR0, qltL1, qltR1);
               result_noOverlaps_TooShort++;
             } else {
-              fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (no overlaps, no intersection, deleted)\n",
+              fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (no overlaps, no intersection, deleted)\n",
                       AS_UID_toString(uid), lid, qltL0, qltR0, qltL1, qltR1);
               result_noOverlaps_NoIntersect++;
             }
@@ -299,7 +299,7 @@ main(int argc, char **argv) {
     //
     if ((lr) && (lr->doNotOverlapTrim)) {
       if (logFile)
-        fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (immutable)\n",
+        fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (immutable)\n",
                 AS_UID_toString(uid), lid, qltLQ1, qltRQ1, qltLQ1, qltRQ1);
       result_immutable++;
       continue;
@@ -309,7 +309,7 @@ main(int argc, char **argv) {
     //
     if (fr.gkFragment_getIsDeleted() == 1) {
       if (logFile)
-        fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (already-deleted)\n",
+        fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (already-deleted)\n",
                 AS_UID_toString(uid), lid, qltLQ1, qltRQ1, qltLQ1, qltRQ1);
       result_alreadyDeleted++;
       continue;
@@ -487,7 +487,7 @@ main(int argc, char **argv) {
 
         if ((left == 0) && (right == 0)) {
           stats[18]++;
-          fprintf(stderr, "INVALID CLEAR from OVL:\t"F_U64"\t"F_U32"\t"F_U32"\t->\t"F_U32"\t"F_U32"\t--\t%s\n",
+          fprintf(stderr, "INVALID CLEAR from OVL:\t" F_U64"\t" F_U32"\t" F_U32"\t->\t" F_U32"\t" F_U32"\t--\t%s\n",
                   iid, qltL, qltR, left, right,
                   line);
         }
@@ -515,7 +515,7 @@ main(int argc, char **argv) {
       if ((left + right > 0) && ((left + AS_READ_MIN_LEN) > right)) {
         stats[13]++;
 #if 0
-        fprintf(stderr, "INVALID CLEAR:\t"F_U64"\t"F_U32"\t"F_U32"\t->\t"F_U32"\t"F_U32"\t--\t%s\n",
+        fprintf(stderr, "INVALID CLEAR:\t" F_U64"\t" F_U32"\t" F_U32"\t->\t" F_U32"\t" F_U32"\t--\t%s\n",
                 iid, qltL, qltR, left, right,
                 line);
 #endif
@@ -530,7 +530,7 @@ main(int argc, char **argv) {
 
       if ((left == 0) && (right == 0)) {
         if (logFile)
-          fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (deleted, too short)\n",
+          fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (deleted, too short)\n",
                   AS_UID_toString(uid), iid, qltL, qltR, left, right);
         result_tooShort++;
 
@@ -539,13 +539,13 @@ main(int argc, char **argv) {
       } else if ((left == fr.gkFragment_getClearRegionBegin(AS_READ_CLEAR_OBTMERGE)) &&
                  (right == fr.gkFragment_getClearRegionEnd  (AS_READ_CLEAR_OBTMERGE))) {
         if (logFile)
-          fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\n",
+          fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\n",
                   AS_UID_toString(uid), iid, qltL, qltR, left, right);
         result_noChange++;
 
       } else {
         if (logFile)
-          fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32"\n",
+          fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32"\n",
                   AS_UID_toString(uid), iid, qltL, qltR, left, right);
         result_modified++;
 
@@ -604,7 +604,7 @@ main(int argc, char **argv) {
     }
 
     if (adjl == adjr) {
-      fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (deleted, obt clear outside specified clear max)\n",
+      fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (deleted, obt clear outside specified clear max)\n",
               AS_UID_toString(uid), iid, obtl, obtr, maxl, maxr);
       result_obtOutsideMax++;
 
@@ -612,7 +612,7 @@ main(int argc, char **argv) {
         gkp->gkStore_delFragment(iid);
 
     } else if (adjr - adjl < AS_READ_MIN_LEN) {
-      fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (deleted, too small after adjusteding to obey specified clear max)\n",
+      fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (deleted, too small after adjusteding to obey specified clear max)\n",
               AS_UID_toString(uid), iid, obtl, obtr, adjl, adjr);
       result_tooSmallAfterMax++;
 
@@ -620,7 +620,7 @@ main(int argc, char **argv) {
         gkp->gkStore_delFragment(iid);
 
     } else if ((adjl != obtl) || (adjr != obtr)) {
-      fprintf(logFile, "%s,"F_U64"\t"F_U32"\t"F_U32"\t"F_U32"\t"F_U32" (adjusted to obey specified clear max)\n",
+      fprintf(logFile, "%s," F_U64"\t" F_U32"\t" F_U32"\t" F_U32"\t" F_U32" (adjusted to obey specified clear max)\n",
               AS_UID_toString(uid), iid, obtl, obtr, adjl, adjr);
       result_adjustedForMax++;
 

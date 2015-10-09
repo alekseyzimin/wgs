@@ -132,7 +132,7 @@ BestOverlapGraph::BestOverlapGraph(FragmentInfo        *fi,
     for (uint32 i=0; i<fi->numFragments(); i++)
       numContainsToSave += _best_contains[i].olapsLen;
 
-    fprintf(stderr, "Need to save "F_U64" near-containment overlaps\n", numContainsToSave);
+    fprintf(stderr, "Need to save " F_U64" near-containment overlaps\n", numContainsToSave);
   }
 
 

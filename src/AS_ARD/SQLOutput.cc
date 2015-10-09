@@ -91,7 +91,7 @@ uint64 SQLOutput::storeAssembly(
    sprintf(cmd,
             "INSERT INTO Assembly " \
             "(Creation, Genome_ID, Operator, GeneratingProgram, ProgramVersion, Status, Notes) " \
-            "VALUES ('%s', "F_U64", '%s', '%s', '%s', '%c', '%s')",
+            "VALUES ('%s', " F_U64", '%s', '%s', '%s', '%c', '%s')",
                      date,
                      AS_UID_toInteger(genomeIID),
                      op,
@@ -119,7 +119,7 @@ bool SQLOutput::storeMDI2DB (
    sprintf(cmd,
             "INSERT INTO MDI " \
             "(mdi_AssemblyID, mdi_EUID, mdi_CIID, mdi_mea, mdi_std, mdi_min, mdi_max) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", %f, %f, "F_S32", "F_S32")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", %f, %f, " F_S32", " F_S32")",
                      assemblyID,
                      AS_UID_toInteger(erefines),
                      irefines,
@@ -145,7 +145,7 @@ bool SQLOutput::storeAFG2DB (
    sprintf(cmd,
             "INSERT INTO AFG " \
             "(afg_AssemblyID, afg_EUID, afg_CIID, afg_mst, afg_cha, afg_clr1, afg_clr2) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", '%c', "F_S32", "F_S32", "F_S32")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", '%c', " F_S32", " F_S32", " F_S32")",
                      assemblyID,
                      AS_UID_toInteger(eaccession),
                      iaccession,
@@ -190,8 +190,8 @@ bool SQLOutput::storeUTG2DB (
             "INSERT INTO UTG " \
             "(utg_AssemblyID, utg_EUID, utg_CIID, utg_src, utg_mhp, utg_cov, " \
             " utg_sta, utg_abp, utg_bbp, utg_len, utg_cns, utg_qlt, utg_for, utg_nfr) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", '%s', %f, %f, '%c', "F_S32", " \
-                     F_S32", "F_S32", '%s', '%s', "F_S32", "F_S32")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", '%s', %f, %f, '%c', " F_S32", " \
+                     F_S32", " F_S32", '%s', '%s', " F_S32", " F_S32")",
                      assemblyID,
                      AS_UID_toInteger(eaccession),
                      iaccession,
@@ -236,7 +236,7 @@ bool SQLOutput::storeMPS2DB (
             "INSERT INTO MPS " \
             "(mps_AssemblyID, mps_utg_MSG_ID, mps_afg_MSG_ID, mps_type, mps_src, mps_pos1, " \
             " mps_pos2, mps_del) " \
-            "VALUES ("F_U64", "F_U64", "F_U64", '%c', '%s', "F_S32", "F_S32", '%s')",
+            "VALUES (" F_U64", " F_U64", " F_U64", '%c', '%s', " F_S32", " F_S32", '%s')",
                      assemblyID,
                      utg,
                      afg,
@@ -266,7 +266,7 @@ bool SQLOutput::storeULK2DB (
             "INSERT INTO ULK " \
             "(ulk_assemblyID, ulk_EUID, ulk_CIID, ulk_ori, ulk_ovt, ulk_ipc, " \
             " ulk_mea, ulk_std, ulk_num, ulk_sta) " \
-            "VALUES ("F_CID", '"F_U64"', "F_CID", '%c', '%c', "F_S32", %f, %f, "F_S32", '%c')",
+            "VALUES (" F_CID", '" F_U64"', " F_CID", '%c', '%c', " F_S32", %f, %f, " F_S32", '%c')",
                      assemblyID,
                      AS_UID_toInteger(euid),
                      ciid,
@@ -310,7 +310,7 @@ std::cerr << "STORING ULK " << AS_UID_toInteger(utgID) << " and " << AS_UID_toIn
    }
    sprintf(cmd,
             "%s " \
-            "VALUES ("F_U64", "F_U64", "F_U64")",
+            "VALUES (" F_U64", " F_U64", " F_U64")",
                      cmd,
                      assemblyID,
                      utg,
@@ -332,7 +332,7 @@ std::cerr << "STORING JMP " << AS_UID_toInteger(jmpID) << " and " << AS_UID_toIn
       ulk = static_cast<uint64>(LookupValueInHashTable_AS(ULK_UID_to_MSGID, AS_UID_toInteger(ulkID), 0));
 
       sprintf(cmd,
-               "%s VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", '%c', '%c')",
+               "%s VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", '%c', '%c')",
                         cmd,
                         assemblyID,
                         AS_UID_toInteger(jmpID),
@@ -347,7 +347,7 @@ std::cerr << "STORING JMP " << AS_UID_toInteger(jmpID) << " and " << AS_UID_toIn
       ulk = static_cast<uint64>(LookupValueInHashTable_AS(CLK_UID_to_MSGID, AS_UID_toInteger(ulkID), 0));
 
       sprintf(cmd,
-               "%s VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", '%c')",
+               "%s VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", '%c')",
                         cmd,
                         assemblyID,
                         AS_UID_toInteger(jmpID),
@@ -408,7 +408,7 @@ std::cerr << "STORING JMP LIST" << AS_UID_toInteger(jmpID) << " and " << AS_UID_
 
    sprintf(cmd,
             "%s " \
-            "VALUES ("F_U64", "F_U64", "F_CID", "F_U64", "F_U64")",
+            "VALUES (" F_U64", " F_U64", " F_CID", " F_U64", " F_U64")",
                      cmd,
                      assemblyID,
                      AS_UID_toInteger(jmpListID),
@@ -438,8 +438,8 @@ std::cerr << "Storing CCO " << std::endl;
             "INSERT INTO CCO " \
             "(cco_AssemblyID, cco_EUID, cco_CIID, cco_pla, cco_len, cco_cns, cco_qlt, " \
             " cco_for, cco_npc, cco_nou, cco_nvr) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", '%c', "F_S32", '%s', '%s', " \
-                     F_S32", "F_S32", "F_S32", "F_S32")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", '%c', " F_S32", '%s', '%s', " \
+                     F_S32", " F_S32", " F_S32", " F_S32")",
                      assemblyID,
                      AS_UID_toInteger(eaccession),
                      iaccession,
@@ -482,7 +482,7 @@ std::cerr << "Storing CCOMPS " << std::endl;
             "INSERT INTO CCO_MPS " \
             "(cco_mps_AssemblyID, cco_mps_EUID, cco_mps_CIID, cco_mps_cco_MSG_ID, cco_mps_mid, cco_mps_type, cco_mps_src, cco_mps_pos1, " \
             " cco_mps_pos2, cco_mps_del) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", "F_U64", '%c', '%s', "F_S32", "F_S32", '%s')",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " F_U64", '%c', '%s', " F_S32", " F_S32", '%s')",
                      assemblyID,
                      AS_UID_toInteger(ccoMpsID),
                      0,
@@ -518,7 +518,7 @@ std::cerr << "Storing UPS " << std::endl;
             "INSERT INTO UPS " \
             "(ups_AssemblyID, ups_EUID, ups_CIID, ups_cco_MSG_ID, ups_utg_MSG_ID, ups_type, ups_pos1, " \
             " ups_pos2, ups_del) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", "F_U64", '%c', "F_S32", "F_S32", '%s')",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " F_U64", '%c', " F_S32", " F_S32", '%s')",
                      assemblyID,
                      AS_UID_toInteger(upsID),
                      0,
@@ -553,8 +553,8 @@ std::cerr << "Storing VAR " << std::endl;
             "INSERT INTO VAR " \
             "(var_AssemblyID, var_EUID, var_CIID, var_cco_MSG_ID, var_pos1, var_pos2, " \
             " var_nrd, var_nca, var_anc, var_len, var_vid, var_pid) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", "F_S32", "F_S32", " \
-                     F_S32", "F_S32", "F_S32", "F_S32", "F_S32", "F_S32")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " F_S32", " F_S32", " \
+                     F_S32", " F_S32", " F_S32", " F_S32", " F_S32", " F_S32")",
                      assemblyID,
                      AS_UID_toInteger(varID),
                      0,
@@ -589,8 +589,8 @@ std::cerr << "Storing VARALL " << std::endl;
             "INSERT INTO VAR_ALLELE " \
             "(var_allele_AssemblyID, var_allele_EUID, var_allele_CIID, var_allele_var_MSG_ID, " \
             " var_allele_nra, var_allele_wgt, var_ellele_seq) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", " \
-                     F_S32", "F_S32", '%s')",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " \
+                     F_S32", " F_S32", '%s')",
                      assemblyID,
                      AS_UID_toInteger(varAlleleID),
                      0,
@@ -615,7 +615,7 @@ std::cerr << "Storing VAR AFG " << std::endl;
    sprintf(cmd,
             "INSERT INTO VAR_AFG " \
             "(var_afg_AssemblyID, var_afg_EUID, var_afg_CIID, var_afg_var_MSG_ID, var_afg_afg_MSG_ID) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", "F_U64")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " F_U64")",
                      assemblyID,
                      AS_UID_toInteger(varAfgID),
                      0,
@@ -642,7 +642,7 @@ bool SQLOutput::storeCLK2DB(
             "INSERT INTO CLK " \
             "(clk_AssemblyID, clk_EUID, clk_CIID, clk_ori, clk_ovt, clk_ipc, " \
             " clk_gui, clk_mea, clk_std, clk_num, clk_sta) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", '%c', '%c', "F_S32", %f, %f, "F_S32", '%c')",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", '%c', '%c', " F_S32", %f, %f, " F_S32", '%c')",
                      assemblyID,
                      AS_UID_toInteger(euid),
                      ciid,
@@ -671,7 +671,7 @@ bool SQLOutput::storeSCF2DB(AS_UID eaccession, CDS_CID_t iaccession, uint32 num_
    sprintf(cmd,
             "INSERT INTO SCF " \
             "(scf_AssemblyID, scf_EUID, scf_CIID, scf_noc) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID" ,"F_U64")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID" ," F_U64")",
                      assemblyID,
                      AS_UID_toInteger(eaccession),
                      iaccession,
@@ -695,7 +695,7 @@ bool SQLOutput::storeCTP2DB(AS_UID ctpID, AS_UID scfID, float mean, float stddev
    sprintf(cmd,
             "INSERT INTO CTP " \
             "(ctp_AssemblyID, ctp_EUID, ctp_CIID, ctp_scf_MSG_ID, ctp_mea, ctp_std, ctp_ori) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", %f, %f, '%c')",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", %f, %f, '%c')",
                      assemblyID,
                      AS_UID_toInteger(ctpID),
                      0,
@@ -723,7 +723,7 @@ bool SQLOutput::storeCTPList2DB(AS_UID ctpListID, AS_UID ctpID, AS_UID ccoID) {
    sprintf(cmd,
             "INSERT INTO CTP_LIST " \
             "(ctp_list_AssemblyID, ctp_list_EUID, ctp_list_CIID, ctp_list_ctp_MSG_ID, ctp_list_cco_MSG_ID) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", "F_U64")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " F_U64")",
                      assemblyID,
                      AS_UID_toInteger(ctpListID),
                      (uint32)0,
@@ -743,7 +743,7 @@ bool SQLOutput::storeCPS2DB(AS_UID cpsID, AS_UID ctpID, AS_UID ccoID, int32 ctgS
    sprintf(cmd,
             "INSERT INTO CPS " \
             "(cps_AssemblyID, cps_EUID, cps_CIID, cps_ctp_MSG_ID, cps_cco_MSG_ID, cps_pos1, cps_pos2) " \
-            "VALUES ("F_U64", '"F_U64"', "F_CID", "F_U64", "F_U64", "F_S32", "F_S32")",
+            "VALUES (" F_U64", '" F_U64"', " F_CID", " F_U64", " F_U64", " F_S32", " F_S32")",
                      assemblyID,
                      AS_UID_toInteger(cpsID),
                      (uint32)0,

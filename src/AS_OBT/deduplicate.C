@@ -416,8 +416,8 @@ main(int argc, char **argv) {
   delete    gkp;
 
   if (summaryFile) {
-    fprintf(summaryFile, "duplicateFrags:    "F_U32"\n", duplicateFrags);
-    fprintf(summaryFile, "duplicateMates:    "F_U32"\n", duplicateMates);
+    fprintf(summaryFile, "duplicateFrags:    " F_U32"\n", duplicateFrags);
+    fprintf(summaryFile, "duplicateMates:    " F_U32"\n", duplicateMates);
   }
 
   exit(0);

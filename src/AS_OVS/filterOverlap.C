@@ -124,7 +124,7 @@ main(int argc, char **argv) {
     numReads   = gkp->gkStore_getNumFragments();
     readLength = (fragInfo *)safe_malloc(sizeof(fragInfo) * numReads);
 
-    fprintf(stderr, "Reading gkpStore to get clear ranges for "F_U32" reads.\n", numReads);
+    fprintf(stderr, "Reading gkpStore to get clear ranges for " F_U32" reads.\n", numReads);
 
     while (fs->next(&fr)) {
       AS_IID iid = fr.gkFragment_getReadIID();
@@ -214,7 +214,7 @@ filterOVL(void) {
     total++;
 
     if ((total % 1000000) == 0) {
-      fprintf(stderr, F_U64"/"F_U64" = %f%% trash.\n", discard, total, 100.0 * discard / total);
+      fprintf(stderr, F_U64"/" F_U64" = %f%% trash.\n", discard, total, 100.0 * discard / total);
     }
   }
 
@@ -284,7 +284,7 @@ filterOBT(void) {
     total++;
 
     if ((total % 1000000) == 0) {
-      fprintf(stderr, F_U64"/"F_U64" = %f%% trash.\n", discard, total, 100.0 * discard / total);
+      fprintf(stderr, F_U64"/" F_U64" = %f%% trash.\n", discard, total, 100.0 * discard / total);
     }
   }
 

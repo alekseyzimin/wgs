@@ -142,14 +142,14 @@ dumpProperties(MultiAlignStore *tigStore,
                int32 tigIsUnitig,
                MultiAlignT *ma) {
 
-  fprintf(stdout, "maID                "F_S32"\n", ma->maID);
+  fprintf(stdout, "maID                " F_S32"\n", ma->maID);
   fprintf(stdout, "unitigCoverageStat  %f\n",      ma->data.unitig_coverage_stat);
   fprintf(stdout, "unitigMicrohetProb  %f\n",      ma->data.unitig_microhet_prob);
   fprintf(stdout, "unitigStatus        %c/%d\n",   ma->data.unitig_status, ma->data.unitig_status);
   fprintf(stdout, "unitigFUR           %c/%d\n",   ma->data.unitig_unique_rept, ma->data.unitig_unique_rept);
   fprintf(stdout, "contigStatus        %c/%d\n",   ma->data.contig_status, ma->data.contig_status);
-  fprintf(stdout, "numFrags            "F_U32" (vs "F_U64")\n", ma->data.num_frags, (uint64)GetNumIntMultiPoss(ma->f_list));
-  fprintf(stdout, "numUnitigs          "F_U32" (vs "F_U64")\n", ma->data.num_unitigs, (uint64)GetNumIntUnitigPoss(ma->u_list));
+  fprintf(stdout, "numFrags            " F_U32" (vs " F_U64")\n", ma->data.num_frags, (uint64)GetNumIntMultiPoss(ma->f_list));
+  fprintf(stdout, "numUnitigs          " F_U32" (vs " F_U64")\n", ma->data.num_unitigs, (uint64)GetNumIntUnitigPoss(ma->u_list));
 
   tigStore->dumpMultiAlignR(tigID, tigIsUnitig);
 }
@@ -213,7 +213,7 @@ dumpConsensus(MultiAlignStore *tigStore,
     *o = 0;
   }
 
-  fprintf(stdout, ">%s%d len="F_U64"\n", (tigIsUnitig) ? "utg" : "ctg", ma->maID, GetNumchars(ma->consensus) - 1);
+  fprintf(stdout, ">%s%d len=" F_U64"\n", (tigIsUnitig) ? "utg" : "ctg", ma->maID, GetNumchars(ma->consensus) - 1);
   fprintf(stdout, "%s\n", cns);
 }
 

@@ -150,7 +150,7 @@ gkStore::gkStore_getFragment(AS_IID iid, gkFragment *fr, int32 flags) {
     void *p = (void *)(INTPTR)LookupValueInHashTable_AS(partmap, iid, 0);
 
     if (p == NULL)
-      fprintf(stderr, "getFrag()-- ERROR!  IID "F_IID" not in partition!\n", iid);
+      fprintf(stderr, "getFrag()-- ERROR!  IID " F_IID" not in partition!\n", iid);
     assert(p != NULL);
 
     assert(fr->isGKP == 0);

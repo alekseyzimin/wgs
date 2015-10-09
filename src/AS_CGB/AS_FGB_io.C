@@ -255,9 +255,9 @@ static void add_overlap_to_graph(Aedge  an_edge,
     return;
 #else
   if ((iavx == AS_CGB_NOT_SEEN_YET))
-    fprintf(stderr, "Unseen fragment iid="F_IID" is referred to in an overlap.  I assert!\n", iafr);
+    fprintf(stderr, "Unseen fragment iid=" F_IID" is referred to in an overlap.  I assert!\n", iafr);
   if ((ibvx == AS_CGB_NOT_SEEN_YET))
-    fprintf(stderr, "Unseen fragment iid="F_IID" is referred to in an overlap.  I assert!\n", ibfr);
+    fprintf(stderr, "Unseen fragment iid=" F_IID" is referred to in an overlap.  I assert!\n", ibfr);
 
   assert(iavx != AS_CGB_NOT_SEEN_YET);
   assert(ibvx != AS_CGB_NOT_SEEN_YET);
@@ -279,13 +279,13 @@ static void add_overlap_to_graph(Aedge  an_edge,
   if(ibmn <= 0 && (AS_CGB_DOVETAIL_EDGE == ines)) {
     fprintf(stderr,"BUG: bmn <= 0 AS_CGB_DOVETAIL_EDGE \n");
     fprintf(stderr,
-            "afr,bfr,ahg,bhg,amn,amx="F_IID","F_IID",%d,%d,%d,%d\n",
+            "afr,bfr,ahg,bhg,amn,amx=" F_IID"," F_IID",%d,%d,%d,%d\n",
             iafr,ibfr,iahg,ibhg,iamn,iamx);
   }
   if(ibmn > 0 && (AS_CGB_TO_CONTAINED == ines)) {
     fprintf("BUG: bmn > 0 for AS_CGB_TO_CONTAINED \n");
     fprintf(stderr,
-            "afr,bfr,ahg,bhg,amn,amx="F_IID","F_IID",%d,%d,%d,%d\n",
+            "afr,bfr,ahg,bhg,amn,amx=" F_IID"," F_IID",%d,%d,%d,%d\n",
             iafr,ibfr,iahg,ibhg,iamn,iamx);
   }
 #endif
@@ -331,8 +331,8 @@ static void add_overlap_to_graph(Aedge  an_edge,
     if(ibln == ibhg)     fprintf(stderr,"INPUT ERROR: bln == bhg\n");
     if(ibln == -iahg)    fprintf(stderr,"INPUT ERROR: bln == -ahg\n");
 
-    fprintf(stderr," afr="F_IID" bfr="F_IID" aln=%d bln=%d\n", iafr, ibfr, ialn, ibln);
-    fprintf(stderr," avx="F_IID" bvx="F_IID" ahg=%d bhg=%d\n", iavx, ibvx, iahg, ibhg);
+    fprintf(stderr," afr=" F_IID" bfr=" F_IID" aln=%d bln=%d\n", iafr, ibfr, ialn, ibln);
+    fprintf(stderr," avx=" F_IID" bvx=" F_IID" ahg=%d bhg=%d\n", iavx, ibvx, iahg, ibhg);
   }
 
   assert(ialn > iahg);
@@ -362,7 +362,7 @@ static void add_overlap_to_graph(Aedge  an_edge,
 #ifdef REPORT_DEGENERATE_OVERLAPS
   if( (iahg == 0) && (ibhg == 0) ) {
     fprintf(stdout,
-            "Degenerate Overlap "F_IID" %d %d "F_IID" %d %d %d %d\n",
+            "Degenerate Overlap " F_IID" %d %d " F_IID" %d %d %d %d\n",
             get_iid_fragment(frags,iavx), iasx, iahg,
             get_iid_fragment(frags,ibvx), ibsx, ibhg,
             qua,
@@ -465,7 +465,7 @@ static void add_overlap_to_graph(Aedge  an_edge,
         } else {
           fprintf(stderr,
                   "the_raw_new_edge.ahg,the_raw_new_edge.bhg,the_raw_new_edge.avx,the_raw_new_edge.bvx=\n"
-                  "    %d, %d, "F_IID", "F_IID"\n",
+                  "    %d, %d, " F_IID", " F_IID"\n",
                   the_raw_new_edge.ahg,the_raw_new_edge.bhg,the_raw_new_edge.avx,the_raw_new_edge.bvx
                   );
           assert(FALSE);
@@ -689,9 +689,9 @@ void process_ovl_store(char * OVL_Store_Path,
   }
   AS_OVS_closeOverlapStore(ovs);
 
-  fprintf(stderr,"novl_dovetail    = "F_IID"\n", novl_dovetail);
-  fprintf(stderr,"novl_containment = "F_IID"\n", novl_containment);
-  fprintf(stderr,"nedges_delta     = "F_IID"\n", nedges_delta);
+  fprintf(stderr,"novl_dovetail    = " F_IID"\n", novl_dovetail);
+  fprintf(stderr,"novl_containment = " F_IID"\n", novl_containment);
+  fprintf(stderr,"nedges_delta     = " F_IID"\n", nedges_delta);
 }
 
 /****************************************************************************/
@@ -798,9 +798,9 @@ void input_messages_from_a_file(FILE       *fovl,
   }
 
 
-  fprintf(stderr,"Input %10"F_IIDP " OVL records (skipped %10"F_IIDP" degenerate).\n",novl_dovetail+novl_containment, novl_degenerate);
-  fprintf(stderr,"      %10"F_IIDP " OVL dovetail records.\n",novl_dovetail);
-  fprintf(stderr,"      %10"F_IIDP " OVL containment records.\n",novl_containment);
+  fprintf(stderr,"Input %10" F_IIDP " OVL records (skipped %10" F_IIDP" degenerate).\n",novl_dovetail+novl_containment, novl_degenerate);
+  fprintf(stderr,"      %10" F_IIDP " OVL dovetail records.\n",novl_dovetail);
+  fprintf(stderr,"      %10" F_IIDP " OVL containment records.\n",novl_containment);
 
   nedge_new = nedge_old + nedge_delta;
   assert(nedge_new == GetNumEdges(edges));

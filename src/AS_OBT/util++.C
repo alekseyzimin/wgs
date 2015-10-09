@@ -128,7 +128,7 @@ intervalList::merge(void) {
   while (nextInterval < _listLen) {
 
 #if 0
-    fprintf(stderr, "merge [%2d] "F_U64"-"F_U64" <- [%2d] "F_U64"-"F_U64"\n",
+    fprintf(stderr, "merge [%2d] " F_U64"-" F_U64" <- [%2d] " F_U64"-" F_U64"\n",
             thisInterval, _list[thisInterval].lo, _list[thisInterval].hi,
             nextInterval, _list[nextInterval].lo, _list[nextInterval].hi);
 #endif

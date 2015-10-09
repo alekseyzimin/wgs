@@ -242,7 +242,7 @@ void PrintFragmentScaffoldCoordinates(AssemblyStore * asmStore,
         {
           getASM_InstanceStore(asmStore->asiStore, afg.sInsIndex, &scaffIns);
           getASM_DSCStore(asmStore->dscStore, scaffIns.containerIndex, &dsc);
-          fprintf(fo, F_UID " %c D "F_UID " ("F_S32","F_S32") ",
+          fprintf(fo, F_UID " %c D "F_UID " (" F_S32"," F_S32") ",
                   afg.uid, (char) afg.type,
                   dsc.uid, scaffIns.pos.bgn, scaffIns.pos.end);
           printed = TRUE;
@@ -261,7 +261,7 @@ void PrintFragmentScaffoldCoordinates(AssemblyStore * asmStore,
           getASM_SCFStore(asmStore->scfStore, scaffIns.containerIndex, &scf);
           if(scaffIns.next == 0 || doInstances)
           {
-            fprintf(fo, F_UID " %c %c "F_UID " ("F_S32","F_S32") ",
+            fprintf(fo, F_UID " %c %c "F_UID " (" F_S32"," F_S32") ",
                     afg.uid, (char) afg.type,
                     (afg.inSurrogate || scaffIns.next != 0) ? 'S' :
                      (afg.unreferenced ? 'U' : 'R'),
@@ -273,7 +273,7 @@ void PrintFragmentScaffoldCoordinates(AssemblyStore * asmStore,
           {
             getASM_InstanceStore(asmStore->asiStore, scaffIns.next, &scaffIns);
             getASM_SCFStore(asmStore->scfStore, scaffIns.containerIndex, &scf);
-            fprintf(fo, "\n"F_UID " %c S "F_UID " ("F_S32","F_S32") ",
+            fprintf(fo, "\n"F_UID " %c S "F_UID " (" F_S32"," F_S32") ",
                     afg.uid, (char) afg.type,
                     scf.uid, scaffIns.pos.bgn, scaffIns.pos.end);
           }
@@ -344,7 +344,7 @@ void PrintReadsPlaced(AssemblyStore * asmStore,
     {
       if(doChaff)
       {
-        fprintf(fo, F_UID " %cC"F_UID " "F_S32" "F_S32" 0 - - - -\n",
+        fprintf(fo, F_UID " %cC"F_UID " " F_S32" " F_S32" 0 - - - -\n",
                 afg.uid, (char) afg.type, afg.uid,
                 afg.asmClr.bgn + 1, afg.asmClr.end - afg.asmClr.bgn);
       }
@@ -359,8 +359,8 @@ void PrintReadsPlaced(AssemblyStore * asmStore,
         {
           getASM_InstanceStore(asmStore->asiStore, afg.sInsIndex, &scaffIns);
           getASM_DSCStore(asmStore->dscStore, scaffIns.containerIndex, &dsc);
-          fprintf(fo, F_UID " %cD"F_UID " "F_S32" "F_S32
-                  " %d "F_UID " "F_UID " "F_S32" "F_S32"\n",
+          fprintf(fo, F_UID " %cD"F_UID " " F_S32" " F_S32
+                  " %d "F_UID " "F_UID " " F_S32" " F_S32"\n",
                   afg.uid, (char) afg.type, afg.uid,
                   afg.asmClr.bgn + 1, afg.asmClr.end - afg.asmClr.bgn,
                   ((scaffIns.pos.bgn < scaffIns.pos.end) ? 0 : 1),
@@ -382,8 +382,8 @@ void PrintReadsPlaced(AssemblyStore * asmStore,
           getASM_SCFStore(asmStore->scfStore, scaffIns.containerIndex, &scf);
           if(scaffIns.next == 0 || doInstances)
           {
-            fprintf(fo, F_UID " %c%c"F_UID " "F_S32" "F_S32
-                    " %d "F_UID " "F_UID " "F_S32" "F_S32"\n",
+            fprintf(fo, F_UID " %c%c"F_UID " " F_S32" " F_S32
+                    " %d "F_UID " "F_UID " " F_S32" " F_S32"\n",
                     afg.uid, (char) afg.type,
                     (afg.inSurrogate || scaffIns.next != 0) ? 'S' :
                     (afg.unreferenced ? 'U' : 'R'), afg.uid,
@@ -399,8 +399,8 @@ void PrintReadsPlaced(AssemblyStore * asmStore,
             getASM_CCOStore(asmStore->ccoStore, contigIns.containerIndex, &cco);
             getASM_InstanceStore(asmStore->asiStore, scaffIns.next, &scaffIns);
             getASM_SCFStore(asmStore->scfStore, scaffIns.containerIndex, &scf);
-            fprintf(fo, F_UID " %c%c"F_UID " "F_S32" "F_S32
-                    " %d "F_UID " "F_UID " "F_S32" "F_S32"\n",
+            fprintf(fo, F_UID " %c%c"F_UID " " F_S32" " F_S32
+                    " %d "F_UID " "F_UID " " F_S32" " F_S32"\n",
                     afg.uid, (char) afg.type,
                     (afg.inSurrogate || scaffIns.next != 0) ? 'S' :
                     (afg.unreferenced ? 'U' : 'R'), afg.uid,
@@ -617,7 +617,7 @@ void PrintInstanceInterval(CDS_UID_t uid1, CDS_UID_t uid2,
                            int32 fiveP, int32 threeP,
                            int32 numInstances, FILE * fo)
 {
-  fprintf(fo, F_UID "\t"F_UID "\t"F_S32" "F_S32"\t%d\n",
+  fprintf(fo, F_UID "\t"F_UID "\t" F_S32" " F_S32"\t%d\n",
           uid1, uid2, fiveP, threeP, numInstances);
 }
 
@@ -961,7 +961,7 @@ int AddSCF2Store(AssemblyStore * asmStore, SnapScaffoldMesg * ssm)
     getASM_CCOStore(asmStore->ccoStore, contigIID, &cco);
 
     /*
-    fprintf(stdout, F_UID " "F_S32,
+    fprintf(stdout, F_UID " " F_S32,
             scf.uid, MAX(cco.scaffoldPos.bgn, cco.scaffoldPos.end));
     */
   }
@@ -1402,7 +1402,7 @@ void PrintInnieMatePairs(VA_TYPE(ASM_MatePair) * mps, FILE * fo)
   for(i = 0; i < numMPs; i++)
   {
     fprintf(fo,
-            "%c\t"F_UID "\t"F_UID "\t"F_UID "\t"F_S32"\t"F_S32"\n",
+            "%c\t"F_UID "\t"F_UID "\t"F_UID "\t" F_S32"\t" F_S32"\n",
             (char) AS_INNIE, myMPs[i].leftUID, myMPs[i].rightUID,
             myMPs[i].distUID,
             myMPs[i].fivePrimes.bgn, myMPs[i].fivePrimes.end);
@@ -1419,7 +1419,7 @@ void PrintMatePairs(VA_TYPE(ASM_MatePair) * mps,
 
   for(i = 0; i < numMPs; i++)
   {
-    fprintf(fo, "%c\t"F_UID "\t"F_UID "\t"F_UID "\t"F_S32"\t"F_S32"\n",
+    fprintf(fo, "%c\t"F_UID "\t"F_UID "\t"F_UID "\t" F_S32"\t" F_S32"\n",
             (char) orient,
             myMPs[i].leftUID, myMPs[i].rightUID, myMPs[i].distUID,
             myMPs[i].fivePrimes.bgn, myMPs[i].fivePrimes.end);
@@ -1436,7 +1436,7 @@ void PrintPartialMatePairs(VA_TYPE(ASM_MatePair) * mps,
 
   for(i = 0; i < numMPs; i++)
   {
-    fprintf(fo, "%c\t"F_UID "\t"F_UID "\t"F_UID "\t"F_UID "\t"F_S32"\n",
+    fprintf(fo, "%c\t"F_UID "\t"F_UID "\t"F_UID "\t"F_UID "\t" F_S32"\n",
             type, myMPs[i].containerUID,
             myMPs[i].leftUID, myMPs[i].rightUID, myMPs[i].distUID,
             myMPs[i].fivePrimes.bgn);
@@ -1671,7 +1671,7 @@ void PrintDegenerateLength(AssemblyStore * asmStore, int32 index, FILE * fo)
 
   getASM_DSCStore(asmStore->dscStore, index, &dsc);
   getASM_CCOStore(asmStore->ccoStore, dsc.contigIndex, &cco);
-  fprintf(fo, F_UID "\t"F_S32"\n", dsc.uid, cco.length);
+  fprintf(fo, F_UID "\t" F_S32"\n", dsc.uid, cco.length);
 }
 
 
@@ -1718,7 +1718,7 @@ void PrintScaffoldLength(AssemblyStore * asmStore, int32 index, FILE * fo)
 
   getASM_SCFStore(asmStore->scfStore, index, &scf);
   getScaffoldLengths(asmStore, index, &fastaLength, &assemblyLength);
-  fprintf(fo, F_UID "\t"F_S32"\t%.2f\n",
+  fprintf(fo, F_UID "\t" F_S32"\t%.2f\n",
           scf.uid, fastaLength, assemblyLength);
 }
 
@@ -2089,7 +2089,7 @@ void PrintQuadrilaterals(VA_TYPE(ASM_Quad) * quads,
     switch(ot)
     {
       case ASM_CliqueFinderOutput:
-        fprintf(fo, F_S32" "F_S32"\t"F_S32" "F_S32"\t"F_S32" "F_S32"\t"F_S32" "F_S32"\t"F_UID "\n",
+        fprintf(fo, F_S32" " F_S32"\t" F_S32" " F_S32"\t" F_S32" " F_S32"\t" F_S32" " F_S32"\t"F_UID "\n",
                 q->pts[0].bgn, q->pts[0].end,
                 q->pts[1].bgn, q->pts[1].end,
                 q->pts[2].bgn, q->pts[2].end,
@@ -2098,7 +2098,7 @@ void PrintQuadrilaterals(VA_TYPE(ASM_Quad) * quads,
         break;
       case ASM_GnuplotOutput:
       default:
-        fprintf(fo, F_S32" "F_S32"\n"F_S32" "F_S32"\n"F_S32" "F_S32"\n"F_S32" "F_S32"\n"F_S32" "F_S32"\n\n",
+        fprintf(fo, F_S32" " F_S32"\n" F_S32" " F_S32"\n" F_S32" " F_S32"\n" F_S32" " F_S32"\n" F_S32" " F_S32"\n\n",
                 q->pts[0].bgn, q->pts[0].end,
                 q->pts[1].bgn, q->pts[1].end,
                 q->pts[2].bgn, q->pts[2].end,
@@ -2271,14 +2271,14 @@ void PrintFastaFragmentCoordinates(AssemblyStore * asmStore, FILE * fo)
 
         if(cco.scaffoldPos.bgn < cco.scaffoldPos.end)
         {
-          fprintf(fo, F_UID " "F_UID " "F_S32" "F_S32"\n",
+          fprintf(fo, F_UID " "F_UID " " F_S32" " F_S32"\n",
                   afg.uid, scf.uid,
                   offset + cIns.pos.bgn,
                   offset + cIns.pos.end);
         }
         else
         {
-          fprintf(fo, F_UID " "F_UID " "F_S32" "F_S32"\n",
+          fprintf(fo, F_UID " "F_UID " " F_S32" " F_S32"\n",
                   afg.uid, scf.uid,
                   offset + cco.length - cIns.pos.bgn,
                   offset + cco.length - cIns.pos.end);
@@ -2320,10 +2320,10 @@ void PrintScaffoldContigCoordinates(AssemblyStore * asmStore,
 
     if(doGnuplotOutput)
       fprintf(fo,
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n"
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n"
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n"
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n",
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n"
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n"
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n"
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n",
               offset, 0,
               offset,
               doAssemblyCoords ? (int32) assemblyLength : fastaLength,
@@ -2339,10 +2339,10 @@ void PrintScaffoldContigCoordinates(AssemblyStore * asmStore,
     else
     {
       if(cco.scaffoldPos.bgn < cco.scaffoldPos.end)
-        fprintf(fo, F_UID "\t"F_UID "\t"F_S32"\t"F_S32"\n",
+        fprintf(fo, F_UID "\t"F_UID "\t" F_S32"\t" F_S32"\n",
                 scf.uid, cco.uid, offset, offset + cco.length);
       else
-        fprintf(fo, F_UID "\t"F_UID "\t"F_S32"\t"F_S32"\n",
+        fprintf(fo, F_UID "\t"F_UID "\t" F_S32"\t" F_S32"\n",
                 scf.uid, cco.uid, offset + cco.length, offset);
     }
 
@@ -2359,10 +2359,10 @@ void PrintScaffoldContigCoordinates(AssemblyStore * asmStore,
   getASM_CCOStore(asmStore->ccoStore, contigIndex, &cco);
   if(doGnuplotOutput)
       fprintf(fo,
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n"
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n"
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n"
-              F_S32" "F_S32"\n"F_S32" "F_S32"\n\n",
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n"
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n"
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n"
+              F_S32" " F_S32"\n" F_S32" " F_S32"\n\n",
               offset, 0,
               offset, doAssemblyCoords ? (int32) assemblyLength : fastaLength,
               offset + cco.length, 0,
@@ -2375,7 +2375,7 @@ void PrintScaffoldContigCoordinates(AssemblyStore * asmStore,
               doAssemblyCoords ? (int32) assemblyLength : fastaLength,
               offset + cco.length);
   else
-    fprintf(fo, F_UID "\t"F_UID "\t"F_S32"\t"F_S32"\n",
+    fprintf(fo, F_UID "\t"F_UID "\t" F_S32"\t" F_S32"\n",
             scf.uid, cco.uid,
             offset, offset + cco.length);
 }
@@ -2452,7 +2452,7 @@ MapStore * CreateMapStoreFromFiles(AssemblyStore * asmStore,
       if(line[0] == '#') continue;
 
       // format: fragUID  chromosomeUID  5p  3p
-      numParsed = sscanf(line, F_UID " "F_UID " "F_S32" "F_S32,
+      numParsed = sscanf(line, F_UID " "F_UID " " F_S32" " F_S32,
                          &fragUID, &chromUID, &bgn, &end);
       assert(numParsed == 4);
 
@@ -2530,7 +2530,7 @@ void PrintMapStore(AssemblyStore * asmStore,
 
     getASM_AFGStore(asmStore->afgStore, i, &afg);
     getASM_CHRStore(mapStore->chrStore, ins.containerIndex, &chr);
-    fprintf(fo, F_UID " "F_UID " "F_S32" "F_S32"\n",
+    fprintf(fo, F_UID " "F_UID " " F_S32" " F_S32"\n",
             afg.uid, chr.uid, ins.pos.bgn, ins.pos.end);
   }
 }
@@ -2586,7 +2586,7 @@ void PrintChromosomeElsewheres(AssemblyStore * asmStore,
             // afg2 - uid, chrom, 5p, orient
             // lib - uid
             getASM_CHRStore(mapStore->chrStore, ins2.containerIndex, &chr2);
-            fprintf(fo, F_UID " "F_UID " "F_S32" %s "F_UID " "F_UID " "F_S32" %s "F_UID "\n",
+            fprintf(fo, F_UID " "F_UID " " F_S32" %s "F_UID " "F_UID " " F_S32" %s "F_UID "\n",
                     afg1.uid, chr1.uid, ins1.pos.bgn,
                     (ins1.pos.bgn < ins1.pos.end) ? "A_B" : "B_A",
                     afg2.uid, chr2.uid, ins2.pos.bgn,
@@ -2671,7 +2671,7 @@ void PrintScaffoldElsewheres(AssemblyStore * asmStore,
                               ins2.containerIndex, &scf2);
 
               if(!canonicalOnly || scf1.uid > scf2.uid)
-                fprintf(fo, F_UID " "F_UID " "F_S32" %s "F_UID " "F_UID " "F_S32" %s "F_UID "\n",
+                fprintf(fo, F_UID " "F_UID " " F_S32" %s "F_UID " "F_UID " " F_S32" %s "F_UID "\n",
                         afg1.uid, scf1.uid, ins1.pos.bgn,
                         (ins1.pos.bgn < ins1.pos.end) ? "A_B" : "B_A",
                         afg2.uid, scf2.uid, ins2.pos.bgn,
@@ -2782,7 +2782,7 @@ void PrintATACScaffoldGenomicAxis(AssemblyStore * asmStore,
 
   getASM_SCFStore(asmStore->scfStore, index, &scf);
   length = GetScaffoldLength(asmStore, index);
-  fprintf(fo, "G s s"F_UID " %s "F_S32" 0 . 0 "F_S32" 0 0 0 0 "F_UID " "F_UID "\n",
+  fprintf(fo, "G s s"F_UID " %s " F_S32" 0 . 0 " F_S32" 0 0 0 0 "F_UID " "F_UID "\n",
           scf.uid, parent, *offset, length, scf.uid, scf.uid);
   *offset += length;
 }
@@ -2829,7 +2829,7 @@ void PrintATACSurrogates(AssemblyStore * asmStore,
       {
         getASM_InstanceStore(asmStore->usiStore, sInsIndex, &scaffIns);
         getASM_SCFStore(asmStore->scfStore, scaffIns.containerIndex, &scf);
-        fprintf(fo, "F su su"F_UID "-%03d . %s "F_UID " "F_S32" "F_S32" %d 0\n",
+        fprintf(fo, "F su su"F_UID "-%03d . %s "F_UID " " F_S32" " F_S32" %d 0\n",
                 utg.uid, j,
                 parent, scf.uid,
                 MIN(scaffIns.pos.bgn, scaffIns.pos.end),

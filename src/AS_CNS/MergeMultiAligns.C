@@ -283,7 +283,7 @@ MergeMultiAlignsFast_new(VA_TYPE(IntElementPos) *positions, CNS_Options *opp) {
         IntUnitigPos *iup = GetIntUnitigPos(cma->u_list, iunitig);
 
 #ifdef DEBUG_MERGEMULTIALIGNS
-        fprintf(stderr, "Placing IUP  "F_CID" from "F_S32","F_S32" to "F_S32","F_S32" based on positions "F_S32","F_S32" (compl %d length %d within input parent)\n",
+        fprintf(stderr, "Placing IUP  " F_CID" from " F_S32"," F_S32" to " F_S32"," F_S32" based on positions " F_S32"," F_S32" (compl %d length %d within input parent)\n",
                 iup->ident,
                 iup->position.bgn, iup->position.end,
                 bgn, end,
@@ -308,7 +308,7 @@ MergeMultiAlignsFast_new(VA_TYPE(IntElementPos) *positions, CNS_Options *opp) {
 
 #ifdef DEBUG_MERGEMULTIALIGNS
         //  Generally not interesting.
-        //fprintf(stderr, "Placing IMP1 "F_CID" at "F_S32","F_S32" based on positions "F_S32","F_S32" (compl %d length %d within input parent)\n",
+        //fprintf(stderr, "Placing IMP1 " F_CID" at " F_S32"," F_S32" based on positions " F_S32"," F_S32" (compl %d length %d within input parent)\n",
         //        imp->ident, bgn, end, compci->position.bgn, compci->position.end, cfrag->complement, len);
 #endif
 

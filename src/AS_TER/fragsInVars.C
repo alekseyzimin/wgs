@@ -104,7 +104,7 @@ readFrags(FILE *frgscf, frag **frags, uint32 *fragsLen, uint32 *fragsMax) {
     fgets(L, 1024, frgscf);
   }
 
-  fprintf(stderr, "Read "F_U32" fragments.\n", *fragsLen);
+  fprintf(stderr, "Read " F_U32" fragments.\n", *fragsLen);
 }
 
 
@@ -123,7 +123,7 @@ readVars(FILE    *varscf,
 
   while (!feof(varscf)) {
     if (L[10240 - 1] != 0) {
-      fprintf(stderr, "WARNING:  Potentially long line at vid="F_U64": '%s'\n", vid, L);
+      fprintf(stderr, "WARNING:  Potentially long line at vid=" F_U64": '%s'\n", vid, L);
       exit(1);
     }
 
@@ -192,8 +192,8 @@ readVars(FILE    *varscf,
     fgets(L, 10240, varscf);
   }
 
-  fprintf(stderr, "Read "F_U32" var records.\n", *varsLen);
-  fprintf(stderr, "Using "F_U32" letters to store variants.\n", *vardataLen);
+  fprintf(stderr, "Read " F_U32" var records.\n", *varsLen);
+  fprintf(stderr, "Using " F_U32" letters to store variants.\n", *vardataLen);
 }
 
 
@@ -271,7 +271,7 @@ main(int argc, char **argv) {
   while ((fp < fragsLen) &&
          (vp < varsLen)) {
 
-    fprintf(stdout, "VAR\t"F_U64"\t%s\t"F_U64"\t"F_U32"\t"F_U32"\n",
+    fprintf(stdout, "VAR\t" F_U64"\t%s\t" F_U64"\t" F_U32"\t" F_U32"\n",
             vars[vp].vid, vardata + vars[vp].var, vars[vp].sid, vars[vp].beg, vars[vp].end);
 
     //  Advance the frag to the scaffold this var is in.  We can
@@ -342,28 +342,28 @@ main(int argc, char **argv) {
       if ((frags[fp].beg < vars[vp].beg) &&
           (frags[fp].end > vars[vp].end)) {
         //  var is contained in frag.
-        fprintf(stdout, "FRAG\t"F_U64"\t"F_U64"\t"F_U32"\t"F_U32" COMPLETE\n",
+        fprintf(stdout, "FRAG\t" F_U64"\t" F_U64"\t" F_U32"\t" F_U32" COMPLETE\n",
                 frags[fp].fid, frags[fp].sid, frags[fp].beg, frags[fp].end);
         fV++;
 
       } else if ((frags[fp].beg < vars[vp].beg) &&
                  (frags[fp].end > vars[vp].beg)) {
         //  var hangs off right end of frag
-        fprintf(stdout, "FRAG\t"F_U64"\t"F_U64"\t"F_U32"\t"F_U32" PARTIAL_RIGHT\n",
+        fprintf(stdout, "FRAG\t" F_U64"\t" F_U64"\t" F_U32"\t" F_U32" PARTIAL_RIGHT\n",
                 frags[fp].fid, frags[fp].sid, frags[fp].beg, frags[fp].end);
         fR++;
 
       } else if ((frags[fp].beg < vars[vp].end) &&
                  (frags[fp].end > vars[vp].end)) {
         //  var hangs off left end of frag
-        fprintf(stdout, "FRAG\t"F_U64"\t"F_U64"\t"F_U32"\t"F_U32" PARTIAL_LEFT\n",
+        fprintf(stdout, "FRAG\t" F_U64"\t" F_U64"\t" F_U32"\t" F_U32" PARTIAL_LEFT\n",
                 frags[fp].fid, frags[fp].sid, frags[fp].beg, frags[fp].end);
         fL++;
 
       } else if ((frags[fp].end > vars[vp].beg) &&
                  (frags[fp].beg < vars[vp].end)) {
         //  frag is contained in var
-        fprintf(stdout, "FRAG\t"F_U64"\t"F_U64"\t"F_U32"\t"F_U32" CONTAINED\n",
+        fprintf(stdout, "FRAG\t" F_U64"\t" F_U64"\t" F_U32"\t" F_U32" CONTAINED\n",
                 frags[fp].fid, frags[fp].sid, frags[fp].beg, frags[fp].end);
         fC++;
       }
@@ -372,7 +372,7 @@ main(int argc, char **argv) {
     }
 
     if (fV + fR + fL + fC == 0) {
-      fprintf(stderr, "WARNING:  No fragments found for vid "F_U64"\n", vars[vp].vid);
+      fprintf(stderr, "WARNING:  No fragments found for vid " F_U64"\n", vars[vp].vid);
       varsNoFrags++;
     }
 
@@ -388,11 +388,11 @@ main(int argc, char **argv) {
   safe_free(vardata);
   safe_free(vars);
 
-  fprintf(stderr, "fragsContain VAR: "F_U32"\n", fragsContainV);
-  fprintf(stderr, "fragsRight:       "F_U32"\n", fragsRight);
-  fprintf(stderr, "fragsLeft:        "F_U32"\n", fragsLeft);
-  fprintf(stderr, "fragsContained:   "F_U32"\n", fragsContained);
-  fprintf(stderr, "varsNoFrags:      "F_U32"\n", varsNoFrags);
+  fprintf(stderr, "fragsContain VAR: " F_U32"\n", fragsContainV);
+  fprintf(stderr, "fragsRight:       " F_U32"\n", fragsRight);
+  fprintf(stderr, "fragsLeft:        " F_U32"\n", fragsLeft);
+  fprintf(stderr, "fragsContained:   " F_U32"\n", fragsContained);
+  fprintf(stderr, "varsNoFrags:      " F_U32"\n", varsNoFrags);
 
   exit(0);
 }

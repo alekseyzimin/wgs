@@ -571,11 +571,11 @@ void FillChunkOverlapWithOVL(GraphCGW_T   *graph,
           orient);
 
   if (olap.overlap > 0)
-    fprintf(stderr, "FillChunkOverlapWithOVL()-- frg "F_IID" in utg "F_IID" <-> frg "F_IID" in utg "F_IID" ovl %d min %d,%d hang %d,%d\n",
+    fprintf(stderr, "FillChunkOverlapWithOVL()-- frg " F_IID" in utg " F_IID" <-> frg " F_IID" in utg " F_IID" ovl %d min %d,%d hang %d,%d\n",
             ovl->aifrag, cia, ovl->bifrag, cib,
             olap.overlap, olapmin, olapmax, olap.ahg, olap.bhg);
   else
-    fprintf(stderr, "FillChunkOverlapWithOVL()-- frg "F_IID" in utg "F_IID" <-> frg "F_IID" in utg "F_IID" ovl %d min %d,%d FAILED\n",
+    fprintf(stderr, "FillChunkOverlapWithOVL()-- frg " F_IID" in utg " F_IID" <-> frg " F_IID" in utg " F_IID" ovl %d min %d,%d FAILED\n",
             ovl->aifrag, cia, ovl->bifrag, cib,
             olapsize, olapmin, olapmax);
 #endif
@@ -1013,7 +1013,7 @@ ComputeCanonicalOverlap_new(GraphCGW_T *graph, ChunkOverlapCheckT *canOlap) {
       nnOlap.bhg = -tempOlap1->begpos;
     }
 
-    fprintf(stderr,">>> Fixing up suspicious overlap ("F_CID ","F_CID ",%c) (ahg:"F_S32" bhg:"F_S32") to ("F_CID ","F_CID ",%c) (ahg:"F_S32" bhg:"F_S32") len: "F_S32"\n",
+    fprintf(stderr,">>> Fixing up suspicious overlap (" F_CID "," F_CID ",%c) (ahg:" F_S32" bhg:" F_S32") to (" F_CID "," F_CID ",%c) (ahg:" F_S32" bhg:" F_S32") len: " F_S32"\n",
             inOlap.spec.cidA, inOlap.spec.cidB, inOlap.spec.orientation.toLetter(), tempOlap1->begpos, tempOlap1->endpos,
             nnOlap.spec.cidA, nnOlap.spec.cidB, nnOlap.spec.orientation.toLetter(), nnOlap.ahg,        nnOlap.bhg,
             nnOlap.overlap);
@@ -1309,7 +1309,7 @@ ComputeOverlaps(GraphCGW_T *graph, int addEdgeMates, int recomputeCGBOverlaps) {
       int lengthA = GetConsensus(graph, olap.spec.cidA, consensusA, qualityA);
       int lengthB = GetConsensus(graph, olap.spec.cidB, consensusB, qualityB);
 
-      fprintf(stderr,"* CO: SUSPICIOUS Overlap found! Looked for ("F_CID ","F_CID ",%c)["F_S32","F_S32"] found ("F_CID ","F_CID ",%c) "F_S32"; contig lengths as found (%d,%d)\n",
+      fprintf(stderr,"* CO: SUSPICIOUS Overlap found! Looked for (" F_CID "," F_CID ",%c)[" F_S32"," F_S32"] found (" F_CID "," F_CID ",%c) " F_S32"; contig lengths as found (%d,%d)\n",
               inSpec.cidA,    inSpec.cidB,    inSpec.orientation.toLetter(),    olap.minOverlap, olap.maxOverlap,
               olap.spec.cidA, olap.spec.cidB, olap.spec.orientation.toLetter(), olap.overlap,
               lengthA,lengthB);

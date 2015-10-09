@@ -2363,7 +2363,7 @@ void UnitigGraph::writeIUMtoFile(char *fileprefix, char *tigStorePath, int frg_c
 
     partmap[iumiid] = prt_count;
 
-    fprintf(iidm, "Unitig "F_U32" == IUM "F_U32" (in partition "F_U32" with "F_S64" frags)\n",
+    fprintf(iidm, "Unitig " F_U32" == IUM " F_U32" (in partition " F_U32" with " F_S64" frags)\n",
             utg->id(), iumiid, partmap[iumiid], nf);
 
     for (int32 fragIdx=0; fragIdx<nf; fragIdx++) {

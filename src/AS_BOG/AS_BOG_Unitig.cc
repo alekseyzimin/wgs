@@ -659,7 +659,7 @@ float Unitig::getAvgRho(FragmentInfo *fi){
   _avgRho = unitig_length - avg_frag_len;
 
   if (_avgRho <= 0 ) {
-    //fprintf(stderr, "Negative Rho ident1 "F_IID" ident2 "F_IID" unitig_length %d first_frag_len %d last_frag_len %d avg_frag_len %f\n",
+    //fprintf(stderr, "Negative Rho ident1 " F_IID" ident2 " F_IID" unitig_length %d first_frag_len %d last_frag_len %d avg_frag_len %f\n",
     //        ident1, ident2, unitig_length, first_frag_len, last_frag_len, avg_frag_len);
     _avgRho = 1;
   }

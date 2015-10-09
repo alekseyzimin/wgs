@@ -185,8 +185,8 @@ main(int argc, char **argv) {
   delete [] frag;
   delete    gkpstore;
 
-  fprintf(stderr, "Total overlaps   "F_U64"\n", totalOverlaps);
-  fprintf(stderr, "Mates removed    "F_U64"\n", matesRemoved);
+  fprintf(stderr, "Total overlaps   " F_U64"\n", totalOverlaps);
+  fprintf(stderr, "Mates removed    " F_U64"\n", matesRemoved);
 
   exit(0);
 }

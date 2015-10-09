@@ -183,14 +183,14 @@ Read_Frag_Mesg(FILE *fin,int frag_class) {
   fmesg.action     = (ActionType)GetType("act:%c","action",fin);
   fmesg.eaccession = GetUID("acc:",fin);
 
-  GET_FIELD(fmesg.is_random,"rnd:"F_U32,"is_random");
+  GET_FIELD(fmesg.is_random,"rnd:" F_U32,"is_random");
 
   fmesg.status_code = GetType("sta:%1[GBUWXVEIR]","status code", fin);
 
   fmesg.library_uid = GetUID("lib:",fin);
 
   fmesg.plate_uid = GetUID("pla:",fin);
-  GET_FIELD(fmesg.plate_location,"loc:"F_U32,"plate_location field");
+  GET_FIELD(fmesg.plate_location,"loc:" F_U32,"plate_location field");
 
   fmesg.source   = NULL;
   fmesg.sequence = NULL;
@@ -210,27 +210,27 @@ Read_Frag_Mesg(FILE *fin,int frag_class) {
     //  contamination clear are optional.
 
     line = ReadLine(fin, TRUE);
-    if(sscanf(line,"con:"F_S32","F_S32,&b,&e)==2){
+    if(sscanf(line,"con:" F_S32"," F_S32,&b,&e)==2){
       fmesg.contamination.bgn = b;
       fmesg.contamination.end = e;
       line = ReadLine(fin, TRUE);
     }
-    if(sscanf(line,"clv:"F_S32","F_S32,&b,&e)==2){
+    if(sscanf(line,"clv:" F_S32"," F_S32,&b,&e)==2){
       fmesg.clear_vec.bgn = b;
       fmesg.clear_vec.end = e;
       line = ReadLine(fin, TRUE);
     }
-    if(sscanf(line,"clq:"F_S32","F_S32,&b,&e)==2){
+    if(sscanf(line,"clq:" F_S32"," F_S32,&b,&e)==2){
       //  Legacy support.  The origianl v2 format had a QLT clear
       //  range that was never used.
       line = ReadLine(fin, TRUE);
     }
-    if(sscanf(line,"clm:"F_S32","F_S32,&b,&e)==2){
+    if(sscanf(line,"clm:" F_S32"," F_S32,&b,&e)==2){
       fmesg.clear_max.bgn = b;
       fmesg.clear_max.end = e;
       line = ReadLine(fin, TRUE);
     }
-    if(sscanf(line,"clr:"F_S32","F_S32,&b,&e)==2){
+    if(sscanf(line,"clr:" F_S32"," F_S32,&b,&e)==2){
       fmesg.clear_rng.bgn = b;
       fmesg.clear_rng.end = e;
     } else {
@@ -259,7 +259,7 @@ Write_Frag_Mesg(FILE *fout,void *vmesg,int frag_class) {
   if (frag_class == MESG_FRG)
     fprintf(fout,"acc:%s\n",AS_UID_toString(mesg->eaccession));
   else
-    fprintf(fout,"acc:(%s,"F_IID")\n",AS_UID_toString(mesg->eaccession),mesg->iaccession);
+    fprintf(fout,"acc:(%s," F_IID")\n",AS_UID_toString(mesg->eaccession),mesg->iaccession);
 
   fprintf(fout,"rnd:%d\n",mesg->is_random);
   fprintf(fout,"sta:%c\n",mesg->status_code);
@@ -267,10 +267,10 @@ Write_Frag_Mesg(FILE *fout,void *vmesg,int frag_class) {
   if (frag_class == MESG_FRG)
     fprintf(fout,"lib:%s\n",AS_UID_toString(mesg->library_uid));
   else
-    fprintf(fout,"lib:%s,"F_IID"\n",AS_UID_toString(mesg->library_uid),mesg->library_iid);
+    fprintf(fout,"lib:%s," F_IID"\n",AS_UID_toString(mesg->library_uid),mesg->library_iid);
 
   fprintf(fout,"pla:%s\n",AS_UID_toString(mesg->plate_uid));
-  fprintf(fout,"loc:"F_U32"\n",mesg->plate_location);
+  fprintf(fout,"loc:" F_U32"\n",mesg->plate_location);
 
   if ((mesg->action == AS_ADD) || (mesg->action == AS_IGNORE)) {
     PutText(fout,"src:",mesg->source,FALSE);
@@ -279,12 +279,12 @@ Write_Frag_Mesg(FILE *fout,void *vmesg,int frag_class) {
     PutText(fout,"hps:",mesg->hps,TRUE);
 
     if (mesg->contamination.bgn < mesg->contamination.end)
-      fprintf(fout,"con:"F_S32","F_S32"\n",mesg->contamination.bgn,mesg->contamination.end);
+      fprintf(fout,"con:" F_S32"," F_S32"\n",mesg->contamination.bgn,mesg->contamination.end);
     if (mesg->clear_vec.bgn < mesg->clear_vec.end)
-      fprintf(fout,"clv:"F_S32","F_S32"\n",mesg->clear_vec.bgn,mesg->clear_vec.end);
+      fprintf(fout,"clv:" F_S32"," F_S32"\n",mesg->clear_vec.bgn,mesg->clear_vec.end);
     if (mesg->clear_max.bgn < mesg->clear_max.end)
-      fprintf(fout,"clm:"F_S32","F_S32"\n",mesg->clear_max.bgn,mesg->clear_max.end);
-    fprintf(fout,"clr:"F_S32","F_S32"\n",mesg->clear_rng.bgn,mesg->clear_rng.end);
+      fprintf(fout,"clm:" F_S32"," F_S32"\n",mesg->clear_max.bgn,mesg->clear_max.end);
+    fprintf(fout,"clr:" F_S32"," F_S32"\n",mesg->clear_rng.bgn,mesg->clear_rng.end);
   }
 
   fprintf(fout,"}\n");

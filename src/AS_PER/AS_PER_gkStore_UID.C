@@ -156,7 +156,7 @@ gkStore::gkStore_rebuildUIDtoIID(void) {
     gkLibrary *L = gkStore_getLibrary(i);
 
     if (InsertInHashTable_AS(UIDtoIID, AS_UID_toInteger(L->libraryUID), 0, (uint64)i, AS_IID_LIB) == HASH_FAILURE)
-      fprintf(stderr, "Error inserting library %s,"F_IID" into hash table.\n",
+      fprintf(stderr, "Error inserting library %s," F_IID" into hash table.\n",
               AS_UID_toString(L->libraryUID), i);
   }
 
@@ -169,7 +169,7 @@ gkStore::gkStore_rebuildUIDtoIID(void) {
 
   while (gs.next(&fr)) {
     if (InsertInHashTable_AS(UIDtoIID, AS_UID_toInteger(fr.gkFragment_getReadUID()), 0, (uint64)fr.gkFragment_getReadIID(), AS_IID_FRG) == HASH_FAILURE)
-      fprintf(stderr, "Error inserting UID %s and IID "F_IID"into hash table.\n",
+      fprintf(stderr, "Error inserting UID %s and IID " F_IID"into hash table.\n",
               AS_UID_toString(fr.gkFragment_getReadUID()), fr.gkFragment_getReadIID());
   }
 }

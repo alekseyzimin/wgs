@@ -118,7 +118,7 @@ struct BestOverlapGraph {
     //
     if (olap.dat.ovl.corr_erate <= mismatchCutoff) {
       if (logFile)
-        fprintf(logFile, "OVERLAP GOOD:     %d %d %c  hangs "F_S64" "F_S64" err %.3f %.3f\n",
+        fprintf(logFile, "OVERLAP GOOD:     %d %d %c  hangs " F_S64" " F_S64" err %.3f %.3f\n",
                 olap.a_iid, olap.b_iid,
                 olap.dat.ovl.flipped ? 'A' : 'N',
                 olap.dat.ovl.a_hang,
@@ -145,7 +145,7 @@ struct BestOverlapGraph {
 
     if (nerr <= mismatchLimit) {
       if (logFile)
-        fprintf(logFile, "OVERLAP SAVED:    %d %d %c  hangs "F_S64" "F_S64" err %.3f %.3f olen %f nerr %f\n",
+        fprintf(logFile, "OVERLAP SAVED:    %d %d %c  hangs " F_S64" " F_S64" err %.3f %.3f olen %f nerr %f\n",
                 olap.a_iid, olap.b_iid,
                 olap.dat.ovl.flipped ? 'A' : 'N',
                 olap.dat.ovl.a_hang,
@@ -157,7 +157,7 @@ struct BestOverlapGraph {
     }
 
     if (logFile)
-      fprintf(logFile, "OVERLAP REJECTED: %d %d %c  hangs "F_S64" "F_S64" err %.3f %.3f olen %f nerr %f\n",
+      fprintf(logFile, "OVERLAP REJECTED: %d %d %c  hangs " F_S64" " F_S64" err %.3f %.3f olen %f nerr %f\n",
               olap.a_iid, olap.b_iid,
               olap.dat.ovl.flipped ? 'A' : 'N',
               olap.dat.ovl.a_hang,

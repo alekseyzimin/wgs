@@ -407,7 +407,7 @@ int main_cgb(THeapGlobals  * heapva,
       set_cid_fragment(heapva->frags,ifrag,ifrag); // While we are here ....
     }
 
-    fprintf(stderr, "Total number of guides counted: "F_IID " of "F_IID " fragments\n",
+    fprintf(stderr, "Total number of guides counted: " F_IID " of " F_IID " fragments\n",
             num_of_guides_total, nfrag);
 
     if(rg->genome_length > 0) {

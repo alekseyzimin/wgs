@@ -65,7 +65,7 @@ static void as_addq
   thequeue[*rear] = item; /* insert the new item */
   *rear = (*rear + 1) & lenqueue; /* advance the rear clockwise */
   if( *front == *rear) { /* The queue is full */
-    fprintf(stderr,"lenqueue=%d front="F_IID " rear="F_IID "\n",
+    fprintf(stderr,"lenqueue=%d front=" F_IID " rear=" F_IID "\n",
             lenqueue, *front, *rear);
     assert( *front != *rear ); /* Increase MAXQUEUELEN ? */
     /* CALL queueFULL */
@@ -114,7 +114,7 @@ static void as_diagq
   IntFragment_ID rear)
 {
   IntFragment_ID iq;
-  fprintf(fout,"the queue front="F_IID " rear="F_IID "\n",front,rear);
+  fprintf(fout,"the queue front=" F_IID " rear=" F_IID "\n",front,rear);
   if( front != rear ) {
   if( front < rear ) {
     for(iq=front;iq<rear;iq++) {
@@ -302,7 +302,7 @@ void as_graph_traversal
     //nfound++;
   }
   fprintf(fout,"FRAGMENT OVERLAP GRAPH TRAVERSAL STATISTICS\n\n"
-	  "%15"F_IIDP " : number of fragments in overlap graph\n"
+	  "%15" F_IIDP " : number of fragments in overlap graph\n"
 	  "%15" F_SIZE_TP " : number of fragments found by breadth first search\n"
 	  "%15" F_SIZE_TP " : number of weakly connected graph components\n"
 	  "%15" F_SIZE_TP " : number of contained fragments\n"

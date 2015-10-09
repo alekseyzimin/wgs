@@ -105,7 +105,7 @@ readMapping(char *filename) {
 
   aliLen++;
 
-  fprintf(stderr, "Read "F_U32" alignments.\n", aliLen);
+  fprintf(stderr, "Read " F_U32" alignments.\n", aliLen);
 }
 
 
@@ -169,7 +169,7 @@ loadFragments(void) {
   if (err)
     fprintf(stderr, "There were errors in the mapping.  Fail.\n"), exit(1);
 
-  fprintf(stderr, "Found "F_U32" alive, "F_U32" dead, and "F_U32" unmapped fragments.\n", alive, dead, unmapped);
+  fprintf(stderr, "Found " F_U32" alive, " F_U32" dead, and " F_U32" unmapped fragments.\n", alive, dead, unmapped);
 }
 
 

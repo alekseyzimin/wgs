@@ -217,7 +217,7 @@ main(int argc, char **argv) {
 
     consolidate(ovl, ovlLen, cd);
 
-    fprintf(stdout, F_U32"  "F_U32" "F_U32" "F_U32" "F_U32" "F_U32"  "F_U32" "F_U32" "F_U32" "F_U32" "F_U32"\n",
+    fprintf(stdout, F_U32"  " F_U32" " F_U32" " F_U32" " F_U32" " F_U32"  " F_U32" " F_U32" " F_U32" " F_U32" " F_U32"\n",
             cd.iid,
             cd.min5, cd.minm5, cd.minm5c, cd.mode5, cd.mode5c,
             cd.max3, cd.maxm3, cd.maxm3c, cd.mode3, cd.mode3c);

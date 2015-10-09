@@ -489,14 +489,14 @@ AS_OVS_closeOverlapStore(OverlapStore *ovs) {
     fclose(ovsinfo);
 
     fprintf(stderr, "Closing the new store:\n");
-    fprintf(stderr, "ovs->ovs.ovsMagic           = "F_U64"\n", ovs->ovs.ovsMagic);
-    fprintf(stderr, "ovs->ovs.ovsVersion         = "F_U64"\n", ovs->ovs.ovsVersion);
-    fprintf(stderr, "ovs->ovs.numOverlapsPerFile = "F_U64"\n", ovs->ovs.numOverlapsPerFile);
-    fprintf(stderr, "ovs->ovs.smallestIID        = "F_U64"\n", ovs->ovs.smallestIID);
-    fprintf(stderr, "ovs->ovs.largestIID         = "F_U64"\n", ovs->ovs.largestIID);
-    fprintf(stderr, "ovs->ovs.numOverlapsTotal   = "F_U64"\n", ovs->ovs.numOverlapsTotal);
-    fprintf(stderr, "ovs->ovs.highestFileIndex   = "F_U64"\n", ovs->ovs.highestFileIndex);
-    fprintf(stderr, "ovs->ovs.maxReadLenInBits   = "F_U64"\n", ovs->ovs.maxReadLenInBits);
+    fprintf(stderr, "ovs->ovs.ovsMagic           = " F_U64"\n", ovs->ovs.ovsMagic);
+    fprintf(stderr, "ovs->ovs.ovsVersion         = " F_U64"\n", ovs->ovs.ovsVersion);
+    fprintf(stderr, "ovs->ovs.numOverlapsPerFile = " F_U64"\n", ovs->ovs.numOverlapsPerFile);
+    fprintf(stderr, "ovs->ovs.smallestIID        = " F_U64"\n", ovs->ovs.smallestIID);
+    fprintf(stderr, "ovs->ovs.largestIID         = " F_U64"\n", ovs->ovs.largestIID);
+    fprintf(stderr, "ovs->ovs.numOverlapsTotal   = " F_U64"\n", ovs->ovs.numOverlapsTotal);
+    fprintf(stderr, "ovs->ovs.highestFileIndex   = " F_U64"\n", ovs->ovs.highestFileIndex);
+    fprintf(stderr, "ovs->ovs.maxReadLenInBits   = " F_U64"\n", ovs->ovs.maxReadLenInBits);
   }
 
 #if 0
@@ -608,8 +608,8 @@ AS_OVS_writeOverlapToStore(OverlapStore *ovs, OVSoverlap *overlap) {
 
   if (ovs->offset.a_iid > overlap->a_iid) {
     //  Woah!  The last overlap we saw is bigger than the one we have now?!
-    fprintf(stderr, "LAST:  a:"F_U32"\n", ovs->offset.a_iid);
-    fprintf(stderr, "THIS:  a:"F_U32" b:"F_U32"\n", overlap->a_iid, overlap->b_iid);
+    fprintf(stderr, "LAST:  a:" F_U32"\n", ovs->offset.a_iid);
+    fprintf(stderr, "THIS:  a:" F_U32" b:" F_U32"\n", overlap->a_iid, overlap->b_iid);
   }
   assert(ovs->offset.a_iid <= overlap->a_iid);
 

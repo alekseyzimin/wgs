@@ -135,8 +135,8 @@ static void myprintdata (FILE *fout,
 	  "  frags   %10d %10d %10.5f   %6d %6d %6d\n"
 	  "  rs frag %10d %10d %10.5f   %6d %6d %6d\n"
 	  "  nr frag %10d %10d %10.5f   %6d %6d %6d\n"
-	  "  bases   %10"F_S64P " %10"F_S64P " %10.5f   %6"F_S64P" %6"F_S64P" %6"F_S64P"\n"
-	  "  rho     %10"F_S64P " %10"F_S64P " %10.5f   %6"F_S64P" %6"F_S64P" %6"F_S64P"\n"
+	  "  bases   %10" F_S64P " %10" F_S64P " %10.5f   %6" F_S64P" %6" F_S64P" %6" F_S64P"\n"
+	  "  rho     %10" F_S64P " %10" F_S64P " %10.5f   %6" F_S64P" %6" F_S64P" %6" F_S64P"\n"
 	  "  arrival %10d %10d %10.5f   %6d %6d %6d\n"
 	  "  discr   %10d %10d %10.5f   %6d %6d %6d\n",
 	  /* data->nsamples, */

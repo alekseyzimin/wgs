@@ -158,14 +158,14 @@ buildStore(
 
     iidPerBucket                = overlapsPerBucket / overlapsPerIID;
 
-    fprintf(stderr, "For %.3f million overlaps, in "F_U64"MB memory, I'll put "F_U64" IID's (approximately "F_U64" overlaps) per bucket.\n",
+    fprintf(stderr, "For %.3f million overlaps, in " F_U64"MB memory, I'll put " F_U64" IID's (approximately " F_U64" overlaps) per bucket.\n",
             numOverlaps / 1000000.0,
             memoryLimit / (uint64)1048576,
             iidPerBucket,
             overlapsPerBucket);
   } else {
     iidPerBucket = maxIID / 100;
-    fprintf(stderr, "Using stdin; cannot size buckets properly.  Using 100 buckets, "F_U64" IIDs per bucket.  Good luck!\n",
+    fprintf(stderr, "Using stdin; cannot size buckets properly.  Using 100 buckets, " F_U64" IIDs per bucket.  Good luck!\n",
             iidPerBucket);
   }
 

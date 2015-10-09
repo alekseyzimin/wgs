@@ -287,7 +287,7 @@ getStringStore(StoreStruct *s, int64 offset, char *buffer, uint32 maxLength, uin
 
     if (length > 0) {
       if (length + 1 != AS_UTL_safeRead(s->fp,buffer,"getStringStore",sizeof(char), length + 1)) {
-        fprintf(stderr, "getStringStore()-- Failed to read all "F_U32" bytes.  Incomplete store?\n", length);
+        fprintf(stderr, "getStringStore()-- Failed to read all " F_U32" bytes.  Incomplete store?\n", length);
         assert(0);
         exit(1);
       }

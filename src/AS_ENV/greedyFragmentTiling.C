@@ -913,7 +913,7 @@ int main (int argc , char * argv[] ) {
     }
     sampleFile = fopen(sampleFileName,"r");
     assert(sampleFile!=NULL);
-    while(fscanf(sampleFile, "%s "F_IID,&uidstr,&smp)==2){
+    while(fscanf(sampleFile, "%s " F_IID,&uidstr,&smp)==2){
       uid = AS_UID_load(uidstr);
       AS_IID iid=uid2iid(uid);
       if(iid>0) iid2sample[iid]=smp;

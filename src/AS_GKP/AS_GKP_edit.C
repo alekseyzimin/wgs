@@ -205,7 +205,7 @@ allFrags(gkStore *gkpStore,
   int64  lastElem  = gkpStore->gkStore_getNumFragments();
 
   if (update) {
-    fprintf(stderr, "update all frags in lib "F_IID" ("F_S64","F_S64")\n",
+    fprintf(stderr, "update all frags in lib " F_IID" (" F_S64"," F_S64")\n",
             IID, firstElem, lastElem);    
   }
 
@@ -317,7 +317,7 @@ editStore(char *editsFileName, char *gkpStoreName, int update) {
     }
 
     if (IID == 0) {
-      fprintf(stderr, "invalid id (UID=%s, IID="F_IID") in edit line: '%s'\n", AS_UID_toString(UID), IID, L);
+      fprintf(stderr, "invalid id (UID=%s, IID=" F_IID") in edit line: '%s'\n", AS_UID_toString(UID), IID, L);
       errors++;
       goto nextline;
     }
@@ -346,7 +346,7 @@ editStore(char *editsFileName, char *gkpStoreName, int update) {
       fr.gkFragment_enableGatekeeperMode(gkpStore);
 
       if (IID > gkpStore->gkStore_getNumFragments()) {
-        fprintf(stderr, "invalid frg iid "F_IID" in edit line: '%s'\n", IID, L);
+        fprintf(stderr, "invalid frg iid " F_IID" in edit line: '%s'\n", IID, L);
         errors++;
         goto nextline;
       }
@@ -361,33 +361,33 @@ editStore(char *editsFileName, char *gkpStoreName, int update) {
         AS_IID    o = fr.gkFragment_getMateIID();
         fr.gkFragment_setMateIID(AS_IID_fromString(E, &E));
         if (update)
-          fprintf(stdout, "frg uid %s mateiid "F_IID" -> mateiid "F_IID"\n",
+          fprintf(stdout, "frg uid %s mateiid " F_IID" -> mateiid " F_IID"\n",
                   AS_UID_toString(fr.gkFragment_getReadUID()), o, fr.gkFragment_getMateIID());
       } else if (strcasecmp(ACT, "mateuid") == 0) {
         AS_IID    o = fr.gkFragment_getMateIID();
         AS_UID    n = AS_UID_lookup(E, &E);
         fr.gkFragment_setMateIID(gkpStore->gkStore_getUIDtoIID(n, NULL));
         if (update)
-          fprintf(stdout, "frg uid %s mateiid "F_IID" -> mateiid "F_IID" mateuid %s\n",
+          fprintf(stdout, "frg uid %s mateiid " F_IID" -> mateiid " F_IID" mateuid %s\n",
                   AS_UID_toString(fr.gkFragment_getReadUID()), o, fr.gkFragment_getMateIID(), AS_UID_toString(n));
       } else if (strcasecmp(ACT, "readuid") == 0) {
         AS_UID    o = fr.gkFragment_getReadUID();
         fr.gkFragment_setReadUID(AS_UID_lookup(E, &E));  //  I _really_ hope you know what you're doing
         if (update)
-          fprintf(stdout, "frg iid "F_IID" readuid %s -> %s\n",
+          fprintf(stdout, "frg iid " F_IID" readuid %s -> %s\n",
                   fr.gkFragment_getReadIID(), AS_UID_toString(o), AS_UID_toString(fr.gkFragment_getReadUID()));
       } else if (strcasecmp(ACT, "libiid") == 0) {
         AS_IID    o = fr.gkFragment_getLibraryIID();
         fr.gkFragment_setLibraryIID(AS_IID_fromString(E, &E));
         if (update)
-          fprintf(stdout, "frg uid %s libiid "F_IID" -> libiid "F_IID"\n",
+          fprintf(stdout, "frg uid %s libiid " F_IID" -> libiid " F_IID"\n",
                   AS_UID_toString(fr.gkFragment_getReadUID()), o, fr.gkFragment_getLibraryIID());
       } else if (strcasecmp(ACT, "libuid") == 0) {
         AS_IID    o = fr.gkFragment_getLibraryIID();
         AS_UID    n = AS_UID_lookup(E, &E);
         fr.gkFragment_setLibraryIID(gkpStore->gkStore_getUIDtoIID(n, NULL));
         if (update)
-          fprintf(stdout, "frg uid %s libiid "F_IID" -> libiid "F_IID" libuid %s\n",
+          fprintf(stdout, "frg uid %s libiid " F_IID" -> libiid " F_IID" libuid %s\n",
                   AS_UID_toString(fr.gkFragment_getReadUID()), o, fr.gkFragment_getLibraryIID(), AS_UID_toString(n));
       } else if (strcasecmp(ACT, "isnonrandom") == 0) {
         uint32 o = fr.gkFragment_getIsNonRandom();
@@ -401,7 +401,7 @@ editStore(char *editsFileName, char *gkpStoreName, int update) {
           goto nextline;
         }
         if (update)
-          fprintf(stdout, "frg uid %s isnonrandom "F_U32" -> "F_U32"\n",
+          fprintf(stdout, "frg uid %s isnonrandom " F_U32" -> " F_U32"\n",
                   AS_UID_toString(fr.gkFragment_getReadUID()), o, fr.gkFragment_getIsNonRandom());
       } else if (strcasecmp(ACT, "isdeleted") == 0) {
         uint32 o = fr.gkFragment_getIsDeleted();
@@ -415,7 +415,7 @@ editStore(char *editsFileName, char *gkpStoreName, int update) {
           goto nextline;
         }
         if (update)
-          fprintf(stdout, "frg uid %s isdeleted "F_U32" -> "F_U32"\n",
+          fprintf(stdout, "frg uid %s isdeleted " F_U32" -> " F_U32"\n",
                   AS_UID_toString(fr.gkFragment_getReadUID()), o, fr.gkFragment_getIsDeleted());
       } else if (strcasecmp(ACT, "orientation") == 0) {
         uint32 o = fr.gkFragment_getOrientation();
@@ -447,7 +447,7 @@ editStore(char *editsFileName, char *gkpStoreName, int update) {
       gkLibrary  gklr;
 
       if (IID > gkpStore->gkStore_getNumLibraries()) {
-        fprintf(stderr, "invalid lib iid "F_IID" in edit line: '%s'\n", IID, L);
+        fprintf(stderr, "invalid lib iid " F_IID" in edit line: '%s'\n", IID, L);
         errors++;
         goto nextline;
       }

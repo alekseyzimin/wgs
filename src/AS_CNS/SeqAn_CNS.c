@@ -157,14 +157,14 @@ void updateRecord(IntUnitigMesg *ium_mesg, char * inFile, char *seqAn, char * pr
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
       chomp(line);
       int32 begin, end;
-      sscanf(line,"Pos:"F_S32","F_S32,&begin,&end);
+      sscanf(line,"Pos:" F_S32"," F_S32,&begin,&end);
       ium_mesg->f_list[currRead].position.bgn = begin;
       ium_mesg->f_list[currRead].position.end = end;
 
       // read the dln line
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
       chomp(line);
-      sscanf(line,"dln:"F_S32, &ium_mesg->f_list[currRead].delta_length);
+      sscanf(line,"dln:" F_S32, &ium_mesg->f_list[currRead].delta_length);
 
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
       chomp(line);
@@ -225,14 +225,14 @@ void updateICMRecord(IntConConMesg *icm_mesg, char * inFile, char *seqAn, char *
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
       chomp(line);
       int32 begin, end;
-      sscanf(line,"Pos:"F_S32","F_S32,&begin,&end);
+      sscanf(line,"Pos:" F_S32"," F_S32,&begin,&end);
       icm_mesg->pieces[currRead].position.bgn = begin;
       icm_mesg->pieces[currRead].position.end = end;
 
       // read the dln line
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
       chomp(line);
-      sscanf(line,"dln:"F_S32, &icm_mesg->pieces[currRead].delta_length);
+      sscanf(line,"dln:" F_S32, &icm_mesg->pieces[currRead].delta_length);
 
       // read the del line
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
@@ -261,12 +261,12 @@ void updateICMRecord(IntConConMesg *icm_mesg, char * inFile, char *seqAn, char *
       // we read the Pos line above, process it now
       chomp(line);
       int32 begin, end;
-      sscanf(line,"Pos:"F_S32","F_S32,&begin,&end);
+      sscanf(line,"Pos:" F_S32"," F_S32,&begin,&end);
 
       // read the dln line
       fgets(line, AS_SEQAN_MAX_RESULT_LENGTH, tempOut);
       chomp(line);
-      sscanf(line,"dln:"F_S32, &icm_mesg->unitigs[currRead].delta_length);
+      sscanf(line,"dln:" F_S32, &icm_mesg->unitigs[currRead].delta_length);
 
       // read the del line
       char * del = readMultiLine(tempOut);
@@ -375,7 +375,7 @@ int main(int argc, char **argv) {
                seq[clrEnd] = 0;
                AS_UTL_writeFastA(tempReads,
                   seq, clrEnd-clrBeg,
-                   ">"F_IID","F_IID"\n", ium_mesg->f_list[i].position.bgn, ium_mesg->f_list[i].position.end);
+                   ">" F_IID"," F_IID"\n", ium_mesg->f_list[i].position.bgn, ium_mesg->f_list[i].position.end);
             }
             fclose(tempReads);
             updateRecord(ium_mesg, fileName, seqAn, prefix, wrkDir);
@@ -414,7 +414,7 @@ int main(int argc, char **argv) {
                seq[clrEnd] = 0;
                AS_UTL_writeFastA(tempReads,
                   seq, clrEnd-clrBeg,
-                   ">"F_IID","F_IID"\n", icm_mesg->pieces[i].position.bgn, icm_mesg->pieces[i].position.end);
+                   ">" F_IID"," F_IID"\n", icm_mesg->pieces[i].position.bgn, icm_mesg->pieces[i].position.end);
             }
             
             // now handle the unitig messages
@@ -429,7 +429,7 @@ int main(int argc, char **argv) {
 
                AS_UTL_writeFastA(tempReads,
                   seq, strlen(seq),
-                   ">"F_IID","F_IID"\n", icm_mesg->unitigs[i].position.bgn, icm_mesg->unitigs[i].position.end);
+                   ">" F_IID"," F_IID"\n", icm_mesg->unitigs[i].position.bgn, icm_mesg->unitigs[i].position.end);
             }
             fclose(tempReads);
 

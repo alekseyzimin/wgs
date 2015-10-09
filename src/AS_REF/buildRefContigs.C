@@ -99,7 +99,7 @@ readMapping(char *filename) {
 
   aliLen++;
 
-  fprintf(stderr, "Read "F_U32" alignments.\n", aliLen);
+  fprintf(stderr, "Read " F_U32" alignments.\n", aliLen);
 }
 
 
@@ -163,7 +163,7 @@ loadFragments(void) {
   if (err)
     fprintf(stderr, "There were errors in the mapping.  Fail.\n"), exit(1);
 
-  fprintf(stderr, "Found "F_U32" alive, "F_U32" dead, and "F_U32" unmapped fragments.\n", alive, dead, unmapped);
+  fprintf(stderr, "Found " F_U32" alive, " F_U32" dead, and " F_U32" unmapped fragments.\n", alive, dead, unmapped);
 }
 
 
@@ -305,7 +305,7 @@ outputFragments(void) {
     }
   }
 
-  fprintf(stderr, "Wrote "F_U32" fragment messages.\n", num);
+  fprintf(stderr, "Wrote " F_U32" fragment messages.\n", num);
 }
 
 
@@ -337,7 +337,7 @@ outputMates(void) {
     }
   }
 
-  fprintf(stderr, "Wrote "F_U32" mate pair messages.\n", num);
+  fprintf(stderr, "Wrote " F_U32" mate pair messages.\n", num);
 }
 
 
@@ -359,10 +359,10 @@ outputUnitigs(void) {
   AS_UID r = ali[0].refUID;
 
   for (i=0; i<aliLen; i++) {
-    //fprintf(stdout, "%s "F_U32"-"F_U32"\n", AS_UID_toString(ali[i].refID), ali[i].refBgn, ali[i].refEnd);
+    //fprintf(stdout, "%s " F_U32"-" F_U32"\n", AS_UID_toString(ali[i].refID), ali[i].refBgn, ali[i].refEnd);
 
     if ((AS_UID_compare(r, ali[i].refUID) != 0) || (e < ali[i].refBgn + minOverlap)) {
-      //fprintf(stderr, "Unitig: "F_U32" %s "F_U32"-"F_U32"\n", i, AS_UID_toString(r), b, e);
+      //fprintf(stderr, "Unitig: " F_U32" %s " F_U32"-" F_U32"\n", i, AS_UID_toString(r), b, e);
 
       ium.iaccession    = iumId++;
       ium.coverage_stat = 10.0;
@@ -407,7 +407,7 @@ outputUnitigs(void) {
     impLen++;
   }
 
-  fprintf(stderr, "Wrote "F_U32" unitig messages.\n", num);
+  fprintf(stderr, "Wrote " F_U32" unitig messages.\n", num);
 }
 
 
@@ -439,10 +439,10 @@ outputContigs(void) {
   AS_UID r = ali[0].refUID;
 
   for (i=0; i<aliLen; i++) {
-    //fprintf(stdout, "%s "F_U32"-"F_U32"\n", AS_UID_toString(ali[i].refID), ali[i].refBgn, ali[i].refEnd);
+    //fprintf(stdout, "%s " F_U32"-" F_U32"\n", AS_UID_toString(ali[i].refID), ali[i].refBgn, ali[i].refEnd);
 
     if ((AS_UID_compare(r, ali[i].refUID) != 0) || (e < ali[i].refBgn + minOverlap)) {
-      //fprintf(stderr, "Contig: "F_U32" %s "F_U32"-"F_U32"\n", i, AS_UID_toString(r), b, e);
+      //fprintf(stderr, "Contig: " F_U32" %s " F_U32"-" F_U32"\n", i, AS_UID_toString(r), b, e);
 
       iup[iupLen].type           = AS_UNIQUE_UNITIG;
       iup[iupLen].ident          = icmId;  //  One unitig per contig
@@ -499,7 +499,7 @@ outputContigs(void) {
     impLen++;
   }
 
-  fprintf(stderr, "Wrote "F_U32" contig messages.\n", num);
+  fprintf(stderr, "Wrote " F_U32" contig messages.\n", num);
 }
 
 
@@ -531,10 +531,10 @@ outputScaffolds(void) {
   uint32 mean = 0;
 
   for (i=0; i<aliLen; i++) {
-    //fprintf(stdout, "%s "F_U32"-"F_U32"\n", AS_UID_toString(ali[i].refID), ali[i].refBgn, ali[i].refEnd);
+    //fprintf(stdout, "%s " F_U32"-" F_U32"\n", AS_UID_toString(ali[i].refID), ali[i].refBgn, ali[i].refEnd);
 
     if ((AS_UID_compare(r, ali[i].refUID) != 0) || (e < ali[i].refBgn + minOverlap)) {
-      //fprintf(stderr, "Contig: "F_U32" %s "F_U32"-"F_U32"\n", i, AS_UID_toString(r), b, e);
+      //fprintf(stderr, "Contig: " F_U32" %s " F_U32"-" F_U32"\n", i, AS_UID_toString(r), b, e);
 
       if (icpLen == 0) {
         //  First contig, assume it's the only contig in the scaffold.
@@ -588,7 +588,7 @@ outputScaffolds(void) {
       e = ali[i].refEnd;
   }
 
-  fprintf(stderr, "Wrote "F_U32" scaffold messages.\n", num);
+  fprintf(stderr, "Wrote " F_U32" scaffold messages.\n", num);
 }
 
 

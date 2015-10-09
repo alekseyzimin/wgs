@@ -239,7 +239,7 @@ gkStore::gkStore_computeRanges(AS_IID  bgnIID, AS_IID  endIID,
         valSB = 1;
         break;
       default:
-        fprintf(stderr, "gkStore_computeRanges()-- invalid type "F_U32" for iid "F_U32"\n", type, iid);
+        fprintf(stderr, "gkStore_computeRanges()-- invalid type " F_U32" for iid " F_U32"\n", type, iid);
         assert(0);
         break;
     }

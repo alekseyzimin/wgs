@@ -232,7 +232,7 @@ int is_there_an_overlap_path(const Tfragment *frags,
          {
            FILE *fwalk = stderr;
            fprintf(fwalk,
-                   "Walk1: "F_IID ":%d "F_IID ":%d %d %d %d : %d "F_IID ":%d "F_IID ":%d %d %d %d\n",
+                   "Walk1: " F_IID ":%d " F_IID ":%d %d %d %d : %d " F_IID ":%d " F_IID ":%d %d %d %d\n",
                    get_iid_fragment(frags,target_avx),
                    target_asx,
                    get_iid_fragment(frags,target_bvx),
@@ -315,7 +315,7 @@ int is_there_an_overlap_path(const Tfragment *frags,
          {
            FILE *fwalk = stderr;
            fprintf(fwalk,
-                   "Walk2: "F_IID ":%d "F_IID ":%d %d %d %d : %d "F_IID ":%d "F_IID ":%d %d %d %d\n",
+                   "Walk2: " F_IID ":%d " F_IID ":%d %d %d %d : %d " F_IID ":%d " F_IID ":%d %d %d %d\n",
                    get_iid_fragment(frags,target_avx),
                    target_asx,
                    get_iid_fragment(frags,target_bvx),

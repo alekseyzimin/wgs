@@ -412,7 +412,7 @@ CelamyScaffold(FILE        *fout,
 
     if (CI->offsetAEnd.mean > scaffold->bpLength.mean ||
         CI->offsetBEnd.mean > scaffold->bpLength.mean ) {
-      fprintf(stderr,"* Contig "F_CID" in scaffold "F_CID" has offsets [%d,%d] outside of scaffold length [0,%d]\n",
+      fprintf(stderr,"* Contig " F_CID" in scaffold " F_CID" has offsets [%d,%d] outside of scaffold length [0,%d]\n",
               CI->id, scaffold->id,
               (int)CI->offsetAEnd.mean,
               (int)CI->offsetBEnd.mean,
@@ -432,7 +432,7 @@ CelamyScaffold(FILE        *fout,
 
     if (contigMin < MIN(scaffoldAEndCoord,scaffoldBEndCoord) ||
         contigMax > MAX(scaffoldAEndCoord,scaffoldBEndCoord)) {
-      fprintf(stderr,"* Contig "F_CID" in scaffold "F_CID" has drawing offsets ["F_S64","F_S64"] outside of scaffold length ["F_S64","F_S64"]\n",
+      fprintf(stderr,"* Contig " F_CID" in scaffold " F_CID" has drawing offsets [" F_S64"," F_S64"] outside of scaffold length [" F_S64"," F_S64"]\n",
               CI->id, scaffold->id,
               contigMax,contigMin,
               scaffoldAEndCoord, scaffoldBEndCoord);
@@ -442,7 +442,7 @@ CelamyScaffold(FILE        *fout,
     CIbCoord = MAX(0,CIbCoord);
 
     if (scaffold->type == REAL_SCAFFOLD) {
-      fprintf(fout,F_CID "ScaCtg"F_CID": "F_S64" A%dCGBColor "F_S64" R%d # Scaffold "F_CID" Ctg "F_CID"\n",
+      fprintf(fout,F_CID "ScaCtg" F_CID": " F_S64" A%dCGBColor " F_S64" R%d # Scaffold " F_CID" Ctg " F_CID"\n",
               scaffold->id, contigID,
               CIaCoord,
               CONTIG_COLOUR,
@@ -451,7 +451,7 @@ CelamyScaffold(FILE        *fout,
     }
 
     if (contigMin == contigMax) {
-      fprintf(stderr,"* Warning: Zero Length Contig!!!! contigMin =  "F_S64" contigMax = "F_S64"\n", contigMin, contigMax);
+      fprintf(stderr,"* Warning: Zero Length Contig!!!! contigMin =  " F_S64" contigMax = " F_S64"\n", contigMin, contigMax);
       DumpContig(stderr,ScaffoldGraph, CI, FALSE);
     }
 
@@ -475,17 +475,17 @@ CelamyScaffold(FILE        *fout,
       }
 
       if (ciACoord < 0) {
-        fprintf(stderr,"* Warning ci "F_CID" has negative ciACoord "F_S64" ==> 0", ci->id, ciACoord);
+        fprintf(stderr,"* Warning ci " F_CID" has negative ciACoord " F_S64" ==> 0", ci->id, ciACoord);
         ciACoord = 0;
       }
 
       if (ciBCoord < 0) {
-        fprintf(stderr,"* Warning ci "F_CID" has negative ciBCoord "F_S64" ==> 0", ci->id, ciBCoord);
+        fprintf(stderr,"* Warning ci " F_CID" has negative ciBCoord " F_S64" ==> 0", ci->id, ciBCoord);
         ciBCoord = 0;
       }
 
       if (!ci->flags.bits.isSurrogate) {
-        fprintf(fout, F_CID"CtgCI"F_CID": "F_S64" A%dCGBColor "F_S64" R%d # Contig "F_CID" CI "F_CID" cov:%d\n",
+        fprintf(fout, F_CID"CtgCI" F_CID": " F_S64" A%dCGBColor " F_S64" R%d # Contig " F_CID" CI " F_CID" cov:%d\n",
                 contigID, cid,
                 ciACoord,
                 color,
@@ -494,7 +494,7 @@ CelamyScaffold(FILE        *fout,
                 contigID, cid, ScaffoldGraph->tigStore->getUnitigCoverageStat(ci->id));
       } else {
         NodeCGW_T *baseCI = GetGraphNode(ScaffoldGraph->CIGraph, ci->info.CI.baseID);
-        fprintf(fout, F_CID"CtgCI"F_CID": "F_S64" A%dCGBColor "F_S64" R%d # Contig "F_CID" CI "F_CID" (BaseCI "F_CID" copies %d) baseCov:%d\n",
+        fprintf(fout, F_CID"CtgCI" F_CID": " F_S64" A%dCGBColor " F_S64" R%d # Contig " F_CID" CI " F_CID" (BaseCI " F_CID" copies %d) baseCov:%d\n",
                 contigID, cid,
                 ciACoord,
                 color,
@@ -522,11 +522,11 @@ CelamyScaffold(FILE        *fout,
       fprintf(fout,"LNK: ");
       InitCIScaffoldTIterator(ScaffoldGraph, scaffold, TRUE, FALSE, &CIs);
       while (NULL != (CI = NextCIScaffoldTIterator(&CIs)))
-	fprintf(fout, F_CID"ScaCtg"F_CID" ", scaffold->id, CI->id);
+	fprintf(fout, F_CID"ScaCtg" F_CID" ", scaffold->id, CI->id);
       fprintf(fout," A0ScaffoldColor \n");
     } else {
       assert(scaffold->info.Scaffold.numElements == 1);
-      fprintf(fout,"LNK: "F_CID"ScaCtg"F_CID" A0SingleScaffoldColor\n",
+      fprintf(fout,"LNK: " F_CID"ScaCtg" F_CID" A0SingleScaffoldColor\n",
               scaffold->id, scaffold->info.Scaffold.AEndCI);
     }
   }

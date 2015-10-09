@@ -3272,7 +3272,10 @@ void ComputeMatePairStatisticsRestricted(int operateOnNodes,
         AssertPtr(fragContig);
 
         mateContig = GetGraphNode( ScaffoldGraph->ContigGraph, mate->contigID);
-        AssertPtr(mateContig);
+        if(mateContig == NULL){
+	  numDiffScaf++;
+	  continue;
+	}
 
         // we want them to be in the same scaffold
         if ( fragContig->scaffoldID != mateContig->scaffoldID || fragContig->scaffoldID == -1) {

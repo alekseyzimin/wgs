@@ -1,3 +1,7 @@
+bin_PROGRAMS += bin/meryl
+bin_meryl_SOURCES = %D%/AS_MER_meryl.cc
+
+# Don't compile what depends on kmer library
 # bin_PROGRAMS += bin/meryl bin/mercy bin/overmerry bin/merTrim		\
 #                 bin/merTrimApply bin/estimate-mer-threshold
 # KMERLIBS = lib/libmerylguts.a lib/libkmer.a lib/libmeryl.a lib/libseq.a lib/libbio.a lib/libutil.a

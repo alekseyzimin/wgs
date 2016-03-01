@@ -2105,7 +2105,7 @@ BuildUniqueCIScaffolds(ScaffoldGraphT *graph,
       AddScaffoldInferredEdges(graph);
       MarkRedundantUniqueToUniqueEdges(graph);
       MarkTwoHopConfirmedEdges(graph);
-      MarkPathRemovedEdges(graph);  //  EXPENSIVE
+      //MarkPathRemovedEdges(graph);  //  EXPENSIVE
       SmoothWithInferredEdges(graph, markShakyBifurcations);
 
       //  Mark shaky bifurcations.
@@ -2140,7 +2140,7 @@ BuildUniqueCIScaffolds(ScaffoldGraphT *graph,
   AddScaffoldInferredEdges(graph);
   MarkRedundantUniqueToUniqueEdges(graph);
   MarkTwoHopConfirmedEdges(graph);
-  MarkPathRemovedEdges(graph);  //  EXPENSIVE
+  //MarkPathRemovedEdges(graph);  //  EXPENSIVE
   SmoothWithInferredEdges(graph, FALSE);
 
   //

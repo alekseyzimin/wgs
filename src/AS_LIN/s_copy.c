@@ -8,9 +8,10 @@ VOID s_copy(a, b, la, lb) register char *a, *b; ftnlen la, lb;
 void s_copy(register char *a, register const char *b, ftnlen la, ftnlen lb)
 #endif
 {
-register char *aend, *bend;
+  register char *aend;
+  register const char *bend;
 
-aend = a + la;
+  aend = a + la;
 
 if(la <= lb)
 	while(a < aend)

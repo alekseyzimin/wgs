@@ -359,7 +359,7 @@ ApplyAlignment(int32 afid,
       bindex[bi] = bfrag->firstbead + bi;
 
     //  USED?
-    bfrag->manode = NULL;
+    bfrag->manode = 0;
   } else {
     assert(0);
   }
